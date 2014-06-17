@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="ListViewdefault_theme" parent="android:Widget.ListView">
+      <item name="android:listSelector">@drawable/default_theme_list_selector_holo_light</item>
+      <item name="android:background">@color/background_color</item>
+      <item name="android:divider">@android:drawable/divider_horizontal_bright</item>
+  </style>
+
+    <!-- not sure if I need this -->
+<!--  <style name="ListViewdefault_theme.White" parent="android:Widget.ListView.White">
+      <item name="android:listSelector">@drawable/default_theme_list_selector_holo_light</item>
+  </style>-->
+
+  <style name="SpinnerItemdefault_theme" parent="android:TextAppearance.Widget.TextView.SpinnerItem">
+      <item name="android:textColor">@android:color/darker_gray</item>
+  </style>
+
+</resources>

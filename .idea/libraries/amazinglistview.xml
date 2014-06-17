@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="amazinglistview">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/lib/amazinglistview.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

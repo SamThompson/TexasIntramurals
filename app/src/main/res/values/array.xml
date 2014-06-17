@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="drawer_array">
+        <item>My leagues</item>
+        <item>Follow a league</item>
+        <item>Field conditions</item>
+    </string-array>
+</resources>

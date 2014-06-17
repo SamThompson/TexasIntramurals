@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="shadow_start">#80000000</color>
+    <color name="shadow_end">#00000000</color>
+
+    <color name="table_header">#3a3a3a</color>
+
+    <color name="text_gray">#8f8f8f</color>
+    <color name="listview_gray">#d7d7d7</color>
+    <color name="table_gray">#f0ebeb</color>
+    <color name="background_color">#f2f2f2</color>
+    <color name="navbar_background">#f2f2f2</color>
+
+    <color name="experimental_gray">#d7d7d7</color>
+    <!-- Card colors -->
+    <color name="card_blue">#6DCAEC</color>
+    <color name="card_orange">#FFD060</color>
+    <color name="card_red">#FF7979</color>
+    <color name="card_green">#B6DB49</color>
+</resources>

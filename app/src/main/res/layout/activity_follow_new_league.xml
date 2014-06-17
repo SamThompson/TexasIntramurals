@@ -1,0 +1,28 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.xenithturtle.texasim.activities.FollowNewLeagueActivity">
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <TextView android:id="@+id/error_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Could not fetch leagues.\nPlease try again later."
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <com.foound.widget.AmazingListView
+        android:id="@+id/amazingList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+
+    </FrameLayout>

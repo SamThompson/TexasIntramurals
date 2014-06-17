@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="default_theme" parent="@style/_default_theme"/>
+
+  <style name="_default_theme" parent="Theme.AppCompat.Light.DarkActionBar">
+
+    <item name="android:listViewStyle">@style/ListViewdefault_theme</item>
+
+<!--    <item name="android:listViewWhiteStyle">@style/ListViewdefault_theme.White</item>-->
+
+    <item name="android:spinnerItemStyle">@style/SpinnerItemdefault_theme</item>
+
+  </style>
+
+</resources>
