@@ -26,10 +26,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="dd3141f4-91a2-4033-a8ca-3a4480a1fbf1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/cards/LeagueCard.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/cards/LeagueCard.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/ViewLeagueActivity.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/ViewLeagueActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" afterPath="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml" afterPath="$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/res/layout/league_card.xml" afterPath="$PROJECT_DIR$/app/src/main/res/layout/league_card.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Texas Intramurals.iws" />
@@ -94,10 +102,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="drawer_item.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml">
+      <file leaf-file-name="ScheduleFragment.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/fragments/ScheduleFragment.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="42" selection-start="438" selection-end="438" vertical-scroll-proportion="-5.586207" vertical-offset="0" max-vertical-offset="324">
+            <state line="22" column="13" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="1728">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="fragment_schedule.xml" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="25" column="45" selection-start="1013" selection-end="1013" vertical-scroll-proportion="-15.5172415" vertical-offset="0" max-vertical-offset="612">
               <folding />
             </state>
           </provider>
@@ -106,33 +123,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="activity_main.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
+      <file leaf-file-name="fragment_standings.xml" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_standings.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="51" selection-start="790" selection-end="790" vertical-scroll-proportion="-11.793103" vertical-offset="0" max-vertical-offset="522">
+            <state line="6" column="0" selection-start="279" selection-end="279" vertical-scroll-proportion="-0.27597955" vertical-offset="270" max-vertical-offset="1260">
               <folding />
             </state>
           </provider>
           <provider editor-type-id="android-designer">
             <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="colors.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="42" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="drawer_select_color.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="56" selection-start="510" selection-end="510" vertical-scroll-proportion="0.21319798" vertical-offset="0" max-vertical-offset="591">
-              <folding />
-            </state>
           </provider>
         </entry>
       </file>
@@ -534,9 +533,6 @@
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
       <list>
-        <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/inqbarna/tablefixheaders/Recycler.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/item_table_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_table_first.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_table_header_first.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/separator_table.xml" />
@@ -549,7 +545,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/separator_table_header.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/TestActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_test.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/ViewLeagueActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/inqbarna/tablefixheaders/TableFixHeaders.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_standings.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/helpers/JSONArrayAdapter.java" />
@@ -564,7 +559,6 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/fragments/StandingsFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/helpers/IMSqliteAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/fragments/MyLeaguesFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/helpers/LeagueListAdapter.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/misc_classes/LeagueCard.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/fragments/EventListFragment.java" />
@@ -574,25 +568,30 @@
         <option value="$PROJECT_DIR$/app/src/main/res/values/themes_default_theme.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/list_divider.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/drawer_listview_layout.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java" />
-        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles_default_theme_listview.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/league_card.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/drawer_flip_text.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/drawable/drawer_activated_background.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/league_card.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/IMActionBarActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/ViewLeagueActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/colors.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/cards/LeagueCard.java" />
+        <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="64" />
-    <option name="y" value="-4" />
-    <option name="width" value="1303" />
-    <option name="height" value="773" />
+    <option name="x" value="65" />
+    <option name="y" value="24" />
+    <option name="width" value="1301" />
+    <option name="height" value="744" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <OptionsSetting value="true" id="Add" />
@@ -620,6 +619,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -757,36 +758,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="layout" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Texas Intramurals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="TexasIntramurals" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="res" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="drawable" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1030,8 +1001,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -1050,11 +1019,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main" />
-      <recent name="$PROJECT_DIR$/app/src/main/res" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xxhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-xhdpi" />
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable-mdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/drawable-hdpi" />
+      <recent name="$PROJECT_DIR$/app/src/main" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -1256,8 +1225,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-4" width="1303" height="773" extended-state="6" />
-    <editor active="false" />
+    <frame x="65" y="24" width="1301" height="744" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -1265,6 +1234,7 @@
       <window_info id="Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32933652" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972136" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32662538" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993559" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972136" sideWeight="0.5003997" order="8" side_tool="true" content_ui="tabs" />
@@ -1272,7 +1242,7 @@
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32352942" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7037037" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.7012384" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1280,12 +1250,11 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23741007" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3188406" sideWeight="0.49960032" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3142415" sideWeight="0.49960032" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32763976" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -1337,13 +1306,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/themes_default_theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="73" selection-start="382" selection-end="382" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="414">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles_default_theme_listview.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="7" column="60" selection-start="395" selection-end="395" vertical-scroll-proportion="0.0" vertical-offset="126" max-vertical-offset="468">
@@ -1453,39 +1415,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="587">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_standings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="36" selection-start="500" selection-end="500" vertical-scroll-proportion="-6.827586" vertical-offset="0" max-vertical-offset="1260">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/adapters/IMSqliteAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="90" column="45" selection-start="2691" selection-end="2691" vertical-scroll-proportion="0.0" vertical-offset="1058" max-vertical-offset="1674">
           <folding>
             <element signature="e#2436#2445#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="82" column="41" selection-start="3412" selection-end="3412" vertical-scroll-proportion="0.0" vertical-offset="369" max-vertical-offset="2664">
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1504,20 +1439,6 @@
       </provider>
       <provider editor-type-id="android-designer">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable-hdpi/ic_navigation_drawer.png">
@@ -1544,13 +1465,6 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors_default_theme.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles_default_theme.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="21" column="65" selection-start="862" selection-end="862" vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="1566">
           <folding />
         </state>
       </provider>
@@ -1621,23 +1535,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="32" selection-start="182" selection-end="182" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="828">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state line="38" column="0" selection-start="864" selection-end="864" vertical-scroll-proportion="0.0" vertical-offset="196" max-vertical-offset="810">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="35" selection-start="1845" selection-end="1845" vertical-scroll-proportion="0.20965058" vertical-offset="432" max-vertical-offset="2790">
           <folding />
         </state>
       </provider>
@@ -1656,45 +1556,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/league_card.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="34" column="51" selection-start="1342" selection-end="1342" vertical-scroll-proportion="0.12811388" vertical-offset="540" max-vertical-offset="1926">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/cards/LeagueCard.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="24" selection-start="1312" selection-end="1312" vertical-scroll-proportion="0.030456852" vertical-offset="774" max-vertical-offset="2322">
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_main.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="51" selection-start="790" selection-end="790" vertical-scroll-proportion="-11.793103" vertical-offset="0" max-vertical-offset="522">
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="android-designer">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="42" selection-start="479" selection-end="479" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="450">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="42" selection-start="438" selection-end="438" vertical-scroll-proportion="-5.586207" vertical-offset="0" max-vertical-offset="324">
+        <state line="19" column="51" selection-start="790" selection-end="790" vertical-scroll-proportion="0.0" vertical-offset="342" max-vertical-offset="522">
           <folding />
         </state>
       </provider>
@@ -1704,9 +1568,119 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/drawable/drawer_select_color.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="56" selection-start="510" selection-end="510" vertical-scroll-proportion="0.21319798" vertical-offset="0" max-vertical-offset="591">
+        <state line="6" column="76" selection-start="433" selection-end="433" vertical-scroll-proportion="0.17532468" vertical-offset="0" max-vertical-offset="616">
           <folding />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/ViewLeagueActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="29" column="39" selection-start="1108" selection-end="1108" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1818">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/styles_default_theme.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="65" selection-start="1629" selection-end="1629" vertical-scroll-proportion="0.0" vertical-offset="963" max-vertical-offset="1566">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/FollowNewLeagueActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="55" column="40" selection-start="1914" selection-end="1914" vertical-scroll-proportion="0.6865672" vertical-offset="0" max-vertical-offset="2682">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/cards/LeagueCard.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="107" column="0" selection-start="4332" selection-end="4332" vertical-scroll-proportion="0.0" vertical-offset="1260" max-vertical-offset="2034">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/strings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="616">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="40" selection-start="446" selection-end="446" vertical-scroll-proportion="0.0" vertical-offset="108" max-vertical-offset="756">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/league_card.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="34" column="45" selection-start="1336" selection-end="1336" vertical-scroll-proportion="5.586207" vertical-offset="774" max-vertical-offset="1926">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/activities/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="145" column="4" selection-start="5164" selection-end="5164" vertical-scroll-proportion="0.35820895" vertical-offset="2052" max-vertical-offset="2790">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/values/colors.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="20" column="33" selection-start="739" selection-end="739" vertical-scroll-proportion="0.58441556" vertical-offset="0" max-vertical-offset="616">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/drawer_item.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="14" selection-start="447" selection-end="447" vertical-scroll-proportion="0.30664396" vertical-offset="0" max-vertical-offset="587">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/xenithturtle/texasim/fragments/ScheduleFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="22" column="13" selection-start="648" selection-end="648" vertical-scroll-proportion="0.0" vertical-offset="684" max-vertical-offset="1728">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_schedule.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="25" column="45" selection-start="1013" selection-end="1013" vertical-scroll-proportion="-15.5172415" vertical-offset="0" max-vertical-offset="612">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/fragment_standings.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="0" selection-start="279" selection-end="279" vertical-scroll-proportion="-0.27597955" vertical-offset="270" max-vertical-offset="1260">
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="android-designer">
+        <state />
       </provider>
     </entry>
   </component>

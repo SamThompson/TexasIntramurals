@@ -4,10 +4,25 @@
     android:layout_height="match_parent"
     tools:context="com.xenithturtle.texasim.fragments.ScheduleFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="invisible" />
+
+    <TextView android:id="@+id/error_text"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Could not fetch league.\nPlease try again later."
+        android:layout_gravity="center"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        android:visibility="gone" ></LinearLayout>
 
 </FrameLayout>
