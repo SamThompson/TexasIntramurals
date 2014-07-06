@@ -8,8 +8,8 @@
     <color name="text_gray">#8f8f8f</color>
     <color name="listview_gray">#d7d7d7</color>
     <color name="table_gray">#f0ebeb</color>
-    <color name="background_color">#f2f2f2</color>
     <color name="navbar_background">#f2f2f2</color>
+    <color name="background_color">#f4f4f4</color>
 
     <color name="drawer_select">@color/card_orange</color>
     <color name="experimental_gray">#d7d7d7</color>

@@ -124,7 +124,6 @@ public class StandingsFragment extends Fragment {
         public void onPostExecute(JSONObject res) {
             if (res != null) {
                 mTable.setAdapter(new JSONTableAdapter(getActivity(), res));
-                mProgressBar.setVisibility(View.GONE);
                 LinearLayout.LayoutParams params =
                         new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
                                 LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -133,9 +132,10 @@ public class StandingsFragment extends Fragment {
                 t.setText("test");
                 TextView t2 = new TextView(getActivity());
                 t2.setLayoutParams(params);
-                t.setText("test2");
+                t2.setText("test2");
                 mInfo.addView(t);
-                //mInfo.addView(t2);
+                mInfo.addView(t2);
+                mProgressBar.setVisibility(View.GONE);
                 mContent.setVisibility(View.VISIBLE);
             } else {
                 mProgressBar.setVisibility(View.GONE);

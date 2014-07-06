@@ -1,14 +1,27 @@
 package com.xenithturtle.texasim.fragments;
 
 import android.app.Activity;
+import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
+import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -23,6 +36,9 @@ import com.xenithturtle.texasim.R;
 public class ScheduleFragment extends Fragment {
 
     private OnFragmentInteractionListener mListener;
+    private LinearLayout mContent;
+    private ProgressBar mProgressBar;
+    private TextView mErrorText;
 
     /**
      * Use this factory method to create a new instance of
@@ -52,7 +68,14 @@ public class ScheduleFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        View v = inflater.inflate(R.layout.fragment_schedule, container, false);
+//        mWebView = (WebView) v.findViewById(R.id.webview);
+        mProgressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
+        mErrorText = (TextView) v.findViewById(R.id.error_text);
+        mProgressBar.setVisibility(View.VISIBLE);
+        mContent = (LinearLayout) v.findViewById(R.id.content);
+        new ScheduleLoader().execute("5423", "schedule");
+        return v;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -94,5 +117,85 @@ public class ScheduleFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
+
+    private class ScheduleLoader extends LeagueAsyncTask {
+
+        // { days: [<days>], <day>:[], ...}
+        @Override
+        public void onPostExecute(JSONObject jsonObject) {
+            if (jsonObject != null) {
+                try {
+                    JSONArray days = jsonObject.getJSONArray("days");
+
+                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                            ViewGroup.LayoutParams.WRAP_CONTENT);
+                    params.setMargins(8, 16, 8, 0);
+
+                    //loop over the event days
+                    for (int i = 0; i < days.length(); i++) {
+
+                        String day = days.getString(i);
+
+                        TextView dayView = (TextView) mContent.inflate(getActivity(), R.layout.day_text_view, null);
+                        dayView.setLayoutParams(params);
+                        dayView.setText(day);
+
+                        mContent.addView(dayView);
+
+                        //get the games on that day
+                        JSONArray times = jsonObject.getJSONArray(day);
+                        for (int j = 0; j < times.length(); j++) {
+
+                            LinearLayout ll = (LinearLayout) mContent.inflate(getActivity(), R.layout.schedule_table, null);
+                            TableLayout tableView = (TableLayout) ll.findViewById(R.id.result_table);
+
+                            TextView timeHeader = (TextView) ll.findViewById(R.id.game_header);
+
+                            //get the jth game
+                            JSONArray game = times.getJSONArray(j);
+                            timeHeader.setText(game.getJSONArray(0).getString(0));
+                            for (int k = 1; k < game.length(); k++) {
+
+
+                                JSONArray row = game.getJSONArray(k);
+                                TableRow tableRow = new TableRow(getActivity());
+
+                                if ((k-1) % 2 == 1) {
+                                    tableRow.setBackgroundResource(R.color.table_gray);
+                                } else {
+                                    tableRow.setBackgroundColor(Color.WHITE);
+                                }
+
+                                for (int l = 0; l < row.length(); l++) {
+                                    String text = row.getString(l);
+
+                                    Log.i("**********", text);
+
+                                    if (!text.toLowerCase().equals("no show")) {
+                                        TextView t = new TextView(getActivity());
+                                        t.setTextColor(Color.BLACK);
+                                        t.setPadding(8, 8, 8, 8);
+                                        t.setText(row.getString(l));
+                                        tableRow.addView(t);
+                                    }
+                                }
+
+                                tableView.addView(tableRow);
+                            }
+                            mContent.addView(ll);
+                        }
+
+                    }
+                } catch (JSONException e) {
+                    Log.i("************", "JSON exception");
+                }
+                mProgressBar.setVisibility(View.GONE);
+                mContent.setVisibility(View.VISIBLE);
+            } else {
+                mProgressBar.setVisibility(View.GONE);
+                mErrorText.setVisibility(View.VISIBLE);
+            }
+        }
+    }
 
 }
