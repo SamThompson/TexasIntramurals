@@ -31,6 +31,7 @@ public class LeagueCard extends Card {
     private String mDivisionName = "";
     private String mLeagueInfo = "";
     private String mLastUpdate = "";
+    private String mSport = "";
     private QueryStatus mQueryStatus;
 
     public LeagueCard(Context c, int leagueId) {
@@ -47,14 +48,7 @@ public class LeagueCard extends Card {
                 //probably want to do nothing here
                 break;
             case SUCCESS:
-                TextView lName = (TextView) parent.findViewById(R.id.card_league_name);
-                lName.setText(mLeagueName);
-                TextView dName = (TextView) parent.findViewById(R.id.card_division_name);
-                dName.setText(mDivisionName);
-                TextView lInfo = (TextView) parent.findViewById(R.id.card_play_time);
-                lInfo.setText(mLeagueInfo);
-                TextView lastupdate = (TextView) parent.findViewById(R.id.card_last_update);
-                lastupdate.setText("Last update: " + mLastUpdate);
+                bindDataToCard(parent);
                 ProgressBar pb = (ProgressBar) parent.findViewById(R.id.card_spinner);
                 pb.setVisibility(View.GONE);
                 RelativeLayout r = (RelativeLayout) parent.findViewById(R.id.card_content);
@@ -68,12 +62,27 @@ public class LeagueCard extends Card {
         }
     }
 
+    private void bindDataToCard(ViewGroup parent) {
+        TextView lName = (TextView) parent.findViewById(R.id.card_league_name);
+        lName.setText(mLeagueName);
+        TextView dName = (TextView) parent.findViewById(R.id.card_division_name);
+        dName.setText(mDivisionName);
+        TextView lInfo = (TextView) parent.findViewById(R.id.card_play_time);
+        lInfo.setText(mLeagueInfo);
+        TextView lastupdate = (TextView) parent.findViewById(R.id.card_last_update);
+        lastupdate.setText("Last update: " + mLastUpdate);
+        TextView sportName = (TextView) parent.findViewById(R.id.sport_icon);
+        sportName.setText(mSport.toUpperCase());
+    }
+
     private class LeagueCardClickedListener implements OnCardClickListener {
 
         @Override
         public void onClick(Card card, View view) {
-            Intent i = new Intent(mContext, ViewLeagueActivity.class);
-            mContext.startActivity(i);
+            if (mQueryStatus == QueryStatus.SUCCESS) {
+                Intent i = new Intent(mContext, ViewLeagueActivity.class);
+                mContext.startActivity(i);
+            }
         }
     }
 
@@ -90,18 +99,12 @@ public class LeagueCard extends Card {
                     mDivisionName = j.getString("division");
                     mLeagueInfo = j.getString("play_time");
                     mLastUpdate = j.getString("update_time");
+                    mSport = j.getString("sport");
                     mQueryStatus = QueryStatus.SUCCESS;
 
                     //Need to check if the cardview is null b/c of off screen views
                     if (getCardView() != null) {
-                        TextView lName = (TextView) getCardView().findViewById(R.id.card_league_name);
-                        lName.setText(mLeagueName);
-                        TextView dName = (TextView) getCardView().findViewById(R.id.card_division_name);
-                        dName.setText(mDivisionName);
-                        TextView lInfo = (TextView) getCardView().findViewById(R.id.card_play_time);
-                        lInfo.setText(mLeagueInfo);
-                        TextView lastupdate = (TextView) getCardView().findViewById(R.id.card_last_update);
-                        lastupdate.setText("Last update: " + mLastUpdate);
+                        bindDataToCard(getCardView());
                         ProgressBar pb = (ProgressBar) getCardView().findViewById(R.id.card_spinner);
                         pb.setVisibility(View.GONE);
                         RelativeLayout r = (RelativeLayout) getCardView().findViewById(R.id.card_content);
