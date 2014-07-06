@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background_color"
     tools:context="com.xenithturtle.texasim.fragments.StandingsFragment">
 
     <ProgressBar
@@ -56,7 +57,6 @@
             android:layout_marginRight="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
-            android:background="#f0EBEB"
             android:orientation="vertical">
         </LinearLayout>
     </LinearLayout>

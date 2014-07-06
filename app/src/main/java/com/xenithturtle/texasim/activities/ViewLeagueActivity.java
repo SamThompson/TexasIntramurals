@@ -27,6 +27,7 @@ public class ViewLeagueActivity extends ActionBarActivity
         setContentView(R.layout.activity_view_league);
 
         final ActionBar ab = getSupportActionBar();
+        ab.setIcon(R.drawable.ic_activity);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         //ab.setTitle()

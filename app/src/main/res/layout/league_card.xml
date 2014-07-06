@@ -32,7 +32,7 @@
 
     <RelativeLayout
         android:id="@+id/card_content"
-        android:background="@color/experimental_gray"
+        android:background="@color/card_orange"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">

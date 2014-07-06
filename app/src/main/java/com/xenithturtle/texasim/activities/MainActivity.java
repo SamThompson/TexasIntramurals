@@ -1,5 +1,6 @@
 package com.xenithturtle.texasim.activities;
 
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.fragments.EventListFragment;
@@ -41,9 +43,6 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
         mDrawerTitles = getResources().getStringArray(R.array.drawer_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
-        // Set the adapter for the list view
-        //kind of a hacky way to do this, but init here, so it can be used in other fragments
 
         mDrawerList.setAdapter(new ArrayAdapter<String>(this,
                 R.layout.drawer_item, mDrawerTitles));
@@ -76,6 +75,7 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setIcon(R.drawable.ic_activity);
 
         selectItem(MY_LEAGUES);
 
@@ -157,10 +157,12 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
     }
 
     private class DrawerClickListener implements ListView.OnItemClickListener {
+
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             selectItem(position);
         }
+
     }
 
 }

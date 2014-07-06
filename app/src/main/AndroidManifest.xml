@@ -11,7 +11,7 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name"
+        android:label="Texas Intramurals"
         android:theme="@style/Theme.Default_theme" >
         <activity
             android:name="com.xenithturtle.texasim.activities.MainActivity"
@@ -30,10 +30,6 @@
         <activity
             android:name="com.xenithturtle.texasim.activities.FollowNewLeagueActivity"
             android:label="@string/title_activity_follow_new_league" >
-        </activity>
-        <activity
-            android:name="com.xenithturtle.texasim.activities.TestActivity"
-            android:label="@string/title_activity_test" >
         </activity>
     </application>
 

@@ -53,6 +53,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         Log.i("*********", "event id: " + eventId);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
+        ab.setIcon(R.drawable.ic_activity);
 
         mAmazingList = (AmazingListView) findViewById(R.id.amazingList);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
