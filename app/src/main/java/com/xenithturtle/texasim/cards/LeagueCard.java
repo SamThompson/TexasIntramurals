@@ -10,6 +10,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
+import com.xenithturtle.texasim.activities.FollowNewLeagueActivity;
 import com.xenithturtle.texasim.activities.ViewLeagueActivity;
 import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
 
@@ -27,6 +28,7 @@ public class LeagueCard extends Card {
 
     private enum QueryStatus {PENDING, SUCCESS, FAIL}
 
+    private int mLid = 5423;
     private String mLeagueName = "";
     private String mDivisionName = "";
     private String mLeagueInfo = "";
@@ -81,6 +83,9 @@ public class LeagueCard extends Card {
         public void onClick(Card card, View view) {
             if (mQueryStatus == QueryStatus.SUCCESS) {
                 Intent i = new Intent(mContext, ViewLeagueActivity.class);
+                i.putExtra(ViewLeagueActivity.NAME_KEY, mLeagueName);
+                i.putExtra(ViewLeagueActivity.LID_KEY, mLid);
+                i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, false);
                 mContext.startActivity(i);
             }
         }

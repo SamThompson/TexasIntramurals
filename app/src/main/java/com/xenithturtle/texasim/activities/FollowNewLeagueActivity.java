@@ -1,5 +1,6 @@
 package com.xenithturtle.texasim.activities;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
@@ -48,9 +49,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         String eventId = extras.getString("EVENT_ID");
         String name = extras.getString("EVENT_NAME");
         setTitle(name);
-//        ph.initialize();
 
-        Log.i("*********", "event id: " + eventId);
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setIcon(R.drawable.ic_activity);
@@ -61,6 +60,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         mProgressBar.setVisibility(View.VISIBLE);
 
         new DivisionAsyncTask().execute(eventId);
+
         mAmazingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -68,26 +68,41 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
 
                 try {
                     int lid = j.getInt(AsyncTaskConstants.LID);
+                    String name = j.getString(AsyncTaskConstants.LNAME);
                     Toast.makeText(FollowNewLeagueActivity.this, "" + lid, Toast.LENGTH_SHORT).show();
-                    IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(FollowNewLeagueActivity.this);
-                    sqliteAdapter.open();
-
-                    if (sqliteAdapter.isFollowingLeague(lid)) {
-                        sqliteAdapter.deleteLeague(lid);
-                        ImageView imageView = (ImageView) view.findViewById(R.id.star);
-                        imageView.setImageResource(R.drawable.ic_rating_not_important);
-                    } else {
-                        sqliteAdapter.insertLeague(lid);
-                        ImageView imageView = (ImageView) view.findViewById(R.id.star);
-                        imageView.setImageResource(R.drawable.ic_rating_important);
-                    }
-                    sqliteAdapter.close();
+                    Intent i = new Intent(FollowNewLeagueActivity.this, ViewLeagueActivity.class);
+                    i.putExtra(ViewLeagueActivity.NAME_KEY, name);
+                    i.putExtra(ViewLeagueActivity.LID_KEY, lid);
+                    i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, true);
+                    i.putExtra(ViewLeagueActivity.LIST_INDEX_KEY, position);
+                    startActivityForResult(i, ViewLeagueActivity.TRACK_CHANGES);
                 } catch (JSONException e) {
                 }
             }
         });
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ViewLeagueActivity.TRACK_CHANGES) {
+            if (resultCode == RESULT_OK) {
+                boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
+                int listIndex = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
+
+                if (listIndex >= 0) {
+
+                    View v = mAmazingList.getChildAt(listIndex);
+                    ImageView star = (ImageView) v.findViewById(R.id.star);
+
+                    if (following) {
+                        star.setImageResource(R.drawable.ic_rating_important);
+                    } else {
+                        star.setImageResource(R.drawable.ic_rating_not_important);
+                    }
+                }
+            }
+        }
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
