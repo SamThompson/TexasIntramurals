@@ -169,8 +169,6 @@ public class ScheduleFragment extends Fragment {
                                 for (int l = 0; l < row.length(); l++) {
                                     String text = row.getString(l);
 
-                                    Log.i("**********", text);
-
                                     if (!text.toLowerCase().equals("no show")) {
                                         TextView t = new TextView(getActivity());
                                         t.setTextColor(Color.BLACK);

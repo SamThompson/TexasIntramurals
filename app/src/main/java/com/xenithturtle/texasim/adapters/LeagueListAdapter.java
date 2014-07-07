@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.foound.widget.AmazingAdapter;
 import com.xenithturtle.texasim.R;
@@ -58,7 +59,7 @@ public class LeagueListAdapter extends AmazingAdapter {
     }
 
     @Override
-    public View getAmazingView(int position, View convertView, ViewGroup viewGroup) {
+    public View getAmazingView(final int position, View convertView, ViewGroup viewGroup) {
         View res = convertView;
 
         if (res == null)
@@ -66,7 +67,30 @@ public class LeagueListAdapter extends AmazingAdapter {
 
         TextView leagueName = (TextView) res.findViewById(R.id.league_name);
 //        TextView leagueInfo = (TextView) res.findViewById(R.id.league_info);
-        ImageView imageView = (ImageView) res.findViewById(R.id.star);
+        final ImageView star = (ImageView) res.findViewById(R.id.star);
+        star.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                JSONObject j = getItem(position);
+
+                try {
+                    int lid = j.getInt(AsyncTaskConstants.LID);
+                    Toast.makeText(mContext, "" + lid, Toast.LENGTH_SHORT).show();
+                    IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(mContext);
+                    sqliteAdapter.open();
+
+                    if (sqliteAdapter.isFollowingLeague(lid)) {
+                        sqliteAdapter.deleteLeague(lid);
+                        star.setImageResource(R.drawable.ic_rating_not_important);
+                    } else {
+                        sqliteAdapter.insertLeague(lid);
+                        star.setImageResource(R.drawable.ic_rating_important);
+                    }
+                    sqliteAdapter.close();
+                } catch (JSONException e) {
+                }
+            }
+        });
 
         JSONObject l = getItem(position);
         String name;
@@ -79,9 +103,9 @@ public class LeagueListAdapter extends AmazingAdapter {
             sqliteAdapter.open();
 
             if (!sqliteAdapter.isFollowingLeague(lid)) {
-                imageView.setImageResource(R.drawable.ic_rating_not_important);
+                star.setImageResource(R.drawable.ic_rating_not_important);
             } else {
-                imageView.setImageResource(R.drawable.ic_rating_important);
+                star.setImageResource(R.drawable.ic_rating_important);
             }
 
             sqliteAdapter.close();
