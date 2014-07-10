@@ -72,8 +72,8 @@ public class ViewLeagueActivity extends ActionBarActivity
 
         mPager = (ViewPager) findViewById(R.id.pager);
         mAdapter = new FragmentAdapter<Fragment>(getSupportFragmentManager());
-        mAdapter.addFragments(StandingsFragment.newInstance());
-        mAdapter.addFragments(ScheduleFragment.newInstance());
+        mAdapter.addFragments(StandingsFragment.newInstance(mLid));
+        mAdapter.addFragments(ScheduleFragment.newInstance(mLid));
 
         mPager.setAdapter(mAdapter);
         mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {

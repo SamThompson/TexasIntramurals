@@ -10,14 +10,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
-import com.xenithturtle.texasim.activities.FollowNewLeagueActivity;
 import com.xenithturtle.texasim.activities.ViewLeagueActivity;
+import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Random;
 
 import it.gmariotti.cardslib.library.internal.Card;
 
@@ -28,7 +27,7 @@ public class LeagueCard extends Card {
 
     private enum QueryStatus {PENDING, SUCCESS, FAIL}
 
-    private int mLid = 5423;
+    private int mLid;
     private String mLeagueName = "";
     private String mDivisionName = "";
     private String mLeagueInfo = "";
@@ -38,8 +37,9 @@ public class LeagueCard extends Card {
 
     public LeagueCard(Context c, int leagueId) {
         super(c, R.layout.league_card);
+        mLid = leagueId;
         setOnClickListener(new LeagueCardClickedListener());
-        new LeagueCardAsyncTask().execute("5423", "info");
+        new LeagueCardAsyncTask().execute("" + mLid, "info");
         mQueryStatus = QueryStatus.PENDING;
     }
 
@@ -99,12 +99,11 @@ public class LeagueCard extends Card {
         public void onPostExecute(JSONObject j) {
             if (j != null) {
                 try {
-                    //TODO use constants
-                    mLeagueName = j.getString("name");
-                    mDivisionName = j.getString("division");
-                    mLeagueInfo = j.getString("play_time");
-                    mLastUpdate = j.getString("update_time");
-                    mSport = j.getString("sport");
+                    mLeagueName = j.getString(AsyncTaskConstants.NAME);
+                    mDivisionName = j.getString(AsyncTaskConstants.DIVISION);
+                    mLeagueInfo = j.getString(AsyncTaskConstants.TIME);
+                    mLastUpdate = j.getString(AsyncTaskConstants.UPDATE);
+                    mSport = j.getString(AsyncTaskConstants.SPORT);
                     mQueryStatus = QueryStatus.SUCCESS;
 
                     //Need to check if the cardview is null b/c of off screen views

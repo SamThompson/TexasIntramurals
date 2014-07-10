@@ -29,7 +29,8 @@
                 android:layout_marginLeft="8dp"
                 android:background="?android:attr/activatedBackgroundIndicator"/>
             <TextView
-                android:text="Test"
+                android:id="@+id/league_info"
+                android:text="League info"
                 android:textColor="@color/text_gray"
                 android:layout_marginLeft="8dp"
                 android:textStyle="italic"

@@ -35,10 +35,13 @@ import org.json.JSONObject;
  */
 public class ScheduleFragment extends Fragment {
 
+    private static final String LEAGUE_KEY = "LEAGUE_ID";
+
     private OnFragmentInteractionListener mListener;
     private LinearLayout mContent;
     private ProgressBar mProgressBar;
     private TextView mErrorText;
+    private int mLid;
 
     /**
      * Use this factory method to create a new instance of
@@ -47,9 +50,10 @@ public class ScheduleFragment extends Fragment {
      * @return A new instance of fragment ScheduleFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ScheduleFragment newInstance() {
+    public static ScheduleFragment newInstance(int leagueId) {
         ScheduleFragment fragment = new ScheduleFragment();
         Bundle args = new Bundle();
+        args.putInt(LEAGUE_KEY, leagueId);
         fragment.setArguments(args);
         return fragment;
     }
@@ -60,7 +64,11 @@ public class ScheduleFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        Bundle args = getArguments();
+        if (args != null) {
+            mLid = args.getInt(LEAGUE_KEY);
+        } else {
+            mLid = 0;
         }
     }
 
@@ -74,7 +82,7 @@ public class ScheduleFragment extends Fragment {
         mErrorText = (TextView) v.findViewById(R.id.error_text);
         mProgressBar.setVisibility(View.VISIBLE);
         mContent = (LinearLayout) v.findViewById(R.id.content);
-        new ScheduleLoader().execute("5423", "schedule");
+        new ScheduleLoader().execute("" + mLid, "schedule");
         return v;
     }
 
