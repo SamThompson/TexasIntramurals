@@ -179,7 +179,8 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         @Override
         public void onPostExecute(List<Pair<String, JSONArray>> res) {
             if (res != null) {
-                LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res, AsyncTaskConstants.LNAME);
+                LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res,
+                        AsyncTaskConstants.LNAME, AsyncTaskConstants.LINFO);
                 mAmazingList.setAdapter(adapter);
                 mProgressBar.setVisibility(View.GONE);
                 mAmazingList.setVisibility(View.VISIBLE);

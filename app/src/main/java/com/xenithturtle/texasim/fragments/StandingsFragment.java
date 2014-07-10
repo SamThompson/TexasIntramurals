@@ -30,12 +30,15 @@ import org.json.JSONObject;
  */
 public class StandingsFragment extends Fragment {
 
+    private static final String LEAGUE_KEY = "LEAGUE_ID";
+
     private OnFragmentInteractionListener mListener;
     private LinearLayout mContent;
     private ProgressBar mProgressBar;
     private TextView mErrorText;
     private TableFixHeaders mTable;
     private LinearLayout mInfo;
+    private int mLid;
 
     /**
      * Use this factory method to create a new instance of
@@ -44,9 +47,11 @@ public class StandingsFragment extends Fragment {
      * @return A new instance of fragment StandingsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StandingsFragment newInstance() {
+    public static StandingsFragment newInstance(int leagueId) {
         StandingsFragment fragment = new StandingsFragment();
         Bundle args = new Bundle();
+        args.putInt(LEAGUE_KEY, leagueId);
+        fragment.setArguments(args);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,7 +62,11 @@ public class StandingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
+        Bundle args = getArguments();
+        if (args != null) {
+            mLid = args.getInt(LEAGUE_KEY);
+        } else {
+            mLid = 0;
         }
     }
 
@@ -73,7 +82,7 @@ public class StandingsFragment extends Fragment {
         mTable = (TableFixHeaders) v.findViewById(R.id.table);
         mContent = (LinearLayout) v.findViewById(R.id.content);
         mInfo = (LinearLayout) v.findViewById(R.id.info);
-        new StandingsLoader().execute("5423", "standings");
+        new StandingsLoader().execute("" + mLid, "standings");
 
         return v;
     }
@@ -123,18 +132,20 @@ public class StandingsFragment extends Fragment {
         @Override
         public void onPostExecute(JSONObject res) {
             if (res != null) {
-                mTable.setAdapter(new JSONTableAdapter(getActivity(), res));
-                LinearLayout.LayoutParams params =
-                        new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                LinearLayout.LayoutParams.WRAP_CONTENT);
-                TextView t = new TextView(getActivity());
-                t.setLayoutParams(params);
-                t.setText("test");
-                TextView t2 = new TextView(getActivity());
-                t2.setLayoutParams(params);
-                t2.setText("test2");
-                mInfo.addView(t);
-                mInfo.addView(t2);
+                if (res.length() > 0) {
+                    mTable.setAdapter(new JSONTableAdapter(getActivity(), res));
+                    LinearLayout.LayoutParams params =
+                            new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
+                                    LinearLayout.LayoutParams.WRAP_CONTENT);
+                    TextView t = new TextView(getActivity());
+                    t.setLayoutParams(params);
+                    t.setText("test");
+                    TextView t2 = new TextView(getActivity());
+                    t2.setLayoutParams(params);
+                    t2.setText("test2");
+                    mInfo.addView(t);
+                    mInfo.addView(t2);
+                }
                 mProgressBar.setVisibility(View.GONE);
                 mContent.setVisibility(View.VISIBLE);
             } else {

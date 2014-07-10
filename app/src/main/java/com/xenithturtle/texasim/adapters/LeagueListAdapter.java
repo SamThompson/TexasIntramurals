@@ -29,11 +29,14 @@ public class LeagueListAdapter extends AmazingAdapter {
     private Context mContext;
     private LayoutInflater mLayoutInflater;
     private String mNameKey;
+    private String mSecondKey;
 
-    public LeagueListAdapter(Context c, List<Pair<String, JSONArray>> all, String nameString) {
+    public LeagueListAdapter(Context c, List<Pair<String, JSONArray>> all, String nameString,
+                             String secondKey) {
         mContext = c;
         mAll = all;
         mNameKey = nameString;
+        mSecondKey = secondKey;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -66,7 +69,7 @@ public class LeagueListAdapter extends AmazingAdapter {
             res = mLayoutInflater.inflate(R.layout.item_league, null, false);
 
         TextView leagueName = (TextView) res.findViewById(R.id.league_name);
-//        TextView leagueInfo = (TextView) res.findViewById(R.id.league_info);
+        TextView leagueInfo = (TextView) res.findViewById(R.id.league_info);
         final ImageView star = (ImageView) res.findViewById(R.id.star);
         star.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +97,10 @@ public class LeagueListAdapter extends AmazingAdapter {
 
         JSONObject l = getItem(position);
         String name;
+        String info;
         try {
             name = l.getString(mNameKey);
-            name = "Test league";
+            info = l.getString(mSecondKey);
             int lid = l.getInt(AsyncTaskConstants.LID);
 
             IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(mContext);
@@ -111,10 +115,11 @@ public class LeagueListAdapter extends AmazingAdapter {
             sqliteAdapter.close();
         } catch (JSONException e) {
             name = "";
+            info = "";
         }
 
         leagueName.setText(name);
-//        leagueInfo.setText(l.getInfo());
+        leagueInfo.setText(info);
 
         return res;
     }
