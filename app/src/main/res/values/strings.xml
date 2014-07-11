@@ -10,6 +10,10 @@
     <string name="title_activity_follow_new_league">FollowNewLeagueActivity</string>
     <string name="title_activity_display_division">DisplayDivisionActivity</string>
 
+    <!-- main activity -->
+    <string name="no_leagues_followed">Looks like you aren\'t following any\nleagues yet!</string>
+    <string name="follow_league">Follow a league</string>
+
     <!-- ViewLeagueActivity -->
     <string name="action_follow">Follow</string>
     <string name="action_unfollow">Unfollow</string>

@@ -79,4 +79,14 @@
         <item name="dropDownListViewStyle">@style/DropDownListView.Default_theme</item>
     </style>
 
+
+    <!-- added this to get the custom buttons -->
+    <style name="ButtonDefault_Theme" parent="android:Widget.Holo.Light.Button">
+        <item name="android:background">@drawable/default_theme_btn_default_holo_light</item>
+    </style>
+
+    <style name="ImageButtonDefault_Theme" parent="android:Widget.Holo.Light.ImageButton">
+        <item name="android:background">@drawable/default_theme_btn_default_holo_light</item>
+    </style>
+
 </resources>

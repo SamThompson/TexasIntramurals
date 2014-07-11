@@ -22,7 +22,7 @@ import com.xenithturtle.texasim.fragments.EventListFragment;
 import com.xenithturtle.texasim.fragments.MyLeaguesFragment;
 
 
-public class MainActivity extends ActionBarActivity implements MyLeaguesFragment.OnFragmentInteractionListener,
+public class MainActivity extends ActionBarActivity implements MyLeaguesFragment.OnFollowButtonPressedListener,
         EventListFragment.OnFragmentInteractionListener {
 
     private static final int MY_LEAGUES = 0;
@@ -116,7 +116,7 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
     /**
      * Swaps fragments in the main content view
      */
-    private void selectItem(int position) {
+    public void selectItem(int position) {
         Fragment f;
         switch(position) {
             case MY_LEAGUES:
@@ -154,6 +154,11 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
     @Override
     public void onFragmentInteraction(Uri uri) {
 
+    }
+
+    @Override
+    public void onFollowButtonPressed() {
+        selectItem(FOLLOW_LEAGUE);
     }
 
     private class DrawerClickListener implements ListView.OnItemClickListener {

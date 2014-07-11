@@ -7,12 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.cards.LeagueCard;
 import com.xenithturtle.texasim.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
@@ -20,17 +22,12 @@ import it.gmariotti.cardslib.library.view.CardListView;
 
 
 /**
- * A simple {@link android.support.v4.app.Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link MyLeaguesFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link MyLeaguesFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * @author Sam
  *
  */
 public class MyLeaguesFragment extends Fragment {
 
-    private OnFragmentInteractionListener mListener;
+    private OnFollowButtonPressedListener mListener;
 
     public static MyLeaguesFragment newInstance() {
         MyLeaguesFragment fragment = new MyLeaguesFragment();
@@ -52,36 +49,44 @@ public class MyLeaguesFragment extends Fragment {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_my_leagues, container, false);
 
+
         //TODO: for now do this here, but move cardCreation to oncreate later
         IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(getActivity());
         sqliteAdapter.open();
         ArrayList<Card> cards = new ArrayList<Card>();
         //add cards here
-        for (Integer i : sqliteAdapter.getFollowingLeagues()) {
-            LeagueCard l = new LeagueCard(getActivity(), i);
-            cards.add(l);
-        }
-        sqliteAdapter.close();
+        List<Integer> followingLeagues = sqliteAdapter.getFollowingLeagues();
+        if (followingLeagues.size() > 0) {
+            for (Integer i : followingLeagues) {
+                LeagueCard l = new LeagueCard(getActivity(), i);
+                cards.add(l);
+            }
+            sqliteAdapter.close();
 
-        CardArrayAdapter ca = new CardArrayAdapter(getActivity(), cards);
-        CardListView list = (CardListView) v.findViewById(R.id.cardlist);
-        list.setAdapter(ca);
+            CardArrayAdapter ca = new CardArrayAdapter(getActivity(), cards);
+            CardListView list = (CardListView) v.findViewById(R.id.cardlist);
+            list.setAdapter(ca);
+            (v.findViewById(R.id.progress_bar)).setVisibility(View.GONE);
+            list.setVisibility(View.VISIBLE);
+        } else {
+            (v.findViewById(R.id.follow_button)).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    mListener.onFollowButtonPressed();
+                }
+            });
+            (v.findViewById(R.id.progress_bar)).setVisibility(View.GONE);
+            (v.findViewById(R.id.no_leagues)).setVisibility(View.VISIBLE);
+        }
 
         return v;
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
     }
 
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         try {
-            mListener = (OnFragmentInteractionListener) activity;
+            mListener = (OnFollowButtonPressedListener) activity;
         } catch (ClassCastException e) {
             throw new ClassCastException(activity.toString()
                     + " must implement OnFragmentInteractionListener");
@@ -104,9 +109,9 @@ public class MyLeaguesFragment extends Fragment {
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
      */
-    public interface OnFragmentInteractionListener {
+    public interface OnFollowButtonPressedListener {
         // TODO: Update argument type and name
-        public void onFragmentInteraction(Uri uri);
+        public void onFollowButtonPressed();
     }
 
 }
