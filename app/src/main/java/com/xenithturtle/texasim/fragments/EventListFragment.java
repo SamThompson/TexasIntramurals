@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -45,7 +46,7 @@ public class EventListFragment extends ListFragment {
 
     private OnFragmentInteractionListener mListener;
     private ProgressBar mProgressBar;
-    private TextView mErrorText;
+    private LinearLayout mLinearLayout;
     private ListView mListView;
 
     /**
@@ -76,9 +77,14 @@ public class EventListFragment extends ListFragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_event, container, false);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
-        mErrorText = (TextView) v.findViewById(R.id.error_text);
-        mProgressBar.setVisibility(View.VISIBLE);
+        mLinearLayout = (LinearLayout) v.findViewById(R.id.no_events);
         mListView = (ListView) v.findViewById(android.R.id.list);
+        (v.findViewById(R.id.try_again)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new EventsAsyncTask().execute();
+            }
+        });
         new EventsAsyncTask().execute();
         return v;
     }
@@ -112,7 +118,6 @@ public class EventListFragment extends ListFragment {
         super.onListItemClick(l, v, position, id);
         JSONObject ev = (JSONObject) l.getItemAtPosition(position);
         try {
-            Toast.makeText(getActivity(), ev.getString(AsyncTaskConstants.EID), Toast.LENGTH_SHORT).show();
             Intent i = new Intent(getActivity(), FollowNewLeagueActivity.class);
             i.putExtra("EVENT_NAME", ev.getString(AsyncTaskConstants.ENAME));
             i.putExtra("EVENT_ID", "" + ev.getInt(AsyncTaskConstants.EID));
@@ -142,7 +147,9 @@ public class EventListFragment extends ListFragment {
 
         @Override
         public void onPreExecute() {
-
+            mLinearLayout.setVisibility(View.GONE);
+            mListView.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
@@ -182,7 +189,7 @@ public class EventListFragment extends ListFragment {
                 mListView.setVisibility(View.VISIBLE);
             } else {
                 mProgressBar.setVisibility(View.GONE);
-                mErrorText.setVisibility(View.VISIBLE);
+                mLinearLayout.setVisibility(View.VISIBLE);
             }
         }
     }

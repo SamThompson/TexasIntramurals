@@ -12,6 +12,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,14 +40,14 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
 
     private AmazingListView mAmazingList;
     private ProgressBar mProgressBar;
-    private TextView mErrorText;
+    private LinearLayout mLinearLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_follow_new_league);
         Bundle extras = getIntent().getExtras();
-        String eventId = extras.getString("EVENT_ID");
+        final String eventId = extras.getString("EVENT_ID");
         String name = extras.getString("EVENT_NAME");
         setTitle(name);
 
@@ -56,8 +57,13 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
 
         mAmazingList = (AmazingListView) findViewById(R.id.amazingList);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
-        mErrorText = (TextView) findViewById(R.id.error_text);
-        mProgressBar.setVisibility(View.VISIBLE);
+        mLinearLayout = (LinearLayout) findViewById(R.id.no_leagues);
+        (findViewById(R.id.try_again)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new DivisionAsyncTask().execute(eventId);
+            }
+        });
 
         new DivisionAsyncTask().execute(eventId);
 
@@ -69,7 +75,6 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                 try {
                     int lid = j.getInt(AsyncTaskConstants.LID);
                     String name = j.getString(AsyncTaskConstants.LNAME);
-                    Toast.makeText(FollowNewLeagueActivity.this, "" + lid, Toast.LENGTH_SHORT).show();
                     Intent i = new Intent(FollowNewLeagueActivity.this, ViewLeagueActivity.class);
                     i.putExtra(ViewLeagueActivity.NAME_KEY, name);
                     i.putExtra(ViewLeagueActivity.LID_KEY, lid);
@@ -132,7 +137,11 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
     public class DivisionAsyncTask extends AsyncTask<String, Void, List<Pair<String, JSONArray>>> {
 
         @Override
-        public void onPreExecute() {}
+        public void onPreExecute() {
+            mLinearLayout.setVisibility(View.GONE);
+            mAmazingList.setVisibility(View.GONE);
+            mProgressBar.setVisibility(View.VISIBLE);
+        }
 
         @Override
         protected List<Pair<String, JSONArray>> doInBackground(String... params) {
@@ -186,7 +195,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                 mAmazingList.setVisibility(View.VISIBLE);
             } else {
                 mProgressBar.setVisibility(View.GONE);
-                mErrorText.setVisibility(View.VISIBLE);
+                mLinearLayout.setVisibility(View.VISIBLE);
             }
 
         }
