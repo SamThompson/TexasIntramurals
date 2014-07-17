@@ -9,9 +9,25 @@
     <string name="title_activity_view_league">ViewLeagueActivity</string>
     <string name="title_activity_follow_new_league">FollowNewLeagueActivity</string>
     <string name="title_activity_display_division">DisplayDivisionActivity</string>
+    <string name="try_again">Try again</string>
+    <string name="ok">Ok</string>
+
+    <!-- main activity -->
+    <string name="no_leagues_followed">Looks like you aren\'t following any\nleagues yet!</string>
+    <string name="follow_league">Follow a league</string>
+
+    <string name="event_error">Could not fetch events.</string>
+    <string name="league_error">Could not fetch leagues.</string>
 
     <!-- ViewLeagueActivity -->
     <string name="action_follow">Follow</string>
     <string name="action_unfollow">Unfollow</string>
+
+    <!-- card -->
+    <string name="could_not_load">Could not load league.</string>
+    <string name="click_to_try">Click to try again.</string>
+
+    <!-- qustom dialog -->
+    <string name="alert_image_content_description">Alert Dialog</string>
 
 </resources>

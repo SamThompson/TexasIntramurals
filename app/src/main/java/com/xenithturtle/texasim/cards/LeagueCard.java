@@ -48,8 +48,12 @@ public class LeagueCard extends Card {
         switch (mQueryStatus) {
             case PENDING:
                 //probably want to do nothing here
+                parent.findViewById(R.id.could_not_load).setVisibility(View.GONE);
+                parent.findViewById(R.id.card_content).setVisibility(View.GONE);
+                parent.findViewById(R.id.card_spinner).setVisibility(View.VISIBLE);
                 break;
             case SUCCESS:
+                parent.findViewById(R.id.could_not_load).setVisibility(View.GONE);
                 bindDataToCard(parent);
                 ProgressBar pb = (ProgressBar) parent.findViewById(R.id.card_spinner);
                 pb.setVisibility(View.GONE);
@@ -58,6 +62,8 @@ public class LeagueCard extends Card {
                 break;
             case FAIL:
                 //show a message in view
+                //todo retry a certain number of times
+                parent.findViewById(R.id.could_not_load).setVisibility(View.VISIBLE);
                 pb = (ProgressBar) parent.findViewById(R.id.card_spinner);
                 pb.setVisibility(View.GONE);
                 break;
@@ -96,6 +102,10 @@ public class LeagueCard extends Card {
     private class LeagueCardAsyncTask extends LeagueAsyncTask {
 
         @Override
+        public void onPreExecute() {
+        }
+
+        @Override
         public void onPostExecute(JSONObject j) {
             if (j != null) {
                 try {
@@ -118,12 +128,14 @@ public class LeagueCard extends Card {
                 } catch (JSONException e) {
                     Log.i("***********", "Bad JSON params");
                     mQueryStatus = QueryStatus.FAIL;
+                    getCardView().findViewById(R.id.could_not_load).setVisibility(View.VISIBLE);
                     ProgressBar pb = (ProgressBar) getCardView().findViewById(R.id.card_spinner);
                     pb.setVisibility(View.GONE);
                 }
             } else {
                 mQueryStatus = QueryStatus.FAIL;
                 Log.i("***********", "Request returns null");
+                getCardView().findViewById(R.id.could_not_load).setVisibility(View.VISIBLE);
                 ProgressBar pb = (ProgressBar) getCardView().findViewById(R.id.card_spinner);
                 pb.setVisibility(View.GONE);
             }

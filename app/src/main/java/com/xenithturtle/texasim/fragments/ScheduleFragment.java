@@ -169,9 +169,9 @@ public class ScheduleFragment extends Fragment {
                                 TableRow tableRow = new TableRow(getActivity());
 
                                 if ((k-1) % 2 == 1) {
-                                    tableRow.setBackgroundResource(R.color.table_gray);
+                                    tableRow.setBackgroundColor(getResources().getColor(R.color.schedule_gray));
                                 } else {
-                                    tableRow.setBackgroundColor(Color.WHITE);
+                                    tableRow.setBackgroundColor(getResources().getColor(R.color.schedule_white));
                                 }
 
                                 for (int l = 0; l < row.length(); l++) {

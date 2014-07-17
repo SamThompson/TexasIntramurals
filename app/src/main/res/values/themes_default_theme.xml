@@ -11,6 +11,10 @@
 
 <!--    <item name="android:listViewWhiteStyle">@style/ListViewdefault_theme.White</item>-->
 
+    <item name="android:buttonStyle">@style/ButtonDefault_Theme</item>
+
+    <item name="android:imageButtonStyle">@style/ImageButtonDefault_Theme</item>
+
     <item name="android:spinnerItemStyle">@style/SpinnerItemdefault_theme</item>
 
   </style>
