@@ -33,6 +33,8 @@
                 <!-- Light.DarkActionBar specific -->
         <item name="actionBarWidgetTheme">@style/Theme.Default_theme.Widget</item>
 
+        <!-- custom dialogs -->
+        <item name="sdlDialogStyle">@style/DialogStyleLight.Custom</item>
     </style>
 
     <style name="ActionBar.Solid.Default_theme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
@@ -87,6 +89,25 @@
 
     <style name="ImageButtonDefault_Theme" parent="android:Widget.Holo.Light.ImageButton">
         <item name="android:background">@drawable/default_theme_btn_default_holo_light</item>
+    </style>
+
+    <style name="DialogStyleLight">
+        <item name="dialogBackground">@drawable/sdl_background_light</item>
+        <item name="titleTextColor">@color/sdl_title_text_light</item>
+        <item name="titleSeparatorColor">@color/sdl_title_separator_light</item>
+        <item name="messageTextColor">@color/sdl_message_text_light</item>
+        <item name="buttonTextColor">@color/sdl_button_text_light</item>
+        <item name="buttonSeparatorColor">@color/sdl_button_separator_light</item>
+        <item name="buttonBackgroundColorNormal">@color/sdl_button_normal_light</item>
+        <item name="buttonBackgroundColorPressed">@color/sdl_button_pressed_light</item>
+        <item name="buttonBackgroundColorFocused">@color/sdl_button_focused_light</item>
+    </style>
+
+    <style name="DialogStyleLight.Custom">
+        <item name="titleSeparatorColor">@color/card_orange</item>
+        <item name="buttonSeparatorColor">@color/card_orange</item>
+        <item name="buttonBackgroundColorPressed">@color/card_orange</item>
+        <item name="buttonBackgroundColorFocused">@color/card_orange</item>
     </style>
 
 </resources>

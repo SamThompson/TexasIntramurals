@@ -9,15 +9,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <LinearLayout
         android:id="@+id/no_leagues"
         android:orientation="vertical"
-        android:visibility="visible"
         android:layout_gravity="center_horizontal|top"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
+        android:layout_height="fill_parent"
+        android:visibility="gone">
 
         <TextView
             android:text="@string/no_leagues_followed"
@@ -33,6 +33,37 @@
         <Button
             android:id="@+id/follow_button"
             android:text="@string/follow_league"
+            android:layout_marginTop="16dp"
+            android:padding="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/error_layout"
+        android:orientation="vertical"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:visibility="gone">
+
+        <TextView
+            android:text="@string/league_error"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|top"
+            android:paddingTop="48dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"/>
+
+        <Button
+            android:id="@+id/try_again"
+            android:text="@string/try_again"
             android:layout_marginTop="16dp"
             android:padding="16dp"
             android:layout_width="wrap_content"
