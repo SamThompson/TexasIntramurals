@@ -37,7 +37,7 @@ public class StandingsFragment extends Fragment {
     private ProgressBar mProgressBar;
     private TextView mErrorText;
     private TableFixHeaders mTable;
-    private LinearLayout mInfo;
+    private TextView mNoStandings;
     private int mLid;
 
     /**
@@ -81,7 +81,7 @@ public class StandingsFragment extends Fragment {
         mProgressBar.setVisibility(View.VISIBLE);
         mTable = (TableFixHeaders) v.findViewById(R.id.table);
         mContent = (LinearLayout) v.findViewById(R.id.content);
-        mInfo = (LinearLayout) v.findViewById(R.id.info);
+        mNoStandings = (TextView) v.findViewById(R.id.no_standings);
         new StandingsLoader().execute("" + mLid, "standings");
 
         return v;
@@ -134,17 +134,9 @@ public class StandingsFragment extends Fragment {
             if (res != null) {
                 if (res.length() > 0) {
                     mTable.setAdapter(new JSONTableAdapter(getActivity(), res));
-                    LinearLayout.LayoutParams params =
-                            new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,
-                                    LinearLayout.LayoutParams.WRAP_CONTENT);
-                    TextView t = new TextView(getActivity());
-                    t.setLayoutParams(params);
-                    t.setText("test");
-                    TextView t2 = new TextView(getActivity());
-                    t2.setLayoutParams(params);
-                    t2.setText("test2");
-                    mInfo.addView(t);
-                    mInfo.addView(t2);
+                    mTable.setVisibility(View.VISIBLE);
+                } else {
+                    mNoStandings.setVisibility(View.VISIBLE);
                 }
                 mProgressBar.setVisibility(View.GONE);
                 mContent.setVisibility(View.VISIBLE);
