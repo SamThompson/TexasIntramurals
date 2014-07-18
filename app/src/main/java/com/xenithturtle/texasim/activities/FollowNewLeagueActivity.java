@@ -93,8 +93,6 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                 boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
                 int listIndex = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
 
-                Log.i("**********", "" + listIndex);
-
                 if (listIndex >= 0) {
 
                     //getchildat only gets the views currently in view, not whole layout
@@ -102,10 +100,9 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                     //unfortunately this is how we need to update the star
                     int transIndex = listIndex - mAmazingList.getFirstVisiblePosition() - mAmazingList.getHeaderViewsCount();
                     LeagueView v = (LeagueView) mAmazingList.getChildAt(transIndex);
-                    Log.i("***********", "" + (v == null));
+
                     if (v != null) {
                         v.updateState(following);
-                        Log.i("*********", v.mLeague.mLeagueName);
                     }
                 }
             }

@@ -158,6 +158,7 @@ public class ViewLeagueActivity extends ActionBarActivity
                 return true;
             case R.id.action_follow:
 
+                //TODO think about relocating this
                 IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(this);
                 sqliteAdapter.open();
 
