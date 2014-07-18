@@ -79,7 +79,6 @@
     <orderEntry type="library" exported="" name="appcompat-v7-19.0.1" level="project" />
     <orderEntry type="library" exported="" name="amazinglistview" level="project" />
     <orderEntry type="library" exported="" name="gridlayout-v7-19.0.1" level="project" />
-    <orderEntry type="library" exported="" name="android-styled-dialogs-1.1.2" level="project" />
     <orderEntry type="library" exported="" name="support-v4-19.0.1" level="project" />
   </component>
 </module>

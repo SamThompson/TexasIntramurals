@@ -22,6 +22,8 @@ import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.adapters.LeagueListAdapter;
+import com.xenithturtle.texasim.models.League;
+import com.xenithturtle.texasim.views.LeagueView;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -70,19 +72,16 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         mAmazingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                JSONObject j = (JSONObject) parent.getItemAtPosition(position);
+                League l = (League) parent.getItemAtPosition(position);
 
-                try {
-                    int lid = j.getInt(AsyncTaskConstants.LID);
-                    String name = j.getString(AsyncTaskConstants.LNAME);
-                    Intent i = new Intent(FollowNewLeagueActivity.this, ViewLeagueActivity.class);
-                    i.putExtra(ViewLeagueActivity.NAME_KEY, name);
-                    i.putExtra(ViewLeagueActivity.LID_KEY, lid);
-                    i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, true);
-                    i.putExtra(ViewLeagueActivity.LIST_INDEX_KEY, position);
-                    startActivityForResult(i, ViewLeagueActivity.TRACK_CHANGES);
-                } catch (JSONException e) {
-                }
+                int lid = l.mLid;
+                String name = l.mLeagueName;
+                Intent i = new Intent(FollowNewLeagueActivity.this, ViewLeagueActivity.class);
+                i.putExtra(ViewLeagueActivity.NAME_KEY, name);
+                i.putExtra(ViewLeagueActivity.LID_KEY, lid);
+                i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, true);
+                i.putExtra(ViewLeagueActivity.LIST_INDEX_KEY, position);
+                startActivityForResult(i, ViewLeagueActivity.TRACK_CHANGES);
             }
         });
     }
@@ -94,15 +93,19 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                 boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
                 int listIndex = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
 
+                Log.i("**********", "" + listIndex);
+
                 if (listIndex >= 0) {
 
-                    View v = mAmazingList.getChildAt(listIndex);
-                    ImageView star = (ImageView) v.findViewById(R.id.star);
-
-                    if (following) {
-                        star.setImageResource(R.drawable.ic_rating_important);
-                    } else {
-                        star.setImageResource(R.drawable.ic_rating_not_important);
+                    //getchildat only gets the views currently in view, not whole layout
+                    //problem stemmed from using getAmazingView incorrectly
+                    //unfortunately this is how we need to update the star
+                    int transIndex = listIndex - mAmazingList.getFirstVisiblePosition() - mAmazingList.getHeaderViewsCount();
+                    LeagueView v = (LeagueView) mAmazingList.getChildAt(transIndex);
+                    Log.i("***********", "" + (v == null));
+                    if (v != null) {
+                        v.updateState(following);
+                        Log.i("*********", v.mLeague.mLeagueName);
                     }
                 }
             }
@@ -134,7 +137,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
 
 
     //TODO may want to make this a separate abstract async task since it overlaps with Event list
-    public class DivisionAsyncTask extends AsyncTask<String, Void, List<Pair<String, JSONArray>>> {
+    public class DivisionAsyncTask extends AsyncTask<String, Void, List<Pair<String, List<League>>>> {
 
         @Override
         public void onPreExecute() {
@@ -144,7 +147,7 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
         }
 
         @Override
-        protected List<Pair<String, JSONArray>> doInBackground(String... params) {
+        protected List<Pair<String, List<League>>> doInBackground(String... params) {
             HttpClient client = new DefaultHttpClient();
 
             if (params.length != 1) {
@@ -165,31 +168,48 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
                 return null;
             }
 
-            List<Pair<String, JSONArray>> res = new ArrayList<Pair<String, JSONArray>>();
+            List<Pair<String, List<League>>> res = new ArrayList<Pair<String, List<League>>>();
 
             try {
 
+                IMSqliteAdapter adapter = new IMSqliteAdapter(FollowNewLeagueActivity.this);
+                adapter.open();
                 JSONArray responseArray = new JSONArray(response);
+
                 for (int i = 0; i < responseArray.length(); i++) {
+
                     JSONObject division = responseArray.getJSONObject(i);
                     String divName = division.getString(AsyncTaskConstants.DNAME);
                     JSONArray leagues = division.getJSONArray(AsyncTaskConstants.LEAGUES);
-                    res.add(new Pair<String, JSONArray>(divName, leagues));
+                    List<League> l = new ArrayList<League>();
+
+                    for (int j = 0; j < leagues.length(); j++) {
+                        JSONObject jsonObject = leagues.getJSONObject(j);
+
+                        League league = new League();
+                        league.mLid = jsonObject.getInt(AsyncTaskConstants.LID);
+                        Log.i("***********", "" + league.mLid);
+                        league.mLeagueName = jsonObject.getString(AsyncTaskConstants.LNAME);
+                        league.mLeagueInfo = jsonObject.getString(AsyncTaskConstants.LINFO);
+                        league.mFollowing = adapter.isFollowingLeague(league.mLid);
+                        l.add(league);
+                    }
+                    res.add(new Pair<String, List<League>>(divName, l));
                 }
+
+                adapter.close();
 
             } catch (JSONException e) {
                 Log.e("************", e.toString());
-                return null;
             }
 
             return res;
         }
 
         @Override
-        public void onPostExecute(List<Pair<String, JSONArray>> res) {
+        public void onPostExecute(List<Pair<String, List<League>>> res) {
             if (res != null) {
-                LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res,
-                        AsyncTaskConstants.LNAME, AsyncTaskConstants.LINFO);
+                LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res);
                 mAmazingList.setAdapter(adapter);
                 mProgressBar.setVisibility(View.GONE);
                 mAmazingList.setVisibility(View.VISIBLE);

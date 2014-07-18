@@ -1,22 +1,17 @@
 package com.xenithturtle.texasim.adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foound.widget.AmazingAdapter;
 import com.xenithturtle.texasim.R;
-import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
-
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.xenithturtle.texasim.models.League;
+import com.xenithturtle.texasim.views.LeagueView;
 
 import java.util.List;
 
@@ -25,18 +20,13 @@ import java.util.List;
  */
 public class LeagueListAdapter extends AmazingAdapter {
 
-    private List<Pair<String, JSONArray>> mAll;
+    private List<Pair<String, List<League>>> mAll;
     private Context mContext;
     private LayoutInflater mLayoutInflater;
-    private String mNameKey;
-    private String mSecondKey;
 
-    public LeagueListAdapter(Context c, List<Pair<String, JSONArray>> all, String nameString,
-                             String secondKey) {
+    public LeagueListAdapter(Context c, List<Pair<String, List<League>>> all) {
         mContext = c;
         mAll = all;
-        mNameKey = nameString;
-        mSecondKey = secondKey;
         mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
@@ -62,66 +52,16 @@ public class LeagueListAdapter extends AmazingAdapter {
     }
 
     @Override
-    public View getAmazingView(final int position, View convertView, ViewGroup viewGroup) {
-        View res = convertView;
+    public View getAmazingView(int position, View convertView, ViewGroup viewGroup) {
+        League l = getItem(position);
+        Log.i("**********", "name: " + l.mLeagueName);
+        LeagueView view = (LeagueView) convertView;
 
-        if (res == null)
-            res = mLayoutInflater.inflate(R.layout.item_league, null, false);
+        if (view == null)
+            view = (LeagueView) mLayoutInflater.inflate(R.layout.item_league, null);
 
-        TextView leagueName = (TextView) res.findViewById(R.id.league_name);
-        TextView leagueInfo = (TextView) res.findViewById(R.id.league_info);
-        final ImageView star = (ImageView) res.findViewById(R.id.star);
-        star.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                JSONObject j = getItem(position);
-
-                try {
-                    int lid = j.getInt(AsyncTaskConstants.LID);
-                    Toast.makeText(mContext, "" + lid, Toast.LENGTH_SHORT).show();
-                    IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(mContext);
-                    sqliteAdapter.open();
-
-                    if (sqliteAdapter.isFollowingLeague(lid)) {
-                        sqliteAdapter.deleteLeague(lid);
-                        star.setImageResource(R.drawable.ic_rating_not_important);
-                    } else {
-                        sqliteAdapter.insertLeague(lid);
-                        star.setImageResource(R.drawable.ic_rating_important);
-                    }
-                    sqliteAdapter.close();
-                } catch (JSONException e) {
-                }
-            }
-        });
-
-        JSONObject l = getItem(position);
-        String name;
-        String info;
-        try {
-            name = l.getString(mNameKey);
-            info = l.getString(mSecondKey);
-            int lid = l.getInt(AsyncTaskConstants.LID);
-
-            IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(mContext);
-            sqliteAdapter.open();
-
-            if (!sqliteAdapter.isFollowingLeague(lid)) {
-                star.setImageResource(R.drawable.ic_rating_not_important);
-            } else {
-                star.setImageResource(R.drawable.ic_rating_important);
-            }
-
-            sqliteAdapter.close();
-        } catch (JSONException e) {
-            name = "";
-            info = "";
-        }
-
-        leagueName.setText(name);
-        leagueInfo.setText(info);
-
-        return res;
+        view.setModel(l);
+        return view;
     }
 
     @Override
@@ -139,7 +79,7 @@ public class LeagueListAdapter extends AmazingAdapter {
             if (section == i) {
                 return c;
             }
-            c += mAll.get(i).second.length();
+            c += mAll.get(i).second.size();
         }
         return 0;
     }
@@ -148,10 +88,10 @@ public class LeagueListAdapter extends AmazingAdapter {
     public int getSectionForPosition(int position) {
         int c = 0;
         for (int i = 0; i < mAll.size(); i++) {
-            if (position >= c && position < c + mAll.get(i).second.length()) {
+            if (position >= c && position < c + mAll.get(i).second.size()) {
                 return i;
             }
-            c += mAll.get(i).second.length();
+            c += mAll.get(i).second.size();
         }
         return 0;
     }
@@ -169,23 +109,19 @@ public class LeagueListAdapter extends AmazingAdapter {
     public int getCount() {
         int res = 0;
         for (int i = 0; i < mAll.size(); i++) {
-            res += mAll.get(i).second.length();
+            res += mAll.get(i).second.size();
         }
         return res;
     }
 
     @Override
-    public JSONObject getItem(int position) {
+    public League getItem(int position) {
         int c = 0;
         for (int i = 0; i < mAll.size(); i++) {
-            if (position >= c && position < c + mAll.get(i).second.length()) {
-                try {
-                    return mAll.get(i).second.getJSONObject(position - c);
-                } catch (JSONException e) {
-                    return null;
-                }
+            if (position >= c && position < c + mAll.get(i).second.size()) {
+                return mAll.get(i).second.get(position - c);
             }
-            c += mAll.get(i).second.length();
+            c += mAll.get(i).second.size();
         }
         return null;
     }
@@ -194,4 +130,5 @@ public class LeagueListAdapter extends AmazingAdapter {
     public long getItemId(int position) {
         return position;
     }
+
 }

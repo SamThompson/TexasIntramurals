@@ -36,5 +36,4 @@ dependencies {
     compile 'com.android.support:appcompat-v7:19.0.1'
     compile 'com.github.gabrielemariotti.cards:library:1.6.0'
     compile files('lib/amazinglistview.jar')
-    compile 'eu.inmite.android.lib:android-styled-dialogs:1.1.2@aar'
 }

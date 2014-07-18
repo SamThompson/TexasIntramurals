@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<com.xenithturtle.texasim.views.LeagueView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
 
     <include layout="@layout/item_league_header"
+        android:id="@+id/header"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-
+    <!--
         <LinearLayout
             android:id="@+id/info_view"
             android:orientation="vertical"
@@ -20,53 +17,35 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/league_name"
-                android:text="League name"
-                android:textAppearance="@android:style/TextAppearance.Medium"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:background="?android:attr/activatedBackgroundIndicator"/>
-            <TextView
-                android:id="@+id/league_info"
-                android:text="League info"
-                android:textColor="@color/text_gray"
-                android:layout_marginLeft="8dp"
-                android:textStyle="italic"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Small"/>
-        </LinearLayout>
+        </LinearLayout>-->
+    <TextView
+        android:id="@+id/league_name"
+        android:text="League name"
+        android:textAppearance="@android:style/TextAppearance.Medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_below="@id/header"
+        android:background="?android:attr/activatedBackgroundIndicator"/>
 
+    <TextView
+        android:id="@+id/league_info"
+        android:text="League info"
+        android:textColor="@color/text_gray"
+        android:layout_marginLeft="8dp"
+        android:textStyle="italic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/league_name"
+        android:textAppearance="@android:style/TextAppearance.Small"/>
 
-        <ImageView
-            android:id="@+id/star"
-            android:layout_width="28dp"
-            android:layout_height="40dp"
-            android:layout_alignParentRight="true"
-            android:src="@drawable/ic_rating_not_important"/>
-<!--
-        <ImageView
-            android:id="@+id/info"
-            android:layout_width="24dp"
-            android:layout_height="40dp"
-            android:layout_toLeftOf="@id/star"
-            android:src="@drawable/ic_action_about"/>-->
+    <ImageView
+        android:id="@+id/star"
+        android:layout_width="28dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_rating_not_important"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"/>
 
-<!--            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/ic_rating_not_important"/>-->
-<!--            <TextView
-                android:id="@+id/league_info"
-                android:text="League info"
-                android:textSize="12sp"
-                android:textStyle="italic"
-                android:textColor="#919191"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"/>-->
-
-    </RelativeLayout>
-</LinearLayout>
+</com.xenithturtle.texasim.views.LeagueView>
