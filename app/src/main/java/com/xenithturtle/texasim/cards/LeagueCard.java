@@ -128,9 +128,9 @@ public class LeagueCard extends Card {
                 } catch (JSONException e) {
                     Log.i("***********", "Bad JSON params");
                     mQueryStatus = QueryStatus.FAIL;
-                    getCardView().findViewById(R.id.could_not_load).setVisibility(View.VISIBLE);
-                    ProgressBar pb = (ProgressBar) getCardView().findViewById(R.id.card_spinner);
-                    pb.setVisibility(View.GONE);
+//                    getCardView().findViewById(R.id.could_not_load).setVisibility(View.VISIBLE);
+//                    ProgressBar pb = (ProgressBar) getCardView().findViewById(R.id.card_spinner);
+//                    pb.setVisibility(View.GONE);
                 }
             } else {
                 mQueryStatus = QueryStatus.FAIL;

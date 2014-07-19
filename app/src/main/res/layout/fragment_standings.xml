@@ -34,16 +34,15 @@
 
         <TextView
             android:id="@+id/no_standings"
-            android:text="League Info"
-            android:layout_width="match_parent"
+            android:text="@string/no_standings"
+            android:textSize="20sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp"
-            android:textColor="#fff"
-            android:background="@color/table_header"
-            android:layout_marginTop="16dp"
-            android:layout_marginRight="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="0dp"
+            android:layout_gravity="center_horizontal|top"
+            android:paddingTop="48dp"
+            android:paddingLeft="8dp"
+            android:paddingRight="8dp"
+            android:paddingBottom="8dp"
             android:visibility="gone"/>
 
     </LinearLayout>

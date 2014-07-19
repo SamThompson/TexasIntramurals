@@ -22,6 +22,7 @@
     <!-- ViewLeagueActivity -->
     <string name="action_follow">Follow</string>
     <string name="action_unfollow">Unfollow</string>
+    <string name="no_standings">This league doesn\'t have a\nstandings table.</string>
 
     <!-- card -->
     <string name="could_not_load">Could not load league.</string>

@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<TextView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+<com.xenithturtle.texasim.views.GameDayView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:textStyle="bold"
-    android:padding="8dp"
-    android:textColor="#fff"
-    android:background="@color/table_header"
-    android:layout_marginTop="16dp"
-    android:layout_marginRight="8dp"
-    android:layout_marginLeft="8dp"
-    android:layout_marginBottom="0dp">
+    android:orientation="vertical">
 
-</TextView>
+
+    <TextView
+        android:id="@+id/game_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:padding="8dp"
+        android:textColor="#fff"
+        android:background="@color/table_header"
+        android:layout_marginBottom="8dp">
+
+    </TextView>
+
+</com.xenithturtle.texasim.views.GameDayView>

@@ -7,6 +7,7 @@
 
     <TextView
         android:id="@android:id/text1"
+        android:textStyle="bold"
         android:textColor="#fff"
         android:layout_width="0dip"
         android:layout_height="match_parent"
