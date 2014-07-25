@@ -1,87 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_content"
+    android:background="@color/card_orange"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content" >
+    android:layout_height="wrap_content">
 
-    <RelativeLayout
-        android:id="@+id/card_content"
-        android:background="@color/card_orange"
+
+    <com.stylingandroid.verticaltextview.VerticalTextView
+        android:id="@+id/sport_icon"
+        android:text="League name"
+        android:textStyle="bold|italic"
+        android:textSize="14sp"
+        android:layout_centerVertical="true"
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent"
+        android:gravity="bottom"/>
+
+    <LinearLayout
+        android:background="@android:color/white"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:layout_centerVertical="true"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone">
+        android:layout_toRightOf="@id/sport_icon"
+        android:layout_height="wrap_content">
 
 
-        <com.stylingandroid.verticaltextview.VerticalTextView
-            android:id="@+id/sport_icon"
-            android:text="League name"
-            android:textStyle="bold|italic"
-            android:textSize="14sp"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="fill_parent"
-            android:gravity="bottom"/>
-        <!--
-        <ImageView
-            android:id="@+id/sport_icon"
-            android:layout_centerVertical="true"
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:src="@drawable/ic_soccer"/>-->
-
-        <LinearLayout
-            android:background="@android:color/white"
-            android:orientation="vertical"
-            android:padding="8dp"
-            android:layout_centerVertical="true"
+        <!-- This is the base Inner View inside a CardHeader.
+             You can customize it with your layout xml file and your CardHeader.
+             You can popolate your element with CardHeader#setupInnerViewElements() method -->
+        <TextView
+            android:id="@+id/card_division_name"
             android:layout_width="match_parent"
-            android:layout_toRightOf="@id/sport_icon"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:text="League name"
+            android:textStyle="bold"
+            android:textAppearance="@android:style/TextAppearance.Medium"/>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"/>
 
-            <!-- This is the base Inner View inside a CardHeader.
-                 You can customize it with your layout xml file and your CardHeader.
-                 You can popolate your element with CardHeader#setupInnerViewElements() method -->
-            <TextView
-                android:id="@+id/card_league_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:text="League name"
-                android:textStyle="bold"
-                android:textAppearance="@android:style/TextAppearance.Medium"/>
+        <TextView
+            android:id="@+id/card_league_name"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:text="Coed C" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+        <TextView
+            android:id="@+id/card_play_time"
+            android:layout_alignParentLeft="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:text="Plays Monday at 6pm" />
 
-            <TextView
-                android:id="@+id/card_division_name"
-                android:layout_alignParentLeft="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Small"
-                android:text="Coed C" />
+        <TextView
+            android:id="@+id/card_last_update"
+            android:textStyle="italic"
+            android:textColor="@color/text_gray"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAppearance="@android:style/TextAppearance.Small"
+            android:text="Last update: 12:46:12 UTC" />
 
-            <TextView
-                android:id="@+id/card_play_time"
-                android:layout_alignParentLeft="true"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Small"
-                android:text="Plays Monday at 6pm" />
-
-            <TextView
-                android:id="@+id/card_last_update"
-                android:textStyle="italic"
-                android:textColor="@color/text_gray"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAppearance="@android:style/TextAppearance.Small"
-                android:text="Last update: 12:46:12 UTC" />
-
-
-        </LinearLayout>
-    </RelativeLayout>
-</FrameLayout>
+    </LinearLayout>
+</RelativeLayout>
