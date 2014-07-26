@@ -89,4 +89,9 @@
         <item name="android:background">@drawable/default_theme_btn_default_holo_light</item>
     </style>
 
+    <style name="list_card.base">
+        <item name="android:paddingTop">8dp</item>
+
+    </style>
+
 </resources>

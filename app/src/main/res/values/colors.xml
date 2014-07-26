@@ -6,6 +6,7 @@
     <color name="table_header">#3a3a3a</color>
 
     <color name="text_gray">#8f8f8f</color>
+    <color name="listview_background">@android:color/white</color>
     <color name="listview_gray">#d7d7d7</color>
     <color name="table_gray">#d7d7d7</color>
     <!-- for some reason the table gray looks darker on the schedule -->
