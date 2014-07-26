@@ -170,7 +170,7 @@ public class MyLeaguesFragment extends Fragment {
                     l.mLid = i;
                     l.mLeagueName = res.getString(AsyncTaskConstants.NAME);
                     l.mDivisionName = res.getString(AsyncTaskConstants.DIVISION);
-                    l.mPlaytime = res.getString(AsyncTaskConstants.TIME);
+                    l.mLeagueInfo = res.getString(AsyncTaskConstants.TIME);
                     l.mUpdatedAt = res.getString(AsyncTaskConstants.UPDATE);
                     l.mSport = res.getString(AsyncTaskConstants.SPORT);
 

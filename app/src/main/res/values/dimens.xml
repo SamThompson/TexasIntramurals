@@ -3,5 +3,6 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
     <dimen name="shadow_size">8dp</dimen>
+    <dimen name="card_shadow_height">2dp</dimen>
 
     </resources>

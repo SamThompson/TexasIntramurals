@@ -25,10 +25,6 @@
         android:layout_toRightOf="@id/sport_icon"
         android:layout_height="wrap_content">
 
-
-        <!-- This is the base Inner View inside a CardHeader.
-             You can customize it with your layout xml file and your CardHeader.
-             You can popolate your element with CardHeader#setupInnerViewElements() method -->
         <TextView
             android:id="@+id/card_division_name"
             android:layout_width="match_parent"
