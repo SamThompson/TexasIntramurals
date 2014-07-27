@@ -42,8 +42,6 @@ public class LeagueCard extends Card {
     @Override
     public void setupInnerViewElements(ViewGroup parent, View view) {
         bindDataToCard(parent);
-        RelativeLayout r = (RelativeLayout) parent.findViewById(R.id.card_content);
-        r.setVisibility(View.VISIBLE);
     }
 
     private void bindDataToCard(ViewGroup parent) {

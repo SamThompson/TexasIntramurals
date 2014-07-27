@@ -11,10 +11,11 @@
     <color name="table_gray">#d7d7d7</color>
     <!-- for some reason the table gray looks darker on the schedule -->
     <color name="schedule_gray">#e7e7e7</color>
-    <color name="navbar_background">#f2f2f2</color>
+    <color name="navbar_background">#dfdfdf</color>
     <color name="schedule_white">#f2f2f2</color>
-    <color name="background_color">#e6e6e6</color>
+    <color name="background_color">#e2e2e2</color>
 
+    <color name="drawer_unselect">#f2f2f2</color>
     <color name="drawer_select">#ffa726</color>
     <color name="experimental_gray">#d7d7d7</color>
 

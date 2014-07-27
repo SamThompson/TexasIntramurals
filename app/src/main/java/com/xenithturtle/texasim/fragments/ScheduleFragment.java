@@ -19,10 +19,9 @@ import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
-import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
+import com.xenithturtle.texasim.cards.ScheduleCard;
 import com.xenithturtle.texasim.models.Game;
 import com.xenithturtle.texasim.models.GameDay;
-import com.xenithturtle.texasim.views.GameDayView;
 
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
@@ -36,6 +35,9 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+
+import it.gmariotti.cardslib.library.view.CardView;
 
 
 /**
@@ -52,7 +54,7 @@ public class ScheduleFragment extends Fragment {
     private static final String LEAGUE_KEY = "LEAGUE_ID";
 
     private OnFragmentInteractionListener mListener;
-    private LinearLayout mContent;
+    private CardView mContent;
     private ProgressBar mProgressBar;
     private TextView mErrorText;
     private int mLid;
@@ -91,11 +93,10 @@ public class ScheduleFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_schedule, container, false);
-//        mWebView = (WebView) v.findViewById(R.id.webview);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
         mErrorText = (TextView) v.findViewById(R.id.error_text);
         mProgressBar.setVisibility(View.VISIBLE);
-        mContent = (LinearLayout) v.findViewById(R.id.content);
+        mContent = (CardView) v.findViewById(R.id.content);
         new ScheduleLoader().execute("" + mLid, "schedule");
         return v;
     }
@@ -196,6 +197,7 @@ public class ScheduleFragment extends Fragment {
 
                     //loop over the event days
                     Log.i("************", "1");
+                    List<GameDay> gds = new ArrayList<GameDay>();
                     for (int i = 0; i < gameDays.length(); i++) {
 
                         JSONObject gameDay = gameDays.getJSONObject(i);
@@ -220,10 +222,13 @@ public class ScheduleFragment extends Fragment {
                             gD.games.add(g);
                         }
 
-                        GameDayView gdv = (GameDayView) LinearLayout.inflate(getActivity(), R.layout.day_text_view, null);
-                        gdv.setModel(gD);
-                        mContent.addView(gdv);
+                        gds.add(gD);
+
+//                        mContent.addView(gdv);
                     }
+
+                    ScheduleCard sc = new ScheduleCard(getActivity(), gds);
+                    mContent.setCard(sc);
                 } catch (JSONException e) {
                     Log.i("************", "JSON exception in on post execute");
                 }
