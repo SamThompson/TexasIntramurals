@@ -18,6 +18,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
+import com.xenithturtle.texasim.adapters.NavdrawerArrayAdapter;
 import com.xenithturtle.texasim.fragments.EventListFragment;
 import com.xenithturtle.texasim.fragments.MyLeaguesFragment;
 
@@ -44,7 +45,7 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
 
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+        mDrawerList.setAdapter(new NavdrawerArrayAdapter(this,
                 R.layout.drawer_item, mDrawerTitles));
 
         // Set the list's click listener
