@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.xenithturtle.texasim.adapters.CardArrayAdapterWithSpace;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
@@ -187,7 +188,7 @@ public class MyLeaguesFragment extends Fragment {
         @Override
         protected void finishWork(List<Card> res) {
             if (res.size() > 0) {
-                CardArrayAdapter ca = new CardArrayAdapter(getActivity(), res);
+                CardArrayAdapterWithSpace ca = new CardArrayAdapterWithSpace(getActivity(), res);
                 mCardListView.setAdapter(ca);
                 mProgressBar.setVisibility(View.GONE);
                 mCardListView.setVisibility(View.VISIBLE);
