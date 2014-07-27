@@ -19,32 +19,11 @@
         android:layout_gravity="center"
         android:visibility="gone" />
 
-    <LinearLayout
+    <it.gmariotti.cardslib.library.view.CardView
         android:id="@+id/content"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:visibility="gone" >
-
-        <com.inqbarna.tablefixheaders.TableFixHeaders
-            android:id="@+id/table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="gone"/>
-
-        <TextView
-            android:id="@+id/no_standings"
-            android:text="@string/no_standings"
-            android:textSize="20sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|top"
-            android:paddingTop="48dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:paddingBottom="8dp"
-            android:visibility="gone"/>
-
-    </LinearLayout>
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:visibility="gone"/>
 
 </FrameLayout>

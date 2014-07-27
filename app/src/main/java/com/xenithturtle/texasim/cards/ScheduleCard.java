@@ -26,7 +26,7 @@ public class ScheduleCard extends Card {
     private List<GameDay> mGameDays;
 
     public ScheduleCard(Context c, List<GameDay> gds) {
-        super(c, R.layout.linear_layout_card);
+        super(c, R.layout.schedule_card);
         mGameDays = gds;
     }
 
