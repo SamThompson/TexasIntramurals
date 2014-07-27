@@ -13,12 +13,11 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
-
         android:theme="@style/Theme.Default_theme" >
         <activity
-            android:name="com.xenithturtle.texasim.activities.MainActivity"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name" >
+            android:name=".activities.MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -26,12 +25,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.xenithturtle.texasim.activities.ViewLeagueActivity"
+            android:name=".activities.ViewLeagueActivity"
             android:label="@string/title_activity_view_league" >
         </activity>
         <activity
-            android:name="com.xenithturtle.texasim.activities.FollowNewLeagueActivity"
+            android:name=".activities.FollowNewLeagueActivity"
             android:label="@string/title_activity_follow_new_league" >
+        </activity>
+        <activity
+            android:name=".activities.SettingsActivity"
+            android:label="@string/title_activity_settings" >
         </activity>
     </application>
 

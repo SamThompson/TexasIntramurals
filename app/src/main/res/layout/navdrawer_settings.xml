@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:gravity="center_vertical"
+    android:background="@drawable/drawer_extra"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:layout_width="wrap_content" android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/gear"
+        android:paddingLeft="12dp"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_action_gear"/>
+
+    <TextView
+        android:text="@string/action_settings"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:paddingRight="8dp"
+        android:paddingLeft="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="32dp"
+        android:gravity="center"
+        android:layout_toRightOf="@id/gear"/>
+
+</RelativeLayout>

@@ -45,6 +45,7 @@
         android:id="@+id/amazingList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/listview_background"
         android:visibility="gone" />
 
 

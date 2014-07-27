@@ -15,8 +15,11 @@ import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
 import com.xenithturtle.texasim.adapters.JSONTableAdapter;
+import com.xenithturtle.texasim.cards.StandingsCard;
 
 import org.json.JSONObject;
+
+import it.gmariotti.cardslib.library.view.CardView;
 
 
 /**
@@ -33,11 +36,9 @@ public class StandingsFragment extends Fragment {
     private static final String LEAGUE_KEY = "LEAGUE_ID";
 
     private OnFragmentInteractionListener mListener;
-    private LinearLayout mContent;
     private ProgressBar mProgressBar;
     private TextView mErrorText;
-    private TableFixHeaders mTable;
-    private TextView mNoStandings;
+    private CardView mContent;
     private int mLid;
 
     /**
@@ -78,10 +79,9 @@ public class StandingsFragment extends Fragment {
 //        mWebView = (WebView) v.findViewById(R.id.webview);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
         mErrorText = (TextView) v.findViewById(R.id.error_text);
+        mContent = (CardView) v.findViewById(R.id.content);
         mProgressBar.setVisibility(View.VISIBLE);
-        mTable = (TableFixHeaders) v.findViewById(R.id.table);
-        mContent = (LinearLayout) v.findViewById(R.id.content);
-        mNoStandings = (TextView) v.findViewById(R.id.no_standings);
+
         new StandingsLoader().execute("" + mLid, "standings");
 
         return v;
@@ -132,14 +132,9 @@ public class StandingsFragment extends Fragment {
         @Override
         public void onPostExecute(JSONObject res) {
             if (res != null) {
-                if (res.length() > 0) {
-                    mTable.setAdapter(new JSONTableAdapter(getActivity(), res));
-                    mTable.setVisibility(View.VISIBLE);
-                } else {
-                    mNoStandings.setVisibility(View.VISIBLE);
-                }
-                mProgressBar.setVisibility(View.GONE);
+                mContent.setCard(new StandingsCard(getActivity(), res));
                 mContent.setVisibility(View.VISIBLE);
+                mProgressBar.setVisibility(View.GONE);
             } else {
                 mProgressBar.setVisibility(View.GONE);
                 mErrorText.setVisibility(View.VISIBLE);

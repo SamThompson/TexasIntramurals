@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.activities.FollowNewLeagueActivity;
