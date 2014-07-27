@@ -1,5 +1,6 @@
 package com.xenithturtle.texasim.activities;
 
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
 import android.support.v4.app.ActionBarDrawerToggle;
@@ -29,12 +30,14 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
     private static final int MY_LEAGUES = 0;
     private static final int FOLLOW_LEAGUE = 1;
     private static final int FIELD_CONDITIONS = 2;
+    private static final int SETTINGS = 3;
 
     private String[] mDrawerTitles;
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private CharSequence mTitle;
     private ActionBarDrawerToggle mDrawerToggle;
+    private int mDrawerIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -118,38 +121,48 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
      * Swaps fragments in the main content view
      */
     public void selectItem(int position) {
-        Fragment f;
         switch(position) {
             case MY_LEAGUES:
-                f = new MyLeaguesFragment();
+                mDrawerIndex = position;
+                switchFragments(new MyLeaguesFragment());
                 break;
             case FOLLOW_LEAGUE:
-                f = new EventListFragment();
+                mDrawerIndex = position;
+                switchFragments(new EventListFragment());
                 break;
             case FIELD_CONDITIONS:
-                f = new Fragment();
+                mDrawerIndex = position;
+                switchFragments(new Fragment());
+                break;
+            case SETTINGS:
+                Intent i = new Intent(this, SettingsActivity.class);
+                startActivity(i);
                 break;
             default:
                 //to make the compiler happy
-                f = new Fragment();
                 break;
+
         }
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.content_frame, f)
-                .commit();
-
-        // Highlight the selected item, update the title, and close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mDrawerTitles[position]);
+        mDrawerList.setItemChecked(mDrawerIndex, true);
+        setTitle(mDrawerTitles[mDrawerIndex]);
         mDrawerLayout.closeDrawer(mDrawerList);
+
     }
 
     @Override
     public void setTitle(CharSequence title) {
         mTitle = title;
         getSupportActionBar().setTitle(mTitle);
+    }
+
+    private void switchFragments(Fragment f) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.content_frame, f)
+                .commit();
+
+        // Highlight the selected item, update the title, and close the drawer
     }
 
     @Override

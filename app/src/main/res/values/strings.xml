@@ -15,7 +15,6 @@
     <!-- main activity -->
     <string name="no_leagues_followed">Looks like you aren\'t following any\nleagues yet!</string>
     <string name="follow_league">Follow a league</string>
-
     <string name="event_error">Could not fetch events.</string>
     <string name="league_error">Could not fetch leagues.</string>
 
@@ -30,5 +29,11 @@
 
     <!-- qustom dialog -->
     <string name="alert_image_content_description">Alert Dialog</string>
+    <string name="title_activity_settings">SettingsActivity</string>
+    <string name="hello_world">Hello world!</string>
+
+    <!-- preferences -->
+    <string name="pref_category_general">General</string>
+    <string name="pref_category_about">About</string>
 
 </resources>
