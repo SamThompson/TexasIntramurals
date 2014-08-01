@@ -24,19 +24,10 @@ public class LeagueCard extends Card {
     public LeagueCard(Context c, League l) {
         super(c, R.layout.league_card);
         mLeague = l;
-        setOnClickListener(new LeagueCardClickedListener());
     }
 
-    private class LeagueCardClickedListener implements OnCardClickListener {
-
-        @Override
-        public void onClick(Card card, View view) {
-            Intent i = new Intent(mContext, ViewLeagueActivity.class);
-            i.putExtra(ViewLeagueActivity.NAME_KEY, mLeague.mLeagueName);
-            i.putExtra(ViewLeagueActivity.LID_KEY, mLeague.mLid);
-            i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, false);
-            mContext.startActivity(i);
-        }
+    public League getLeague() {
+        return mLeague;
     }
 
     @Override
