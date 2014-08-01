@@ -24,7 +24,7 @@ import com.xenithturtle.texasim.fragments.EventListFragment;
 import com.xenithturtle.texasim.fragments.MyLeaguesFragment;
 
 
-public class MainActivity extends ActionBarActivity implements MyLeaguesFragment.OnFollowButtonPressedListener,
+public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFollowButtonPressedListener,
         EventListFragment.OnFragmentInteractionListener {
 
     private static final int MY_LEAGUES = 0;
@@ -79,7 +79,6 @@ public class MainActivity extends ActionBarActivity implements MyLeaguesFragment
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setIcon(R.drawable.ic_activity);
 
         selectItem(MY_LEAGUES);
 

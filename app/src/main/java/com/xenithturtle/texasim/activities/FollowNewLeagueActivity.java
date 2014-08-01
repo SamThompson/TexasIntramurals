@@ -38,7 +38,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FollowNewLeagueActivity extends ActionBarActivity {
+public class FollowNewLeagueActivity extends BaseActivity {
 
     private AmazingListView mAmazingList;
     private ProgressBar mProgressBar;
@@ -55,7 +55,6 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
 
         final ActionBar ab = getSupportActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
-        ab.setIcon(R.drawable.ic_activity);
 
         mAmazingList = (AmazingListView) findViewById(R.id.amazingList);
         mProgressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -126,8 +125,6 @@ public class FollowNewLeagueActivity extends ActionBarActivity {
             case android.R.id.home:
                 super.onBackPressed();
                 break;
-            case R.id.action_settings:
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }

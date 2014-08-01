@@ -19,8 +19,8 @@
 
         <Preference
             android:title="@string/pref_category_about_licenses">
-            <intent android:action="android.intent.action.VIEW"
-                android:data="com.xenithturtle.texasim.activities.LicenseActivity"
+            <intent
+                android:action="com.xenithturtle.texasim.activities.LicenseActivity"
                 />
         </Preference>
 

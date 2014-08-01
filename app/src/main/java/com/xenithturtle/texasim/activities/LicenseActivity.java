@@ -6,12 +6,13 @@ import android.view.Menu;
 import android.view.MenuItem;
 import com.xenithturtle.texasim.R;
 
-public class LicenseActivity extends Activity {
+public class LicenseActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_license);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
@@ -27,10 +28,12 @@ public class LicenseActivity extends Activity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-        if (id == R.id.action_settings) {
-            return true;
+        switch(item.getItemId()) {
+            case android.R.id.home:
+                super.onBackPressed();
+                break;
         }
+
         return super.onOptionsItemSelected(item);
     }
 }

@@ -3,7 +3,7 @@
 
     <!-- General -->
     <string name="app_name">Texas Intramurals</string>
-    <string name="crash_toast_text">Something went wrong! We've filed a crash report for you and will get to it as soon as we can.</string>
+    <string name="crash_toast_text">Something went wrong! We\'ve filed a crash report for you and will get to it as soon as we can.</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="action_settings">Settings</string>
@@ -41,5 +41,7 @@
     <string name="pref_category_about_version">Version</string>
     <string name="version_name">v0.0.0</string>
     <string name="title_activity_license">LicenseActivity</string>
+    <string name="title_activity_base">BaseActivity</string>
+    <string name="hello_world">Hello world!</string>
 
 </resources>

@@ -40,6 +40,15 @@
         <activity
             android:name=".activities.LicenseActivity"
             android:label="@string/title_activity_license" >
+            <intent-filter>
+                <action android:name="com.xenithturtle.texasim.activities.LicenseActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.BaseActivity"
+            android:label="@string/title_activity_base" >
         </activity>
     </application>
 

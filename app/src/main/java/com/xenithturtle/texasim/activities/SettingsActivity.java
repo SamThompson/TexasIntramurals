@@ -9,7 +9,7 @@ import android.view.MenuItem;
 
 import com.xenithturtle.texasim.R;
 
-public class SettingsActivity extends ActionBarActivity {
+public class SettingsActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,7 +17,6 @@ public class SettingsActivity extends ActionBarActivity {
         setContentView(R.layout.activity_settings);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setIcon(R.drawable.ic_activity);
         ab.setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {

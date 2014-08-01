@@ -18,7 +18,7 @@ import com.xenithturtle.texasim.fragments.ScheduleFragment;
 import com.xenithturtle.texasim.fragments.StandingsFragment;
 import com.xenithturtle.texasim.adapters.FragmentAdapter;
 
-public class ViewLeagueActivity extends ActionBarActivity
+public class ViewLeagueActivity extends BaseActivity
         implements ScheduleFragment.OnFragmentInteractionListener, StandingsFragment.OnFragmentInteractionListener {
 
     public static final int TRACK_CHANGES = 0;
@@ -65,7 +65,6 @@ public class ViewLeagueActivity extends ActionBarActivity
         mResult.putExtra(FOLLOWING_KEY, mFollowing);
 
         final ActionBar ab = getSupportActionBar();
-        ab.setIcon(R.drawable.ic_activity);
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ab.setTitle(mName);
@@ -154,8 +153,6 @@ public class ViewLeagueActivity extends ActionBarActivity
             case android.R.id.home:
                 onBackPressed();
                 break;
-            case R.id.action_settings:
-                return true;
             case R.id.action_follow:
 
                 //TODO think about relocating this
