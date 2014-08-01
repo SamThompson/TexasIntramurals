@@ -3,13 +3,30 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
     <PreferenceCategory
-        android:title="@string/pref_category_general"
-        android:key="pref_key_general">
+        android:title="@string/pref_category_privacy"
+        android:key="pref_key_privacy">
+
+        <CheckBoxPreference
+            android:title="@string/pref_enable_acra"
+            android:key="@string/acra_enable"
+            android:defaultValue="true" />
 
     </PreferenceCategory>
+
     <PreferenceCategory
         android:title="@string/pref_category_about"
         android:key="pref_key_about">
+
+        <Preference
+            android:title="@string/pref_category_about_licenses">
+            <intent android:action="android.intent.action.VIEW"
+                android:data="com.xenithturtle.texasim.activities.LicenseActivity"
+                />
+        </Preference>
+
+        <Preference
+            android:title="@string/pref_category_about_version"
+            android:summary="@string/version_name"/>
 
     </PreferenceCategory>
 

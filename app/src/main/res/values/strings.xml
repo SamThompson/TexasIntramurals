@@ -3,6 +3,7 @@
 
     <!-- General -->
     <string name="app_name">Texas Intramurals</string>
+    <string name="crash_toast_text">Something went wrong! We've filed a crash report for you and will get to it as soon as we can.</string>
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>
     <string name="action_settings">Settings</string>
@@ -30,10 +31,15 @@
     <!-- qustom dialog -->
     <string name="alert_image_content_description">Alert Dialog</string>
     <string name="title_activity_settings">SettingsActivity</string>
-    <string name="hello_world">Hello world!</string>
 
     <!-- preferences -->
-    <string name="pref_category_general">General</string>
-    <string name="pref_category_about">About</string>
+    <string name="pref_category_privacy">Privacy</string>
+    <string name="pref_enable_acra">Auto-send crash reports</string>
+    <string name="acra_enable">acra.enable</string>
+    <string name="pref_category_about">Developer</string>
+    <string name="pref_category_about_licenses">Open source licenses</string>
+    <string name="pref_category_about_version">Version</string>
+    <string name="version_name">v0.0.0</string>
+    <string name="title_activity_license">LicenseActivity</string>
 
 </resources>
