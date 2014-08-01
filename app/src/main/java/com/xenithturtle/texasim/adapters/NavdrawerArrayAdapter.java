@@ -1,9 +1,12 @@
 package com.xenithturtle.texasim.adapters;
 
 import android.content.Context;
+import android.graphics.Typeface;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
 
@@ -40,13 +43,12 @@ public class NavdrawerArrayAdapter extends ArrayAdapter<String> {
 
     public View getView(int position, View convertView, ViewGroup parent) {
         if (position != getCount() - 1) {
-            return super.getView(position, convertView, parent);
+            convertView = super.getView(position, convertView, parent);
         } else {
             if (convertView == null) {
                 convertView = View.inflate(getContext(), R.layout.navdrawer_settings, null);
             }
-
-            return convertView;
         }
+        return convertView;
     }
 }
