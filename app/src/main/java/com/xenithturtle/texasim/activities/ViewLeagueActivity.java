@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
@@ -124,21 +125,19 @@ public class ViewLeagueActivity extends BaseActivity
     public boolean onCreateOptionsMenu(Menu menu) {
         
         // Inflate the menu; this adds items to the action bar if it is present.
-        if (mJustLooking) {
-            getMenuInflater().inflate(R.menu.view_league_looking, menu);
-
-            MenuItem followAction = menu.getItem(FOLLOW_INDEX);
-
-            if (!mFollowing) {
-                followAction.setIcon(R.drawable.ic_rating_not_important);
-                followAction.setTitle(R.string.action_follow);
-            } else {
-                followAction.setIcon(R.drawable.ic_rating_important);
-                followAction.setTitle(R.string.action_unfollow);
-            }
-
+        getMenuInflater().inflate(R.menu.view_league_looking, menu);
+        MenuItem followAction = menu.getItem(FOLLOW_INDEX);
+        if (!mFollowing) {
+            followAction.setIcon(R.drawable.ic_rating_unimportant_light);
+            followAction.setTitle(R.string.action_follow);
         } else {
-            getMenuInflater().inflate(R.menu.view_league, menu);
+            followAction.setIcon(R.drawable.ic_rating_important_light);
+            followAction.setTitle(R.string.action_unfollow);
+        }
+
+        if (mJustLooking) {
+        } else {
+        //    getMenuInflater().inflate(R.menu.view_league, menu);
         }
 
         return true;
@@ -159,20 +158,25 @@ public class ViewLeagueActivity extends BaseActivity
                 IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(this);
                 sqliteAdapter.open();
 
+                String toastText;
                 if (!sqliteAdapter.isFollowingLeague(mLid)) {
                     sqliteAdapter.insertLeague(mLid);
-                    item.setIcon(R.drawable.ic_rating_important);
+                    item.setIcon(R.drawable.ic_rating_important_light);
+                    toastText = "Following league";
                     item.setTitle(R.string.action_unfollow);
                     mFollowing = true;
                 } else {
                     sqliteAdapter.deleteLeague(mLid);
-                    item.setIcon(R.drawable.ic_rating_not_important);
+                    item.setIcon(R.drawable.ic_rating_unimportant_light);
+                    toastText = "Unfollowing league";
                     item.setTitle(R.string.action_follow);
                     mFollowing = false;
                 }
 
                 mResult.putExtra(FOLLOWING_KEY, mFollowing);
                 sqliteAdapter.close();
+
+                Toast.makeText(this, toastText, Toast.LENGTH_SHORT).show();
 
                 return true;
         }

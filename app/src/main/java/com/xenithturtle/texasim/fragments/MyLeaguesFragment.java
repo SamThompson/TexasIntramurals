@@ -1,6 +1,7 @@
 package com.xenithturtle.texasim.fragments;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.xenithturtle.texasim.activities.ViewLeagueActivity;
 import com.xenithturtle.texasim.adapters.CardArrayAdapterWithSpace;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
@@ -32,7 +34,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.dismissanimation.SwipeDismissAnimation;
 import it.gmariotti.cardslib.library.view.CardListView;
+import it.gmariotti.cardslib.library.view.CardView;
 
 
 /**
@@ -46,6 +50,7 @@ public class MyLeaguesFragment extends Fragment {
     private LinearLayout mNoLeaguesLayout;
     private LinearLayout mErrorLayout;
     private CardListView mCardListView;
+    private SwipeDismissAnimation mDismissAnimation;
 
     public static MyLeaguesFragment newInstance() {
         MyLeaguesFragment fragment = new MyLeaguesFragment();
@@ -70,6 +75,7 @@ public class MyLeaguesFragment extends Fragment {
         mNoLeaguesLayout = (LinearLayout) v.findViewById(R.id.no_leagues);
         mErrorLayout = (LinearLayout) v.findViewById(R.id.error_layout);
         mCardListView = (CardListView) v.findViewById(R.id.cardlist);
+        mDismissAnimation = new SwipeDismissAnimation(getActivity());
         new MyLeaguesAsyncTask().execute();
 
         //set follow button onclick
@@ -123,6 +129,44 @@ public class MyLeaguesFragment extends Fragment {
         public void onFollowButtonPressed();
     }
 
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.i("***************", "in activity result");
+        if (requestCode == ViewLeagueActivity.TRACK_CHANGES) {
+            if (resultCode == Activity.RESULT_OK) {
+                boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
+                int listIndex = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
+
+                if (listIndex >= 0) {
+
+                    //getchildat only gets the views currently in view, not whole layout
+                    //problem stemmed from using getAmazingView incorrectly
+                    //unfortunately this is how we need to update the star
+                    int transIndex = listIndex - mCardListView.getFirstVisiblePosition() - mCardListView.getHeaderViewsCount();
+                    CardView v = (CardView) mCardListView.getChildAt(transIndex);
+
+                    if (v != null && !following) {
+                        Card lc = v.getCard();
+                        Log.i("***************", "in activity result");
+                        mDismissAnimation.animateDismiss(lc);
+                    }
+                }
+            }
+        }
+    }
+
+    private class LeagueCardClickedListener implements Card.OnCardClickListener {
+
+        @Override
+        public void onClick(Card card, View view) {
+            Intent i = new Intent(getActivity(), ViewLeagueActivity.class);
+            i.putExtra(ViewLeagueActivity.NAME_KEY, ((LeagueCard) card).getLeague().mLeagueName);
+            i.putExtra(ViewLeagueActivity.LID_KEY, ((LeagueCard) card).getLeague().mLid);
+            i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, true);
+            startActivityForResult(i, ViewLeagueActivity.TRACK_CHANGES);
+        }
+    }
+
 
     private class MyLeaguesAsyncTask
             extends ServerCheckAsyncTask<Void, Void, List<Card>> {
@@ -173,7 +217,10 @@ public class MyLeaguesFragment extends Fragment {
                     l.mUpdatedAt = res.getString(AsyncTaskConstants.UPDATE);
                     l.mSport = res.getString(AsyncTaskConstants.SPORT);
 
-                    leagueCards.add(new LeagueCard(getActivity(), l));
+                    LeagueCard lc = new LeagueCard(getActivity(), l);
+                    lc.setOnClickListener(new LeagueCardClickedListener());
+
+                    leagueCards.add(lc);
 
                 } catch (JSONException e) {
                     //let is continue
@@ -187,6 +234,7 @@ public class MyLeaguesFragment extends Fragment {
         protected void finishWork(List<Card> res) {
             if (res.size() > 0) {
                 CardArrayAdapterWithSpace ca = new CardArrayAdapterWithSpace(getActivity(), res);
+                mDismissAnimation.setup(ca);
                 mCardListView.setAdapter(ca);
                 mProgressBar.setVisibility(View.GONE);
                 mCardListView.setVisibility(View.VISIBLE);
