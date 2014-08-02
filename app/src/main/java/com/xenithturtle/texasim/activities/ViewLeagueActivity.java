@@ -18,6 +18,7 @@ import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.fragments.ScheduleFragment;
 import com.xenithturtle.texasim.fragments.StandingsFragment;
 import com.xenithturtle.texasim.adapters.FragmentAdapter;
+import com.xenithturtle.texasim.views.NoSwipeViewPager;
 
 public class ViewLeagueActivity extends BaseActivity
         implements ScheduleFragment.OnFragmentInteractionListener, StandingsFragment.OnFragmentInteractionListener {
@@ -32,7 +33,7 @@ public class ViewLeagueActivity extends BaseActivity
 
     public static final int FOLLOW_INDEX = 0;
 
-    private ViewPager mPager;
+    private NoSwipeViewPager mPager;
     private FragmentAdapter<Fragment> mAdapter;
 
     private Intent mResult;
@@ -70,28 +71,12 @@ public class ViewLeagueActivity extends BaseActivity
         ab.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
         ab.setTitle(mName);
 
-        mPager = (ViewPager) findViewById(R.id.pager);
+        mPager = (NoSwipeViewPager) findViewById(R.id.pager);
         mAdapter = new FragmentAdapter<Fragment>(getSupportFragmentManager());
         mAdapter.addFragments(StandingsFragment.newInstance(mLid));
         mAdapter.addFragments(ScheduleFragment.newInstance(mLid));
 
         mPager.setAdapter(mAdapter);
-        mPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int i, float v, int i2) {
-
-            }
-
-            @Override
-            public void onPageSelected(int i) {
-                ab.setSelectedNavigationItem(i);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int i) {
-
-            }
-        });
 
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override

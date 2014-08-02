@@ -123,7 +123,7 @@ public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFo
     /**
      * Swaps fragments in the main content view
      */
-    public void selectItem(int position) {
+    private void selectItem(int position) {
         switch(position) {
             case MY_LEAGUES:
                 mDrawerIndex = position;
@@ -175,7 +175,7 @@ public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFo
 
     @Override
     public void onFollowButtonPressed() {
-        selectItem(FOLLOW_LEAGUE);
+        mDrawerList.performItemClick(null, FOLLOW_LEAGUE, 0);
     }
 
     private class DrawerClickListener implements ListView.OnItemClickListener {
@@ -183,6 +183,10 @@ public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFo
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             if (position != mDrawerIndex) {
+                //in order to set the default state for bolding on open, I need to set an instance
+                //variable that says that the first element has been clicked
+                ((NavdrawerArrayAdapter) mDrawerList.getAdapter()).clicked();
+
                 int prevIndex = mDrawerIndex;
                 selectItem(position);
                 if (position != prevIndex && position != SETTINGS) {

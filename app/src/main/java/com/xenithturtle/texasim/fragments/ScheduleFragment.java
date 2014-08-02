@@ -196,35 +196,26 @@ public class ScheduleFragment extends Fragment {
                     params.setMargins(8, 16, 8, 0);
 
                     //loop over the event days
-                    Log.i("************", "1");
                     List<GameDay> gds = new ArrayList<GameDay>();
                     for (int i = 0; i < gameDays.length(); i++) {
 
                         JSONObject gameDay = gameDays.getJSONObject(i);
                         GameDay gD = new GameDay();
                         gD.mDay = gameDay.getString("day");
-                        Log.i("************", gD.mDay);
                         gD.games = new ArrayList<Game>();
                         JSONArray games = gameDay.getJSONArray("games");
-                        Log.i("************", "2");
 
                         for (int j = 0; j < games.length(); j++) {
                             Game g = new Game();
                             JSONObject game = games.getJSONObject(j);
                             JSONArray timeLoc = game.getJSONArray("time_loc");
-                            Log.i("************", "3");
                             g.mTimeLoc = timeLoc.getString(0);
-                            Log.i("************", "4");
                             g.mTeam1 = toStringArray(game.getJSONArray("team_1"));
                             g.mTeam2 = toStringArray(game.getJSONArray("team_2"));
-                            Log.i("***********", Arrays.toString(g.mTeam1));
-                            Log.i("***********", Arrays.toString(g.mTeam2));
                             gD.games.add(g);
                         }
 
                         gds.add(gD);
-
-//                        mContent.addView(gdv);
                     }
 
                     ScheduleCard sc = new ScheduleCard(getActivity(), gds);
@@ -232,6 +223,7 @@ public class ScheduleFragment extends Fragment {
                 } catch (JSONException e) {
                     Log.i("************", "JSON exception in on post execute");
                 }
+
                 mProgressBar.setVisibility(View.GONE);
                 mContent.setVisibility(View.VISIBLE);
             } else {

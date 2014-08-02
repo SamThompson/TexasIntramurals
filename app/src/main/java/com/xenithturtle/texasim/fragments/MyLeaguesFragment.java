@@ -131,7 +131,6 @@ public class MyLeaguesFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("***************", "in activity result");
         if (requestCode == ViewLeagueActivity.TRACK_CHANGES) {
             if (resultCode == Activity.RESULT_OK) {
                 boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
@@ -147,8 +146,13 @@ public class MyLeaguesFragment extends Fragment {
 
                     if (v != null && !following) {
                         Card lc = v.getCard();
-                        Log.i("***************", "in activity result");
                         mDismissAnimation.animateDismiss(lc);
+
+                        if (mCardListView.getCount() == 1) {
+                            mCardListView.setVisibility(View.GONE);
+                            mNoLeaguesLayout.setVisibility(View.VISIBLE);
+
+                        }
                     }
                 }
             }
