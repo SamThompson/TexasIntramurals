@@ -17,10 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
 
+        android:text="@string/league_name"
+        android:text="@string/league_info"
         </LinearLayout>-->
     <TextView
         android:id="@+id/league_name"
-        android:text="League name"
         android:textAppearance="@android:style/TextAppearance.Medium"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,7 +31,6 @@
 
     <TextView
         android:id="@+id/league_info"
-        android:text="League info"
         android:textColor="@color/text_gray"
         android:layout_marginLeft="8dp"
         android:textStyle="italic"
@@ -41,6 +41,7 @@
 
     <ImageView
         android:id="@+id/star"
+        android:contentDescription="@string/star_content_desc"
         android:layout_width="28dp"
         android:layout_height="42dp"
         android:src="@drawable/ic_rating_not_important"

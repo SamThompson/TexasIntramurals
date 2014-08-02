@@ -1,8 +1,6 @@
 package com.xenithturtle.texasim.fragments;
 
 import android.app.Activity;
-import android.content.Context;
-import android.graphics.Color;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -13,8 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.xenithturtle.texasim.R;
@@ -34,7 +30,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.view.CardView;
@@ -221,7 +216,7 @@ public class ScheduleFragment extends Fragment {
                     ScheduleCard sc = new ScheduleCard(getActivity(), gds);
                     mContent.setCard(sc);
                 } catch (JSONException e) {
-                    Log.i("************", "JSON exception in on post execute");
+                    Log.i("************", e.toString());
                 }
 
                 mProgressBar.setVisibility(View.GONE);

@@ -13,8 +13,10 @@
 
     <!--
     <View
+        android:id="@+id/bodyDivider"
         android:layout_width="1dip"
         android:layout_height="match_parent"
-        android:background="@drawable/separator_table" />-->
+        android:background="@drawable/separator_table" />
+        -->
 
 </LinearLayout>

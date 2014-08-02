@@ -1,6 +1,7 @@
 package com.xenithturtle.texasim.application;
 
 import android.app.Application;
+import android.os.StrictMode;
 
 import com.xenithturtle.texasim.R;
 
@@ -22,6 +23,20 @@ public class TexasIMApplication extends Application {
 
     @Override
     public void onCreate() {
+        if (true) {
+            StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+                .detectDiskReads()
+                .detectDiskWrites()
+                .detectNetwork()
+                .penaltyLog()
+                .build());
+            StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .penaltyLog()
+                .penaltyDeath()
+                .build());
+        }
         super.onCreate();
 
         ACRA.init(this);

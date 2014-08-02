@@ -1,7 +1,6 @@
 package com.xenithturtle.texasim.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,7 +48,6 @@ public class JSONTableAdapter extends BaseTableAdapter {
      * Should return columns - 1
      */
     public int getColumnCount() {
-        Log.i("************", "num cols" + mHeader.length());
         return mHeader.length() - 1;
     }
 
@@ -138,6 +136,8 @@ public class JSONTableAdapter extends BaseTableAdapter {
 
         convertView.setBackgroundResource(row % 2 == 0 ? R.drawable.bg_table_color1 : R.drawable.bg_table_color2);
         ((TextView) convertView.findViewById(android.R.id.text1)).setText(text);
+
+
         return convertView;
     }
 

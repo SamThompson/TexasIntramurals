@@ -4,18 +4,14 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.foound.widget.AmazingListView;
 import com.xenithturtle.texasim.R;
@@ -182,7 +178,6 @@ public class FollowNewLeagueActivity extends BaseActivity {
 
                         League league = new League();
                         league.mLid = jsonObject.getInt(AsyncTaskConstants.LID);
-                        Log.i("***********", "" + league.mLid);
                         league.mLeagueName = jsonObject.getString(AsyncTaskConstants.LNAME);
                         league.mLeagueInfo = jsonObject.getString(AsyncTaskConstants.LINFO);
                         league.mFollowing = adapter.isFollowingLeague(league.mLid);

@@ -109,12 +109,12 @@ public class TableFixHeaders extends ViewGroup {
 		this.shadows = new ImageView[4];
 		this.shadows[0] = new ImageView(context);
 		this.shadows[0].setImageResource(R.drawable.shadow_left);
-//		this.shadows[1] = new ImageView(context);
-//		this.shadows[1].setImageResource(R.drawable.shadow_top);
+    	this.shadows[1] = new ImageView(context);
+		this.shadows[1].setImageResource(R.drawable.shadow_top);
 		this.shadows[2] = new ImageView(context);
 		this.shadows[2].setImageResource(R.drawable.shadow_right);
-//		this.shadows[3] = new ImageView(context);
-//		this.shadows[3].setImageResource(R.drawable.shadow_bottom);
+		this.shadows[3] = new ImageView(context);
+		this.shadows[3].setImageResource(R.drawable.shadow_bottom);
 
 		this.shadowSize = getResources().getDimensionPixelSize(R.dimen.shadow_size);
 
@@ -585,9 +585,9 @@ public class TableFixHeaders extends ViewGroup {
 				right = Math.min(width, sumArray(widths));
 				bottom = Math.min(height, sumArray(heights));
 				addShadow(shadows[0], widths[0], 0, widths[0] + shadowSize, bottom);
-			//	addShadow(shadows[1], 0, heights[0], right, heights[0] + shadowSize);
+				addShadow(shadows[1], 0, heights[0], right, heights[0] + shadowSize);
 				addShadow(shadows[2], right - shadowSize, 0, right, bottom);
-			//	addShadow(shadows[3], 0, bottom - shadowSize, right, bottom);
+				addShadow(shadows[3], 0, bottom - shadowSize, right, bottom);
 
 				headView = makeAndSetup(-1, -1, 0, 0, widths[0], heights[0]);
 
@@ -686,10 +686,9 @@ public class TableFixHeaders extends ViewGroup {
 		};
 
         setAlpha(shadows[0], 1);
+        setAlpha(shadows[1], 0);
         setAlpha(shadows[2], 1);
-//		for (int i = 1; i < shadows.length; i+=2) {
-//			setAlpha(shadows[i], Math.min(remainPixels[i] / (float) shadowSize, 1));
-//		}
+        setAlpha(shadows[3], 0);
 	}
 
 	@TargetApi(Build.VERSION_CODES.HONEYCOMB)

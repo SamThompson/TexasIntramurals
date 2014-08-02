@@ -8,7 +8,6 @@
 
     <com.stylingandroid.verticaltextview.VerticalTextView
         android:id="@+id/sport_icon"
-        android:text="League name"
         android:textStyle="bold|italic"
         android:textSize="14sp"
         android:layout_centerVertical="true"
@@ -30,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
-            android:text="League name"
             android:textStyle="bold"
             android:textAppearance="@android:style/TextAppearance.Medium"/>
 
@@ -41,19 +39,17 @@
 
         <TextView
             android:id="@+id/card_league_name"
-            android:layout_alignParentLeft="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Small"
-            android:text="Coed C" />
+            />
 
         <TextView
             android:id="@+id/card_play_time"
-            android:layout_alignParentLeft="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Small"
-            android:text="Plays Monday at 6pm" />
+            />
 
         <TextView
             android:id="@+id/card_last_update"
@@ -62,7 +58,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="@android:style/TextAppearance.Small"
-            android:text="Last update: 12:46:12 UTC" />
+            />
 
     </LinearLayout>
 </RelativeLayout>

@@ -186,10 +186,10 @@ public class MyLeaguesFragment extends Fragment {
         @Override
         protected List<Card> doWork() {
             IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(getActivity());
+
             sqliteAdapter.open();
-            ArrayList<Card> cards = new ArrayList<Card>();
-            //add cards here
             List<Integer> followingLeagues = sqliteAdapter.getFollowingLeagues();
+            sqliteAdapter.close();
 
             HttpClient client = new DefaultHttpClient();
 

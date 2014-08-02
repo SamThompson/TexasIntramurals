@@ -2,12 +2,11 @@ package com.xenithturtle.texasim.views;
 
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
@@ -49,9 +48,11 @@ public class LeagueView extends RelativeLayout {
                 if (mLeague.mFollowing) {
                     sqliteAdapter.deleteLeague(mLeague.mLid);
                     mStar.setImageResource(R.drawable.ic_rating_not_important);
+                    Toast.makeText(getContext(), "Unfollowing league", Toast.LENGTH_SHORT).show();
                 } else {
                     sqliteAdapter.insertLeague(mLeague.mLid);
                     mStar.setImageResource(R.drawable.ic_rating_important);
+                    Toast.makeText(getContext(), "Following league", Toast.LENGTH_SHORT).show();
                 }
 
                 mLeague.mFollowing = !mLeague.mFollowing;

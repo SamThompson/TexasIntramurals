@@ -2,7 +2,6 @@ package com.xenithturtle.texasim.cards;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,7 +45,6 @@ public class ScheduleCard extends Card {
             ((TextView) gameDay.findViewById(R.id.game_date)).setText(gd.mDay);
 
             for (Game g : gd.games) {
-                Log.i("********** timeloc", g.mTimeLoc);
                 LinearLayout game = (LinearLayout) inflater.inflate(R.layout.schedule_table, null, false);
 
                 ((TextView) game.findViewById(R.id.game_time)).setText(g.mTimeLoc);

@@ -1,7 +1,6 @@
 package com.xenithturtle.texasim.adapters;
 
 import android.content.Context;
-import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +53,6 @@ public class LeagueListAdapter extends AmazingAdapter {
     @Override
     public View getAmazingView(int position, View convertView, ViewGroup viewGroup) {
         League l = getItem(position);
-        Log.i("**********", "name: " + l.mLeagueName);
         LeagueView view = (LeagueView) convertView;
 
         if (view == null)

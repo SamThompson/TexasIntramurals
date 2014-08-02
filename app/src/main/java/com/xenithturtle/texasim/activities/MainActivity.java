@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -116,7 +115,6 @@ public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFo
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Log.i("***************", "in activity result");
         super.onActivityResult(requestCode, resultCode, data);
     }
 

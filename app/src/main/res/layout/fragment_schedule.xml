@@ -17,7 +17,7 @@
     <TextView android:id="@+id/error_text"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
-        android:text="Could not fetch league.\nPlease try again later."
+        android:text="@string/view_league_error"
         android:layout_gravity="center"
         android:visibility="gone" />
 

@@ -3,7 +3,6 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:background="@color/listview_gray"
-    android:text="Header"
     android:textSize="14sp"
     android:textStyle="bold|italic"
     android:padding="6dp"
