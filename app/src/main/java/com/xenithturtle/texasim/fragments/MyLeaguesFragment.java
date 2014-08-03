@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,24 +11,20 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.activities.ViewLeagueActivity;
 import com.xenithturtle.texasim.adapters.CardArrayAdapterWithSpace;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
-import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 import com.xenithturtle.texasim.cards.LeagueCard;
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.models.League;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -183,31 +178,32 @@ public class MyLeaguesFragment extends Fragment {
             mErrorLayout.setVisibility(View.GONE);
         }
 
+        /**
+         * Gets the leagues the user is following and returns a list of
+         * cards to put in an adapter. This method does not throw an exception
+         * when parsing the json object so that we can check if the object is
+         * still supported
+         *
+         * @return List<Card> -  the cards to put in the adapter
+         */
         @Override
-        protected List<Card> doWork() {
+        protected List<Card> doWork(Void ... params) throws IOException {
             IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(getActivity());
 
             sqliteAdapter.open();
             List<Integer> followingLeagues = sqliteAdapter.getFollowingLeagues();
-            sqliteAdapter.close();
 
-            HttpClient client = new DefaultHttpClient();
+            OkHttpClient client = new OkHttpClient();
 
             List<Card> leagueCards = new ArrayList<Card>();
             for (Integer i : followingLeagues) {
-                HttpGet request = new HttpGet(LEAGUES_REQ_BASE + "" + i +
-                        LEAGUES_REQ_MID + "info");
 
-                String response;
-                try {
-                    response = client.execute(request, new BasicResponseHandler());
-                } catch (UnsupportedEncodingException e) {
-                    Log.e("*********", e.toString());
-                    continue;
-                } catch (IOException e) {
-                    Log.e("*********", e.toString());
-                    continue;
-                }
+                Request request = new Request.Builder()
+                        .url(LEAGUES_REQ_BASE + "" + i + LEAGUES_REQ_MID + "info")
+                        .build();
+
+                //This statement throws the IOE exception if server not there, etc
+                String response = client.newCall(request).execute().body().string();
 
                 JSONObject res;
                 try {
@@ -215,11 +211,11 @@ public class MyLeaguesFragment extends Fragment {
 
                     League l = new League();
                     l.mLid = i;
-                    l.mLeagueName = res.getString(AsyncTaskConstants.NAME);
-                    l.mDivisionName = res.getString(AsyncTaskConstants.DIVISION);
-                    l.mLeagueInfo = res.getString(AsyncTaskConstants.TIME);
-                    l.mUpdatedAt = res.getString(AsyncTaskConstants.UPDATE);
-                    l.mSport = res.getString(AsyncTaskConstants.SPORT);
+                    l.mLeagueName = res.getString(JSON_LR_NAME);
+                    l.mDivisionName = res.getString(JSON_LR_DIVISION);
+                    l.mLeagueInfo = res.getString(JSON_LR_TIME);
+                    l.mUpdatedAt = res.getString(JSON_LR_UPDATE);
+                    l.mSport = res.getString(JSON_LR_SPORT);
 
                     LeagueCard lc = new LeagueCard(getActivity(), l);
                     lc.setOnClickListener(new LeagueCardClickedListener());
@@ -227,9 +223,12 @@ public class MyLeaguesFragment extends Fragment {
                     leagueCards.add(lc);
 
                 } catch (JSONException e) {
-                    //let is continue
+                    //remove this from the db, it is no longer supported
+                    //because it returned a malformed json query
+                    sqliteAdapter.deleteLeague(i);
                 }
             }
+            sqliteAdapter.close();
 
             return leagueCards;
         }

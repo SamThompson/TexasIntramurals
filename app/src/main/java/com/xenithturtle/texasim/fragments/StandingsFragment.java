@@ -7,17 +7,19 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.inqbarna.tablefixheaders.TableFixHeaders;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.R;
-import com.xenithturtle.texasim.asynctasks.LeagueAsyncTask;
-import com.xenithturtle.texasim.adapters.JSONTableAdapter;
+import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 import com.xenithturtle.texasim.cards.StandingsCard;
 
+import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.io.IOException;
 
 import it.gmariotti.cardslib.library.view.CardView;
 
@@ -82,7 +84,7 @@ public class StandingsFragment extends Fragment {
         mContent = (CardView) v.findViewById(R.id.content);
         mProgressBar.setVisibility(View.VISIBLE);
 
-        new StandingsLoader().execute("" + mLid, "standings");
+        new StandingsAsyncTask().execute("" + mLid, "standings");
 
         return v;
     }
@@ -126,19 +128,45 @@ public class StandingsFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-
-    private class StandingsLoader extends LeagueAsyncTask {
+    private class StandingsAsyncTask extends ServerCheckAsyncTask<String, Void, JSONObject> {
 
         @Override
-        public void onPostExecute(JSONObject res) {
-            if (res != null) {
-                mContent.setCard(new StandingsCard(getActivity(), res));
-                mContent.setVisibility(View.VISIBLE);
-                mProgressBar.setVisibility(View.GONE);
-            } else {
-                mProgressBar.setVisibility(View.GONE);
-                mErrorText.setVisibility(View.VISIBLE);
+        protected void setUpWork() {
+
+        }
+
+        @Override
+        protected JSONObject doWork(String... params) throws IOException, JSONException {
+
+            if (params.length != 2) {
+                throw new IllegalArgumentException("Must only have one argument for eventId");
             }
+
+            OkHttpClient client = new OkHttpClient();
+
+            String lid = params[0];
+            String req = params[1];
+
+            Request request = new Request.Builder()
+                    .url(LEAGUES_REQ_BASE + lid + LEAGUES_REQ_MID + req)
+                    .build();
+
+            String response = client.newCall(request).execute().body().string();
+
+            return new JSONObject(response);
+        }
+
+        @Override
+        protected void finishWork(JSONObject res) {
+            mContent.setCard(new StandingsCard(getActivity(), res));
+            mContent.setVisibility(View.VISIBLE);
+            mProgressBar.setVisibility(View.GONE);
+        }
+
+        @Override
+        protected void errorInWork(String msg) {
+            mProgressBar.setVisibility(View.GONE);
+            mErrorText.setVisibility(View.VISIBLE);
         }
     }
 

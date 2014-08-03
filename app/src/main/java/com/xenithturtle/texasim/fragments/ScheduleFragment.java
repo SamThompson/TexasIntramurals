@@ -2,10 +2,8 @@ package com.xenithturtle.texasim.fragments;
 
 import android.app.Activity;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,22 +11,19 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.R;
-import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
+import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 import com.xenithturtle.texasim.cards.ScheduleCard;
 import com.xenithturtle.texasim.models.Game;
 import com.xenithturtle.texasim.models.GameDay;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,7 +87,7 @@ public class ScheduleFragment extends Fragment {
         mErrorText = (TextView) v.findViewById(R.id.error_text);
         mProgressBar.setVisibility(View.VISIBLE);
         mContent = (CardView) v.findViewById(R.id.content);
-        new ScheduleLoader().execute("" + mLid, "schedule");
+        new ScheduleAsyncTask().execute("" + mLid, "schedule");
         return v;
     }
 
@@ -135,41 +130,61 @@ public class ScheduleFragment extends Fragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-
-    private class ScheduleLoader extends AsyncTask<String, Void, JSONArray> {
+    private class ScheduleAsyncTask extends ServerCheckAsyncTask<String, Void, ScheduleCard> {
 
         @Override
-        protected JSONArray doInBackground(String... params) {
-            HttpClient client = new DefaultHttpClient();
+        protected void setUpWork() {
+
+        }
+
+        @Override
+        protected ScheduleCard doWork(String ... params) throws IOException, JSONException {
 
             if (params.length != 2) {
                 throw new IllegalArgumentException("Must only have one argument for eventId");
             }
 
+            OkHttpClient client = new OkHttpClient();
+
             String lid = params[0];
             String req = params[1];
 
-            HttpGet request = new HttpGet(AsyncTaskConstants.LEAGUES_REQ_BASE + lid +
-                    AsyncTaskConstants.LEAGUES_REQ_MID + req);
-            String response;
-            try {
-                response = client.execute(request, new BasicResponseHandler());
-            } catch (UnsupportedEncodingException e) {
-                Log.e("*********", e.toString());
-                return null;
-            } catch (IOException e) {
-                Log.e("*********", e.toString());
-                return null;
+            Request request = new Request.Builder()
+                    .url(LEAGUES_REQ_BASE + lid + LEAGUES_REQ_MID + req)
+                    .build();
+
+            //IOException thrown here
+            String response = client.newCall(request).execute().body().string();
+
+            JSONArray gameDays = new JSONArray(response);
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT);
+            layoutParams.setMargins(8, 16, 8, 0);
+
+            //loop over the event days
+            List<GameDay> gds = new ArrayList<GameDay>();
+            for (int i = 0; i < gameDays.length(); i++) {
+
+                JSONObject gameDay = gameDays.getJSONObject(i);
+                GameDay gD = new GameDay();
+                gD.mDay = gameDay.getString("day");
+                gD.games = new ArrayList<Game>();
+                JSONArray games = gameDay.getJSONArray("games");
+
+                for (int j = 0; j < games.length(); j++) {
+                    Game g = new Game();
+                    JSONObject game = games.getJSONObject(j);
+                    JSONArray timeLoc = game.getJSONArray("time_loc");
+                    g.mTimeLoc = timeLoc.getString(0);
+                    g.mTeam1 = toStringArray(game.getJSONArray("team_1"));
+                    g.mTeam2 = toStringArray(game.getJSONArray("team_2"));
+                    gD.games.add(g);
+                }
+
+                gds.add(gD);
             }
 
-            JSONArray res;
-            try {
-                res = new JSONArray(response);
-            } catch (JSONException e) {
-                return null;
-            }
-
-            return res;
+            return new ScheduleCard(getActivity(), gds);
         }
 
         private String[] toStringArray(JSONArray j) throws JSONException {
@@ -182,49 +197,16 @@ public class ScheduleFragment extends Fragment {
         }
 
         @Override
-        public void onPostExecute(JSONArray gameDays) {
-            if (gameDays != null) {
-                try {
+        protected void finishWork(ScheduleCard res) {
+            mContent.setCard(res);
+            mProgressBar.setVisibility(View.GONE);
+            mContent.setVisibility(View.VISIBLE);
+        }
 
-                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.setMargins(8, 16, 8, 0);
-
-                    //loop over the event days
-                    List<GameDay> gds = new ArrayList<GameDay>();
-                    for (int i = 0; i < gameDays.length(); i++) {
-
-                        JSONObject gameDay = gameDays.getJSONObject(i);
-                        GameDay gD = new GameDay();
-                        gD.mDay = gameDay.getString("day");
-                        gD.games = new ArrayList<Game>();
-                        JSONArray games = gameDay.getJSONArray("games");
-
-                        for (int j = 0; j < games.length(); j++) {
-                            Game g = new Game();
-                            JSONObject game = games.getJSONObject(j);
-                            JSONArray timeLoc = game.getJSONArray("time_loc");
-                            g.mTimeLoc = timeLoc.getString(0);
-                            g.mTeam1 = toStringArray(game.getJSONArray("team_1"));
-                            g.mTeam2 = toStringArray(game.getJSONArray("team_2"));
-                            gD.games.add(g);
-                        }
-
-                        gds.add(gD);
-                    }
-
-                    ScheduleCard sc = new ScheduleCard(getActivity(), gds);
-                    mContent.setCard(sc);
-                } catch (JSONException e) {
-                    Log.i("************", e.toString());
-                }
-
-                mProgressBar.setVisibility(View.GONE);
-                mContent.setVisibility(View.VISIBLE);
-            } else {
-                mProgressBar.setVisibility(View.GONE);
-                mErrorText.setVisibility(View.VISIBLE);
-            }
+        @Override
+        protected void errorInWork(String msg) {
+            mProgressBar.setVisibility(View.GONE);
+            mErrorText.setVisibility(View.VISIBLE);
         }
     }
 

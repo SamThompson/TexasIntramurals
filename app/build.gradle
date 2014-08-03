@@ -37,4 +37,6 @@ dependencies {
     compile 'com.github.gabrielemariotti.cards:library:1.6.0'
     compile files('lib/amazinglistview.jar')
     compile files('lib/acra-4.5.0.jar')
+    compile files('lib/okio-1.0.0.jar')
+    compile files('lib/okhttp-2.0.0.jar')
 }

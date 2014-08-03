@@ -3,10 +3,8 @@ package com.xenithturtle.texasim.fragments;
 import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.ListFragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,21 +12,18 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.R;
 import com.xenithturtle.texasim.activities.FollowNewLeagueActivity;
-import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.adapters.JSONArrayAdapter;
+import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 
 /**
@@ -117,8 +112,8 @@ public class EventListFragment extends ListFragment {
         JSONObject ev = (JSONObject) l.getItemAtPosition(position);
         try {
             Intent i = new Intent(getActivity(), FollowNewLeagueActivity.class);
-            i.putExtra("EVENT_NAME", ev.getString(AsyncTaskConstants.ENAME));
-            i.putExtra("EVENT_ID", "" + ev.getInt(AsyncTaskConstants.EID));
+            i.putExtra("EVENT_NAME", ev.getString(ServerCheckAsyncTask.JSON_ENAME));
+                i.putExtra("EVENT_ID", "" + ev.getInt(ServerCheckAsyncTask.JSON_EID));
             startActivity(i);
         } catch (JSONException e) {
 
@@ -140,57 +135,45 @@ public class EventListFragment extends ListFragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-
-    public class EventsAsyncTask extends AsyncTask<Void, Void, JSONArray> {
+    private class EventsAsyncTask extends ServerCheckAsyncTask<Void, Void, JSONArray> {
 
         @Override
-        public void onPreExecute() {
+        protected void setUpWork() {
             mLinearLayout.setVisibility(View.GONE);
             mListView.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
-        public JSONArray doInBackground(Void ... params) {
-            HttpClient client = new DefaultHttpClient();
+        protected JSONArray doWork(Void ... params) throws IOException, JSONException {
+            OkHttpClient client = new OkHttpClient();
 
-            HttpGet get = new HttpGet(AsyncTaskConstants.IM_REQ_BASE);
-            String response;
-            try {
-                response = client.execute(get, new BasicResponseHandler());
-            } catch (UnsupportedEncodingException e) {
-                Log.e("*********", e.toString());
-                return null;
-            } catch (IOException e) {
-                Log.e("*********", e.toString());
-                return null;
-            }
+            Request request = new Request.Builder()
+                    .url(IM_REQ_BASE)
+                    .build();
 
-            JSONArray res = null;
-            try {
-                res = new JSONArray(response);
-            } catch (JSONException e) {
-                Log.e("*********", e.toString());
-            }
+            //Exception would be thrown here
+            String response = client.newCall(request).execute().body().string();
 
-            return res;
+            //or here
+            return new JSONArray(response);
         }
 
         @Override
-        public void onPostExecute(JSONArray res) {
-            if (res != null) {
-                JSONArrayAdapter adapter =
-                        new JSONArrayAdapter(EventListFragment.this.getActivity(),
-                                res, AsyncTaskConstants.ENAME);
-                setListAdapter(adapter);
-                mProgressBar.setVisibility(View.GONE);
-                mListView.setVisibility(View.VISIBLE);
-            } else {
-                mProgressBar.setVisibility(View.GONE);
-                mLinearLayout.setVisibility(View.VISIBLE);
-            }
+        protected void finishWork(JSONArray res) {
+            JSONArrayAdapter adapter =
+                    new JSONArrayAdapter(EventListFragment.this.getActivity(),
+                            res, JSON_ENAME);
+            setListAdapter(adapter);
+            mProgressBar.setVisibility(View.GONE);
+            mListView.setVisibility(View.VISIBLE);
+        }
+
+        @Override
+        protected void errorInWork(String msg) {
+            mProgressBar.setVisibility(View.GONE);
+            mLinearLayout.setVisibility(View.VISIBLE);
         }
     }
-
 
 }

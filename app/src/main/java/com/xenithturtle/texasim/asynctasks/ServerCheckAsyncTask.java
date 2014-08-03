@@ -4,17 +4,14 @@ import android.os.AsyncTask;
 import android.util.Log;
 import android.util.Pair;
 
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.miscclasses.Triple;
 
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.impl.client.BasicResponseHandler;
-import org.apache.http.impl.client.DefaultHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 
 /**
  * Created by sam on 7/25/14.
@@ -63,9 +60,22 @@ public abstract class ServerCheckAsyncTask<Q, M, R>
     @Override
     protected Triple<Boolean, SERVER_RESPONSES, R> doInBackground(Q ... objects) {
         Pair<Boolean, SERVER_RESPONSES> server = checkServer();
-        Triple<Boolean, SERVER_RESPONSES, R> result
-                = new Triple<Boolean, SERVER_RESPONSES, R>(server.first, server.second, doWork());
-        return result;
+        try {
+            R res = doWork(objects);
+
+            return new Triple<Boolean, SERVER_RESPONSES, R>(server.first, server.second, res);
+        } catch (Exception e) {
+            SERVER_RESPONSES resp;
+            if (e instanceof JSONException) {
+                resp = SERVER_RESPONSES.MALFORMED_RESPONSE;
+            } else if (e instanceof IOException) {
+                resp = SERVER_RESPONSES.IOEXCEPTION;
+            } else {
+                resp = SERVER_RESPONSES.NO_CONNECTION;
+            }
+
+            return new Triple<Boolean, SERVER_RESPONSES, R>(false, resp, null);
+        }
     }
 
     @Override
@@ -78,20 +88,30 @@ public abstract class ServerCheckAsyncTask<Q, M, R>
     }
 
     protected abstract void setUpWork();
-    protected abstract R doWork();
+
+    /**
+     * Throws an exception if the process encountered an error.
+     * This allows errorInWork() to be called.
+     *
+     * @return R - result of the operation
+     * @throws Exception
+     */
+    protected abstract R doWork(Q ... params) throws Exception;
     protected abstract void finishWork(R res);
     protected abstract void errorInWork(String msg);
 
     private Pair<Boolean, SERVER_RESPONSES> checkServer() {
-        HttpClient client = new DefaultHttpClient();
+        OkHttpClient client = new OkHttpClient();
 
-        HttpGet get = new HttpGet(SERVER_STATUS);
+        Request request = new Request.Builder()
+                .url(SERVER_STATUS)
+                .build();
+
+//        HttpGet get = new HttpGet(SERVER_STATUS);
+
         String response;
         try {
-            response = client.execute(get, new BasicResponseHandler());
-        } catch (UnsupportedEncodingException e) {
-            Log.e("*********", e.toString());
-            return new Pair<Boolean, SERVER_RESPONSES>(false, SERVER_RESPONSES.NO_CONNECTION);
+            response = client.newCall(request).execute().body().string();
         } catch (IOException e) {
             Log.e("*********", e.toString());
             return new Pair<Boolean, SERVER_RESPONSES>(false, SERVER_RESPONSES.IOEXCEPTION);

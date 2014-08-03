@@ -14,10 +14,12 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import com.foound.widget.AmazingListView;
+import com.squareup.okhttp.OkHttpClient;
+import com.squareup.okhttp.Request;
 import com.xenithturtle.texasim.R;
-import com.xenithturtle.texasim.asynctasks.AsyncTaskConstants;
 import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.adapters.LeagueListAdapter;
+import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 import com.xenithturtle.texasim.models.League;
 import com.xenithturtle.texasim.views.LeagueView;
 
@@ -125,88 +127,77 @@ public class FollowNewLeagueActivity extends BaseActivity {
         return super.onOptionsItemSelected(item);
     }
 
-
-    //TODO may want to make this a separate abstract async task since it overlaps with Event list
-    public class DivisionAsyncTask extends AsyncTask<String, Void, List<Pair<String, List<League>>>> {
+    private class DivisionAsyncTask extends ServerCheckAsyncTask<String, Void, List<Pair<String, List<League>>>> {
 
         @Override
-        public void onPreExecute() {
+        protected void setUpWork() {
             mLinearLayout.setVisibility(View.GONE);
             mAmazingList.setVisibility(View.GONE);
             mProgressBar.setVisibility(View.VISIBLE);
         }
 
         @Override
-        protected List<Pair<String, List<League>>> doInBackground(String... params) {
-            HttpClient client = new DefaultHttpClient();
+        protected List<Pair<String, List<League>>> doWork(String... params) throws IOException, JSONException {
 
             if (params.length != 1) {
                 throw new IllegalArgumentException("Must only have one argument for eventId");
             }
 
+            OkHttpClient client = new OkHttpClient();
+
             String args = "event=" + params[0];
 
-            HttpGet get = new HttpGet(AsyncTaskConstants.IM_REQ_BASE + args);
-            String response;
-            try {
-                response = client.execute(get, new BasicResponseHandler());
-            } catch (UnsupportedEncodingException e) {
-                Log.e("*********", e.toString());
-                return null;
-            } catch (IOException e) {
-                Log.e("*********", e.toString());
-                return null;
-            }
+            Request request = new Request.Builder()
+                    .url(IM_REQ_BASE + args)
+                    .build();
+
+            //IOException
+            String response = client.newCall(request).execute().body().string();
 
             List<Pair<String, List<League>>> res = new ArrayList<Pair<String, List<League>>>();
 
-            try {
+            IMSqliteAdapter adapter = new IMSqliteAdapter(FollowNewLeagueActivity.this);
+            adapter.open();
+            JSONArray responseArray = new JSONArray(response);
 
-                IMSqliteAdapter adapter = new IMSqliteAdapter(FollowNewLeagueActivity.this);
-                adapter.open();
-                JSONArray responseArray = new JSONArray(response);
+            for (int i = 0; i < responseArray.length(); i++) {
 
-                for (int i = 0; i < responseArray.length(); i++) {
+                JSONObject division = responseArray.getJSONObject(i);
+                String divName = division.getString(JSON_DNAME);
+                JSONArray leagues = division.getJSONArray(JSON_LEAGUES);
+                List<League> l = new ArrayList<League>();
 
-                    JSONObject division = responseArray.getJSONObject(i);
-                    String divName = division.getString(AsyncTaskConstants.DNAME);
-                    JSONArray leagues = division.getJSONArray(AsyncTaskConstants.LEAGUES);
-                    List<League> l = new ArrayList<League>();
+                for (int j = 0; j < leagues.length(); j++) {
+                    JSONObject jsonObject = leagues.getJSONObject(j);
 
-                    for (int j = 0; j < leagues.length(); j++) {
-                        JSONObject jsonObject = leagues.getJSONObject(j);
-
-                        League league = new League();
-                        league.mLid = jsonObject.getInt(AsyncTaskConstants.LID);
-                        league.mLeagueName = jsonObject.getString(AsyncTaskConstants.LNAME);
-                        league.mLeagueInfo = jsonObject.getString(AsyncTaskConstants.LINFO);
-                        league.mFollowing = adapter.isFollowingLeague(league.mLid);
-                        l.add(league);
-                    }
-                    res.add(new Pair<String, List<League>>(divName, l));
+                    League league = new League();
+                    league.mLid = jsonObject.getInt(JSON_LID);
+                    league.mLeagueName = jsonObject.getString(JSON_LNAME);
+                    league.mLeagueInfo = jsonObject.getString(JSON_LINFO);
+                    league.mFollowing = adapter.isFollowingLeague(league.mLid);
+                    l.add(league);
                 }
-
-                adapter.close();
-
-            } catch (JSONException e) {
-                Log.e("************", e.toString());
+                res.add(new Pair<String, List<League>>(divName, l));
             }
+
+            adapter.close();
 
             return res;
         }
 
         @Override
-        public void onPostExecute(List<Pair<String, List<League>>> res) {
-            if (res != null) {
-                LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res);
-                mAmazingList.setAdapter(adapter);
-                mProgressBar.setVisibility(View.GONE);
-                mAmazingList.setVisibility(View.VISIBLE);
-            } else {
-                mProgressBar.setVisibility(View.GONE);
-                mLinearLayout.setVisibility(View.VISIBLE);
-            }
+        protected void finishWork(List<Pair<String, List<League>>> res) {
+            LeagueListAdapter adapter = new LeagueListAdapter(FollowNewLeagueActivity.this, res);
+            mAmazingList.setAdapter(adapter);
+            mProgressBar.setVisibility(View.GONE);
+            mAmazingList.setVisibility(View.VISIBLE);
+        }
 
+        @Override
+        protected void errorInWork(String msg) {
+            mProgressBar.setVisibility(View.GONE);
+            mLinearLayout.setVisibility(View.VISIBLE);
         }
     }
+
 }
