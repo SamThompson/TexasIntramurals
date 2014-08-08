@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_content"
-    android:background="@color/card_orange"
+    android:background="@drawable/card_background_selector"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
 
     <com.stylingandroid.verticaltextview.VerticalTextView
         android:id="@+id/sport_icon"
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:paddingTop="4dp"
         android:textStyle="bold|italic"
+        android:background="@color/card_orange"
         android:textSize="14sp"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_height="match_parent"
         android:gravity="bottom"/>
 
     <LinearLayout
-        android:background="@android:color/white"
         android:orientation="vertical"
         android:padding="8dp"
         android:layout_centerVertical="true"

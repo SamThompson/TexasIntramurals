@@ -56,9 +56,7 @@ public class ViewLeagueActivity extends BaseActivity
 
         IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(this);
         sqliteAdapter.open();
-
         mFollowing = sqliteAdapter.isFollowingLeague(mLid);
-
         sqliteAdapter.close();
 
         mResult = new Intent();

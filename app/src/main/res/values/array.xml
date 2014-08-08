@@ -3,7 +3,6 @@
     <string-array name="drawer_array">
         <item>My leagues</item>
         <item>Follow a league</item>
-        <item>Field conditions</item>
         <item>Settings</item>
     </string-array>
 </resources>

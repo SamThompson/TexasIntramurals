@@ -27,5 +27,6 @@
 
     <!-- Card colors -->
     <color name="card_orange">#ffa726</color>
+    <color name="card_select_color">#f2f2f2</color>
 
 </resources>

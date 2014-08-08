@@ -192,6 +192,7 @@ public class MyLeaguesFragment extends Fragment {
 
             sqliteAdapter.open();
             List<Integer> followingLeagues = sqliteAdapter.getFollowingLeagues();
+            sqliteAdapter.close();
 
             OkHttpClient client = new OkHttpClient();
 
@@ -225,10 +226,11 @@ public class MyLeaguesFragment extends Fragment {
                 } catch (JSONException e) {
                     //remove this from the db, it is no longer supported
                     //because it returned a malformed json query
+                    sqliteAdapter.open();
                     sqliteAdapter.deleteLeague(i);
+                    sqliteAdapter.close();
                 }
             }
-            sqliteAdapter.close();
 
             return leagueCards;
         }

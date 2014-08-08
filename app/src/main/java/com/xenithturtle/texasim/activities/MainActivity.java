@@ -27,8 +27,8 @@ public class MainActivity extends BaseActivity implements MyLeaguesFragment.OnFo
 
     private static final int MY_LEAGUES = 0;
     private static final int FOLLOW_LEAGUE = 1;
-    private static final int FIELD_CONDITIONS = 2;
-    private static final int SETTINGS = 3;
+    private static final int FIELD_CONDITIONS = -1;
+    private static final int SETTINGS = 2;
 
     private String[] mDrawerTitles;
     private DrawerLayout mDrawerLayout;
