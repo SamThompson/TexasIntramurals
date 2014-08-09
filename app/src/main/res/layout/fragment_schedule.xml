@@ -5,7 +5,6 @@
     android:background="@color/background_color"
     tools:context="com.xenithturtle.texasim.fragments.ScheduleFragment">
 
-
     <ProgressBar
         android:id="@+id/progress_bar"
         android:layout_width="wrap_content"

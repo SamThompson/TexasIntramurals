@@ -31,9 +31,8 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:gridlayout-v7:19.0.1'
-    compile 'com.android.support:support-v4:19.0.1'
-    compile 'com.android.support:appcompat-v7:19.0.1'
+    compile 'com.android.support:support-v4:19.+'
+    compile 'com.android.support:appcompat-v7:19.+'
     compile 'com.github.gabrielemariotti.cards:library:1.6.0'
     compile files('lib/amazinglistview.jar')
     compile files('lib/acra-4.5.0.jar')

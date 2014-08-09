@@ -77,7 +77,9 @@ public class IMSqliteAdapter {
     public boolean isFollowingLeague(int lid) {
         Cursor c = mSqliteDB.query(LEAGUES_TABLE, LEAGUES_FIELDS, "lid=?", new String[] {"" + lid},
                 null, null, null, null);
-        return c.moveToFirst();
+        boolean res = c.moveToFirst();
+        c.close();
+        return res;
     }
 
     public List<Integer> getFollowingLeagues() {
@@ -89,6 +91,7 @@ public class IMSqliteAdapter {
                 res.add(new Integer(c.getInt(0)));
             } while (c.moveToNext());
         }
+        c.close();
 
         return res;
     }

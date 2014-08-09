@@ -19,6 +19,7 @@ import com.xenithturtle.texasim.adapters.IMSqliteAdapter;
 import com.xenithturtle.texasim.asynctasks.ServerCheckAsyncTask;
 import com.xenithturtle.texasim.cards.LeagueCard;
 import com.xenithturtle.texasim.R;
+import com.xenithturtle.texasim.miscclasses.LeagueCardComparator;
 import com.xenithturtle.texasim.models.League;
 
 import org.json.JSONException;
@@ -26,6 +27,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
@@ -232,6 +234,8 @@ public class MyLeaguesFragment extends Fragment {
                 }
             }
 
+            Collections.sort(leagueCards, new LeagueCardComparator());
+
             return leagueCards;
         }
 
@@ -255,7 +259,6 @@ public class MyLeaguesFragment extends Fragment {
             mCardListView.setVisibility(View.GONE);
             mNoLeaguesLayout.setVisibility(View.GONE);
             mErrorLayout.setVisibility(View.VISIBLE);
-            Toast.makeText(getActivity(), msg, Toast.LENGTH_LONG).show();
         }
     }
 

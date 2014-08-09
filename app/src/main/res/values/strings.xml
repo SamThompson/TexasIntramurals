@@ -46,4 +46,5 @@
     <string name="crash_toast_text">Something went wrong! We\'ve filed a crash report for you and will get to it as soon as we can.</string>
     <string name="acra_enable">acra.enable</string>
 
+
 </resources>

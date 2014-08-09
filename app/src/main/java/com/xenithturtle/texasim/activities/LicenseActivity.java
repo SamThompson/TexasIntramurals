@@ -3,14 +3,19 @@ package com.xenithturtle.texasim.activities;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebView;
+
 import com.xenithturtle.texasim.R;
 
 public class LicenseActivity extends BaseActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_license);
+        WebView v = (WebView) findViewById(R.id.license);
+        v.loadData(getString(R.string.license), "text/html", null);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
