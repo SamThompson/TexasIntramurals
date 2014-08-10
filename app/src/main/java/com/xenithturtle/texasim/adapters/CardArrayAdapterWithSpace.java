@@ -51,11 +51,11 @@ public class CardArrayAdapterWithSpace extends CardArrayAdapter {
             //Setup card
             mCardView = (CardView) view.findViewById(R.id.list_cardId);
             if (mCardView != null) {
-                if (position == 0) {
-                    float scale = getContext().getResources().getDisplayMetrics().density;
-                    int dpAsPixels = (int) (8 * scale + 0.5f);
-                    mCardView.setPadding(mCardView.getPaddingLeft(), dpAsPixels, mCardView.getPaddingRight(), mCardView.getPaddingBottom());
-                }
+//                if (position == 0) {
+//                    float scale = getContext().getResources().getDisplayMetrics().density;
+//                    int dpAsPixels = (int) (8 * scale + 0.5f);
+//                    mCardView.setPadding(mCardView.getPaddingLeft(), dpAsPixels, mCardView.getPaddingRight(), mCardView.getPaddingBottom());
+//                }
 
                 //It is important to set recycle value for inner layout elements
                 mCardView.setForceReplaceInnerLayout(Card.equalsInnerLayout(mCardView.getCard(),mCard));
