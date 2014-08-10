@@ -15,6 +15,8 @@ import java.util.List;
  */
 public class IMSqliteAdapter {
 
+    public static final int LEAGUE_LIMITS = 10;
+
     private static final String DB_NAME = "texas_im_user_data";
     private static final int DB_VER = 2;
     private static final String LEAGUES_TABLE = "leagues";
@@ -64,10 +66,26 @@ public class IMSqliteAdapter {
         }
     }
 
+    private int countLeagues() {
+        Cursor c = mSqliteDB.query(LEAGUES_TABLE, LEAGUES_FIELDS, null, null,
+                null, null, null, null);
+        int res = c.getCount();
+        c.close();
+        return res;
+    }
+
+    private boolean leaguesUnderLimit() {
+        return countLeagues() < LEAGUE_LIMITS;
+    }
+
     public boolean insertLeague(int lid) {
-        ContentValues cv = new ContentValues();
-        cv.put(LEAGUES_FIELDS[0], lid);
-        return mSqliteDB.insert(LEAGUES_TABLE, null, cv) > 0;
+        if (leaguesUnderLimit()) {
+            ContentValues cv = new ContentValues();
+            cv.put(LEAGUES_FIELDS[0], lid);
+            return mSqliteDB.insert(LEAGUES_TABLE, null, cv) > 0;
+        }
+
+        return false;
     }
 
     public boolean deleteLeague(int lid) {
