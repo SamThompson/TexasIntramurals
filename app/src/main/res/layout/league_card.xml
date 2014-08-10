@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/card_content"
-    android:background="@drawable/card_background_selector"
+    android:background="@drawable/league_background_selector"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -12,7 +12,6 @@
         android:paddingRight="4dp"
         android:paddingTop="4dp"
         android:textStyle="bold|italic"
-        android:background="@color/card_orange"
         android:textSize="14sp"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"
