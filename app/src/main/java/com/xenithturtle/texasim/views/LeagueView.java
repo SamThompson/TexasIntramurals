@@ -58,7 +58,7 @@ public class LeagueView extends RelativeLayout {
                         toastText = "Following league";
                         following = true;
                     } else {
-                        toastText = "You can\'t follow more than 5 leagues";
+                        toastText = "You can\'t follow more than " + IMSqliteAdapter.LEAGUE_LIMITS + " leagues";
                     }
                 }
 

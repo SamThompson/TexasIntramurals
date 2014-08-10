@@ -29,15 +29,18 @@
         </activity>
         <activity
             android:name=".activities.FollowNewLeagueActivity"
-            android:label="@string/title_activity_follow_new_league" >
+            android:label="@string/title_activity_follow_new_league"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.SettingsActivity"
-            android:label="@string/title_activity_settings" >
+            android:label="@string/title_activity_settings"
+            android:screenOrientation="portrait">
         </activity>
         <activity
             android:name=".activities.LicenseActivity"
-            android:label="@string/title_activity_license" >
+            android:label="@string/title_activity_license"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.xenithturtle.texasim.activities.LicenseActivity" />
 

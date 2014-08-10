@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class IMSqliteAdapter {
 
-    private static final int LEAGUE_LIMITS = 5;
+    public static final int LEAGUE_LIMITS = 10;
 
     private static final String DB_NAME = "texas_im_user_data";
     private static final int DB_VER = 2;

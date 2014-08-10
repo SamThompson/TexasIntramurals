@@ -148,7 +148,7 @@ public class ViewLeagueActivity extends BaseActivity
                         item.setTitle(R.string.action_unfollow);
                         mFollowing = true;
                     } else {
-                        toastText = "You can\'t follow more than 5 leagues";
+                        toastText = "You can\'t follow more than " + IMSqliteAdapter.LEAGUE_LIMITS + " leagues";
                     }
                 } else {
                     sqliteAdapter.deleteLeague(mLid);
