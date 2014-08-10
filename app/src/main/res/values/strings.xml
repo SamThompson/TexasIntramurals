@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Texas Intramurals</string>
-    <string name="version_name">v0.2.0</string>
+    <string name="version_name">v0.2.1</string>
 
     <!-- navdrawer -->
     <string name="drawer_open">Open</string>
