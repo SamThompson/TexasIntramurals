@@ -142,11 +142,14 @@ public class ViewLeagueActivity extends BaseActivity
 
                 String toastText;
                 if (!sqliteAdapter.isFollowingLeague(mLid)) {
-                    sqliteAdapter.insertLeague(mLid);
-                    item.setIcon(R.drawable.ic_rating_important_light);
-                    toastText = "Following league";
-                    item.setTitle(R.string.action_unfollow);
-                    mFollowing = true;
+                    if (sqliteAdapter.insertLeague(mLid)) {
+                        item.setIcon(R.drawable.ic_rating_important_light);
+                        toastText = "Following league";
+                        item.setTitle(R.string.action_unfollow);
+                        mFollowing = true;
+                    } else {
+                        toastText = "You can\'t follow more than 5 leagues";
+                    }
                 } else {
                     sqliteAdapter.deleteLeague(mLid);
                     item.setIcon(R.drawable.ic_rating_unimportant_light);

@@ -45,17 +45,25 @@ public class LeagueView extends RelativeLayout {
                 IMSqliteAdapter sqliteAdapter = new IMSqliteAdapter(getContext());
                 sqliteAdapter.open();
 
+                String toastText;
+                boolean following = false;
+
                 if (mLeague.mFollowing) {
                     sqliteAdapter.deleteLeague(mLeague.mLid);
                     mStar.setImageResource(R.drawable.ic_rating_not_important);
-                    Toast.makeText(getContext(), "Unfollowing league", Toast.LENGTH_SHORT).show();
+                    toastText = "Unfollowing league";
                 } else {
-                    sqliteAdapter.insertLeague(mLeague.mLid);
-                    mStar.setImageResource(R.drawable.ic_rating_important);
-                    Toast.makeText(getContext(), "Following league", Toast.LENGTH_SHORT).show();
+                    if (sqliteAdapter.insertLeague(mLeague.mLid)) {
+                        mStar.setImageResource(R.drawable.ic_rating_important);
+                        toastText = "Following league";
+                        following = true;
+                    } else {
+                        toastText = "You can\'t follow more than 5 leagues";
+                    }
                 }
 
-                mLeague.mFollowing = !mLeague.mFollowing;
+                Toast.makeText(getContext(), toastText, Toast.LENGTH_SHORT).show();
+                mLeague.mFollowing = following;
                 sqliteAdapter.close();
             }
         });
