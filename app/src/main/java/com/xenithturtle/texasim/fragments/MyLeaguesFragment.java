@@ -1,5 +1,7 @@
 package com.xenithturtle.texasim.fragments;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -34,6 +36,7 @@ import it.gmariotti.cardslib.library.internal.Card;
 import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.internal.dismissanimation.SwipeDismissAnimation;
 import it.gmariotti.cardslib.library.view.CardListView;
+import it.gmariotti.cardslib.library.view.CardView;
 import it.gmariotti.cardslib.library.view.listener.UndoBarController;
 
 
@@ -76,7 +79,24 @@ public class MyLeaguesFragment extends Fragment {
         mNoLeaguesLayout = (LinearLayout) v.findViewById(R.id.no_leagues);
         mErrorLayout = (LinearLayout) v.findViewById(R.id.error_layout);
         mCardListView = (CardListView) v.findViewById(R.id.cardlist);
-        mDismissAnimation = new SwipeDismissAnimation(getActivity());
+        mDismissAnimation = new SwipeDismissAnimation(getActivity()) {
+
+            @Override
+            public void animate(final Card card, final CardView cardView) {
+                cardView.animate()
+                        .translationX(mDismissRight ? mListWidth : -mListWidth)
+                        .alpha(0)
+                        .setStartDelay(400) // needed this because onactivity result
+                                             // would return after the animation
+                        .setDuration(mAnimationTime)
+                        .setListener(new AnimatorListenerAdapter() {
+                            @Override
+                            public void onAnimationEnd(Animator animation) {
+                                invokeCallbak(cardView);
+                            }
+                        });
+            }
+        };
         new MyLeaguesAsyncTask().execute();
 
         //set follow button onclick
