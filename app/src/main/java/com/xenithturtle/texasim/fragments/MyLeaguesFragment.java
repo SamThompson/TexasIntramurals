@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -28,12 +27,14 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
 import it.gmariotti.cardslib.library.internal.Card;
+import it.gmariotti.cardslib.library.internal.CardArrayAdapter;
 import it.gmariotti.cardslib.library.internal.dismissanimation.SwipeDismissAnimation;
 import it.gmariotti.cardslib.library.view.CardListView;
-import it.gmariotti.cardslib.library.view.CardView;
+import it.gmariotti.cardslib.library.view.listener.UndoBarController;
 
 
 /**
@@ -47,6 +48,7 @@ public class MyLeaguesFragment extends Fragment {
     private LinearLayout mNoLeaguesLayout;
     private LinearLayout mErrorLayout;
     private CardListView mCardListView;
+    private HashMap<String, LeagueCard> mCardIds;
     private SwipeDismissAnimation mDismissAnimation;
 
     public static MyLeaguesFragment newInstance() {
@@ -66,6 +68,8 @@ public class MyLeaguesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        mCardIds = new HashMap<String, LeagueCard>();
+
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_my_leagues, container, false);
         mProgressBar = (ProgressBar) v.findViewById(R.id.progress_bar);
@@ -131,18 +135,16 @@ public class MyLeaguesFragment extends Fragment {
         if (requestCode == ViewLeagueActivity.TRACK_CHANGES) {
             if (resultCode == Activity.RESULT_OK) {
                 boolean following = data.getBooleanExtra(ViewLeagueActivity.FOLLOWING_KEY, false);
-                int listIndex = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
+                int cardId = data.getIntExtra(ViewLeagueActivity.LIST_INDEX_KEY, -1);
 
-                if (listIndex >= 0) {
+                if (cardId >= 0) {
 
                     //getchildat only gets the views currently in view, not whole layout
                     //problem stemmed from using getAmazingView incorrectly
                     //unfortunately this is how we need to update the star
-                    int transIndex = listIndex - mCardListView.getFirstVisiblePosition() - mCardListView.getHeaderViewsCount();
-                    CardView v = (CardView) mCardListView.getChildAt(transIndex);
 
-                    if (v != null && !following) {
-                        Card lc = v.getCard();
+                    if (!following) {
+                        Card lc = mCardIds.get("" + cardId);
                         mDismissAnimation.animateDismiss(lc);
 
                         if (mCardListView.getCount() == 1) {
@@ -163,6 +165,7 @@ public class MyLeaguesFragment extends Fragment {
             Intent i = new Intent(getActivity(), ViewLeagueActivity.class);
             i.putExtra(ViewLeagueActivity.NAME_KEY, ((LeagueCard) card).getLeague().mLeagueName);
             i.putExtra(ViewLeagueActivity.LID_KEY, ((LeagueCard) card).getLeague().mLid);
+            i.putExtra(ViewLeagueActivity.LIST_INDEX_KEY, ((LeagueCard) card).getLeague().mLid);
             i.putExtra(ViewLeagueActivity.JUST_LOOKING_KEY, true);
             startActivityForResult(i, ViewLeagueActivity.TRACK_CHANGES);
         }
@@ -222,6 +225,8 @@ public class MyLeaguesFragment extends Fragment {
 
                     LeagueCard lc = new LeagueCard(getActivity(), l);
                     lc.setOnClickListener(new LeagueCardClickedListener());
+                    lc.setId("" + l.mLid);
+                    mCardIds.put("" + l.mLid, lc);
 
                     leagueCards.add(lc);
 
@@ -243,6 +248,15 @@ public class MyLeaguesFragment extends Fragment {
         protected void finishWork(List<Card> res) {
             if (res.size() > 0) {
                 CardArrayAdapterWithSpace ca = new CardArrayAdapterWithSpace(getActivity(), res);
+//                ca.setUndoBarUIElements(new UndoBarController.DefaultUndoBarUIElements() {
+//
+//                    public String getMessageUndo(CardArrayAdapter adapter, String[] itemIds,
+//                                                 int[] itemPositions) {
+//                        return mCardIds.get(itemIds[0]).getLeague().mLeagueName;
+//
+//                    }
+//                });
+                //ca.setEnableUndo(true);
                 mDismissAnimation.setup(ca);
                 mCardListView.setAdapter(ca);
                 mProgressBar.setVisibility(View.GONE);
