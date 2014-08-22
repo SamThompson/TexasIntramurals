@@ -70,7 +70,11 @@ public class ScheduleCard extends Card {
                 TextView t = new TextView(getContext());
                 t.setTextColor(Color.BLACK);
                 t.setPadding(8, 8, 8, 8);
-                t.setText(s);
+                if (s.length() <= 20) {
+                    t.setText(s);
+                } else {
+                    t.setText(s.substring(0, 21) + "...");
+                }
                 team.addView(t);
             }
         }
