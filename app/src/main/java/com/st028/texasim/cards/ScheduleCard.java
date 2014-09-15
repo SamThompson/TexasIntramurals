@@ -39,13 +39,12 @@ public class ScheduleCard extends Card {
         LayoutInflater inflater = LayoutInflater.from(getContext());
         LinearLayout root = (LinearLayout) parent.findViewById(R.id.card_content);
 
-        for (int i = 0; i < mGameDays.size(); i++) {
-            GameDay gd = mGameDays.get(i);
-            LinearLayout gameDay = (LinearLayout) inflater.inflate(R.layout.game_day_view, null, false);
+        for (GameDay gd : mGameDays) {
+            LinearLayout gameDay = (LinearLayout) inflater.inflate(R.layout.game_day_view, parent, false);
             ((TextView) gameDay.findViewById(R.id.game_date)).setText(gd.mDay);
 
             for (Game g : gd.games) {
-                LinearLayout game = (LinearLayout) inflater.inflate(R.layout.schedule_table, null, false);
+                LinearLayout game = (LinearLayout) inflater.inflate(R.layout.schedule_table, parent, false);
 
                 ((TextView) game.findViewById(R.id.game_time)).setText(g.mTimeLoc);
 
