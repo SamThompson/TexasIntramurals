@@ -23,7 +23,6 @@ import com.st028.texasim.cards.LeagueCard;
 import com.st028.texasim.miscclasses.LeagueCardComparator;
 import com.st028.texasim.models.League;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 

@@ -1,11 +1,5 @@
 package com.inqbarna.tablefixheaders;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.inqbarna.tablefixheaders.adapters.TableAdapter;
-import com.st028.texasim.R;
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -21,6 +15,12 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.Scroller;
+
+import com.inqbarna.tablefixheaders.adapters.TableAdapter;
+import com.st028.texasim.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This view shows a table which can scroll in both directions. Also still

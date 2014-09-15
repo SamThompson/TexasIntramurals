@@ -2,7 +2,6 @@ package com.st028.texasim.activities;
 
 import android.app.ActionBar;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Pair;
 import android.view.Menu;
