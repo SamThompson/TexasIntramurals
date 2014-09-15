@@ -27,7 +27,7 @@ public class IMSqliteAdapter {
 
     private static final String[] LEAGUES_FIELDS = new String[] {"lid"};
 
-    private DBHelper mDBHelper;
+    private final DBHelper mDBHelper;
     private SQLiteDatabase mSqliteDB;
 
     public IMSqliteAdapter(Context c) {

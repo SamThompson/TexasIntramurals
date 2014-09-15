@@ -11,7 +11,7 @@ import java.util.Stack;
  */
 public class Recycler {
 
-	private Stack<View>[] views;
+	private final Stack<View>[] views;
 
 	/**
 	 * Constructor

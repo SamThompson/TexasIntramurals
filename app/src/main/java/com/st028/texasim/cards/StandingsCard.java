@@ -17,7 +17,7 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class StandingsCard extends Card {
 
-    JSONTableAdapter mAdapt;
+    private final JSONTableAdapter mAdapt;
 
     public StandingsCard(Context context, JSONObject tableData) {
         super(context, R.layout.standings_card);

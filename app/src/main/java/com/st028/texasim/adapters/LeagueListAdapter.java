@@ -20,8 +20,8 @@ import java.util.List;
  */
 public class LeagueListAdapter extends AmazingAdapter {
 
-    private List<Pair<String, List<League>>> mAll;
-    private Context mContext;
+    private final List<Pair<String, List<League>>> mAll;
+    private final Context mContext;
 
     public LeagueListAdapter(Context c, List<Pair<String, List<League>>> all) {
         mContext = c;

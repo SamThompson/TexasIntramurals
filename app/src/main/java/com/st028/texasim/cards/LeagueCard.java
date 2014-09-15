@@ -15,7 +15,7 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class LeagueCard extends Card {
 
-    private League mLeague;
+    private final League mLeague;
 
     public LeagueCard(Context c, League l) {
         super(c, R.layout.league_card);

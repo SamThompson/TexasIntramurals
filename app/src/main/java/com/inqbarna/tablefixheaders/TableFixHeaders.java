@@ -42,9 +42,9 @@ public class TableFixHeaders extends ViewGroup {
 
 	@SuppressWarnings("unused")
 	private View headView;
-	private List<View> rowViewList;
-	private List<View> columnViewList;
-	private List<List<View>> bodyViewTable;
+	private final List<View> rowViewList;
+	private final List<View> columnViewList;
+	private final List<List<View>> bodyViewTable;
 
 	private int rowCount;
 	private int columnCount;
@@ -67,7 +67,7 @@ public class TableFixHeaders extends ViewGroup {
 
 	private VelocityTracker velocityTracker;
 
-	private int touchSlop;
+	private final int touchSlop;
 
 	/**
 	 * Simple constructor to use when creating a view from code.

@@ -18,10 +18,10 @@ import org.json.JSONObject;
  */
 public class JSONTableAdapter extends BaseTableAdapter {
 
-    private Context mContext;
+    private final Context mContext;
+    private final float mDensity;
     private JSONArray mHeader;
     private JSONArray mData;
-    private float mDensity;
 
     public JSONTableAdapter(Context c, JSONObject tableData) {
         mContext = c;

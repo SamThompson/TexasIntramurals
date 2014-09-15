@@ -22,7 +22,7 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class ScheduleCard extends Card {
 
-    private List<GameDay> mGameDays;
+    private final List<GameDay> mGameDays;
 
     public ScheduleCard(Context c, List<GameDay> gds) {
         super(c, R.layout.schedule_card);

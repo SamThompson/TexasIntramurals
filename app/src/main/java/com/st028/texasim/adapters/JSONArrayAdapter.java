@@ -15,9 +15,9 @@ import org.json.JSONObject;
  */
 public class JSONArrayAdapter extends BaseAdapter {
 
-    private Context mContext;
-    private JSONArray mJsonArray;
-    private String mNameKey;
+    private final Context mContext;
+    private final JSONArray mJsonArray;
+    private final String mNameKey;
 
     public JSONArrayAdapter(Context c, JSONArray jsonArray, String nameKey) {
         mContext = c;
