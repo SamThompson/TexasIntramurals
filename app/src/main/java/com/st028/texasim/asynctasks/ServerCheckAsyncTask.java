@@ -23,10 +23,10 @@ public abstract class ServerCheckAsyncTask<Q, M, R>
     public static final String SERVER_STATUS = SERVER_BASE + "server_status.scgi";
 
     public static final String IM_REQ_BASE =
-            SERVER_BASE + "im_data_request.scgi?";
+            SERVER_BASE + "test_im_data_request.scgi?";
 
     public static final String LEAGUES_REQ_BASE =
-            SERVER_BASE + "league_data_request.scgi?event=";
+            SERVER_BASE + "test_league_data_request.scgi?event=";
 
     public static final String LEAGUES_REQ_MID = "&request=";
 

@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">Texas Intramurals</string>
-    <string name="version_name">v1.0.1</string>
+    <string name="version_name">v1.0.2</string>
 
     <!-- navdrawer -->
     <string name="drawer_open">Open</string>
@@ -32,6 +32,7 @@
     <string name="star_content_desc">Follow/unfollow league</string>
 
     <!-- ViewLeagueActivity -->
+    <string name="no_schedule">No games scheduled yet.</string>
     <string name="no_standings">This league doesn\'t have a\nstandings table.</string>
     <string name="view_league_error">Could not fetch league.\nPlease try again later.</string>
 
