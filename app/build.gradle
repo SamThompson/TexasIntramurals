@@ -23,6 +23,13 @@ android {
         versionName "1.0.1"
     }
     buildTypes {
+
+        debug {
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+            runProguard false
+        }
+
         release {
             runProguard false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
