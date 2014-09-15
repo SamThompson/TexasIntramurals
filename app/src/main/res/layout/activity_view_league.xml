@@ -1,4 +1,4 @@
-<com.xenithturtle.texasim.views.NoSwipeViewPager
+<com.st028.texasim.views.NoSwipeViewPager
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/pager"
     android:layout_width="match_parent"

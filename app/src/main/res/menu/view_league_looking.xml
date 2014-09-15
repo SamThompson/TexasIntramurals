@@ -3,7 +3,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.xenithturtle.texasim.activities.ViewLeagueActivity" >
+    tools:context="com.st028.texasim.activities.ViewLeagueActivity" >
 
     <item android:id="@+id/action_follow"
         android:title="Follow"

@@ -20,7 +20,7 @@
         <Preference
             android:title="@string/pref_category_about_licenses">
             <intent
-                android:action="com.xenithturtle.texasim.activities.LicenseActivity"
+                android:action="com.st028.texasim.activities.LicenseActivity"
                 />
         </Preference>
 

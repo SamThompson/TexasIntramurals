@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.inqbarna.tablefixheaders.adapters.TableAdapter;
-import com.xenithturtle.texasim.R;
+import com.st028.texasim.R;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;

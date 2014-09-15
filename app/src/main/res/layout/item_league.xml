@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<com.xenithturtle.texasim.views.LeagueView xmlns:android="http://schemas.android.com/apk/res/android"
+<com.st028.texasim.views.LeagueView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -49,4 +49,4 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
-</com.xenithturtle.texasim.views.LeagueView>
+</com.st028.texasim.views.LeagueView>

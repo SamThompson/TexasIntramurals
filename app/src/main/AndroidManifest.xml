@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.xenithturtle.texasim" >
+    package="com.st028.texasim" >
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -42,7 +42,7 @@
             android:label="@string/title_activity_license"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.xenithturtle.texasim.activities.LicenseActivity" />
+                <action android:name="com.st028.texasim.activities.LicenseActivity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
