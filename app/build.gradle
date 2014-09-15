@@ -31,9 +31,9 @@ android {
 }
 
 dependencies {
-    compile 'com.android.support:support-v4:19.+'
-    compile 'com.android.support:appcompat-v7:19.+'
-    compile 'com.github.gabrielemariotti.cards:library:1.7.+'
+    compile 'com.android.support:support-v4:20.0.0'
+    compile 'com.android.support:appcompat-v7:20.0.0'
+    compile 'com.github.gabrielemariotti.cards:library:1.9.0'
     compile files('lib/amazinglistview.jar')
     compile files('lib/acra-4.5.0.jar')
     compile files('lib/okio-1.0.0.jar')
