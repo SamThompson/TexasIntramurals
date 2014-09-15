@@ -54,8 +54,7 @@ public class MyLeaguesFragment extends Fragment {
     private SwipeDismissAnimation mDismissAnimation;
 
     public static MyLeaguesFragment newInstance() {
-        MyLeaguesFragment fragment = new MyLeaguesFragment();
-        return fragment;
+        return new MyLeaguesFragment();
     }
     public MyLeaguesFragment() {
         // Required empty public constructor
