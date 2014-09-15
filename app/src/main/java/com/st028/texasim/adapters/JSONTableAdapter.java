@@ -19,14 +19,12 @@ import org.json.JSONObject;
 public class JSONTableAdapter extends BaseTableAdapter {
 
     private Context mContext;
-    private LayoutInflater mLayoutInflater;
     private JSONArray mHeader;
     private JSONArray mData;
     private float mDensity;
 
     public JSONTableAdapter(Context c, JSONObject tableData) {
         mContext = c;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         mDensity = mContext.getResources().getDisplayMetrics().density;
 
         try {
@@ -75,13 +73,13 @@ public class JSONTableAdapter extends BaseTableAdapter {
 
     private View getFirstHeader(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_table_header_first, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table_header_first, parent, false);
         }
 
         String text = "";
         try {
             text = mHeader.getString(0);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
 
@@ -91,13 +89,13 @@ public class JSONTableAdapter extends BaseTableAdapter {
 
     private View getHeader(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_table_header, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table_header, parent, false);
         }
 
         String text = "";
         try {
             text = mHeader.getString(column + 1);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
 
@@ -107,13 +105,13 @@ public class JSONTableAdapter extends BaseTableAdapter {
 
     private View getFirstBody(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_table_first, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table_first, parent, false);
         }
 
         String text = "";
         try {
             text = mData.getJSONArray(row).getString(column + 1);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
 
@@ -124,13 +122,13 @@ public class JSONTableAdapter extends BaseTableAdapter {
 
     private View getBody(int row, int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
-            convertView = mLayoutInflater.inflate(R.layout.item_table, parent, false);
+            convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table, parent, false);
         }
 
         String text = "";
         try {
             text = mData.getJSONArray(row).getString(column + 1);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
 
