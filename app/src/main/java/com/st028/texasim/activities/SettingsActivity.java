@@ -1,8 +1,8 @@
 package com.st028.texasim.activities;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
-import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -16,7 +16,7 @@ public class SettingsActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        final ActionBar ab = getSupportActionBar();
+        final ActionBar ab = getActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
         if (savedInstanceState == null) {

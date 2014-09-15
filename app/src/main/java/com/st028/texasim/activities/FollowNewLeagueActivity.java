@@ -1,9 +1,9 @@
 package com.st028.texasim.activities;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.ActionBar;
 import android.util.Pair;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -45,7 +45,7 @@ public class FollowNewLeagueActivity extends BaseActivity {
         String name = extras.getString("EVENT_NAME");
         setTitle(name);
 
-        final ActionBar ab = getSupportActionBar();
+        final ActionBar ab = getActionBar();
         ab.setDisplayHomeAsUpEnabled(true);
 
         mAmazingList = (AmazingListView) findViewById(R.id.amazingList);
