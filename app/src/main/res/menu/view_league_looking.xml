@@ -5,7 +5,7 @@
     tools:context="com.st028.texasim.activities.ViewLeagueActivity" >
 
     <item android:id="@+id/action_follow"
-        android:title="Follow"
+        android:title="@string/action_follow"
         android:showAsAction="ifRoom"/>
 
 </menu>
