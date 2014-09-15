@@ -54,10 +54,10 @@ public class JSONTableAdapter extends BaseTableAdapter {
         final View view;
         switch (getItemViewType(row, column)) {
             case 0:
-                view = getFirstHeader(row, column, convertView, parent);
+                view = getFirstHeader(convertView, parent);
                 break;
             case 1:
-                view = getHeader(row, column, convertView, parent);
+                view = getHeader(column, convertView, parent);
                 break;
             case 2:
                 view = getFirstBody(row, column, convertView, parent);
@@ -71,7 +71,7 @@ public class JSONTableAdapter extends BaseTableAdapter {
         return view;
     }
 
-    private View getFirstHeader(int row, int column, View convertView, ViewGroup parent) {
+    private View getFirstHeader(View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table_header_first, parent, false);
         }
@@ -87,7 +87,7 @@ public class JSONTableAdapter extends BaseTableAdapter {
         return convertView;
     }
 
-    private View getHeader(int row, int column, View convertView, ViewGroup parent) {
+    private View getHeader(int column, View convertView, ViewGroup parent) {
         if (convertView == null) {
             convertView = LayoutInflater.from(mContext).inflate(R.layout.item_table_header, parent, false);
         }
