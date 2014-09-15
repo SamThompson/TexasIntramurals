@@ -75,7 +75,7 @@ public class ViewLeagueActivity extends BaseActivity
         ActionBar.TabListener tabListener = new ActionBar.TabListener() {
             @Override
             public void onTabSelected(ActionBar.Tab tab, android.app.FragmentTransaction ft) {
-
+                mPager.setCurrentItem(tab.getPosition());
             }
 
             @Override
