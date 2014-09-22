@@ -6,37 +6,32 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import com.st028.texasim.models.Event;
+
+import java.util.List;
+
 
 /**
  * Created by sam on 6/5/14.
  */
-public class JSONArrayAdapter extends BaseAdapter {
+public class EventAdapter extends BaseAdapter {
 
     private final Context mContext;
-    private final JSONArray mJsonArray;
-    private final String mNameKey;
+    private final List<Event> mEventList;
 
-    public JSONArrayAdapter(Context c, JSONArray jsonArray, String nameKey) {
+    public EventAdapter(Context c, List<Event> eList) {
         mContext = c;
-        mJsonArray = jsonArray;
-        mNameKey = nameKey;
+        mEventList = eList;
     }
 
     @Override
     public int getCount() {
-        return mJsonArray.length();
+        return mEventList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        try {
-            return mJsonArray.getJSONObject(position);
-        } catch (JSONException e) {
-            return null;
-        }
+        return mEventList.get(position);
     }
 
     @Override
@@ -50,12 +45,7 @@ public class JSONArrayAdapter extends BaseAdapter {
             convertView = View.inflate(mContext, android.R.layout.simple_list_item_1, null);
         }
 
-        String name;
-        try {
-            name = ((JSONObject) getItem(position)).getString(mNameKey);
-        } catch (JSONException e) {
-            name = "";
-        }
+        String name = ((Event) getItem(position)).name;
 
         TextView t = (TextView) convertView.findViewById(android.R.id.text1);
         t.setText(name);
