@@ -16,14 +16,18 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.st028.texasim.R;
 import com.st028.texasim.activities.FollowNewLeagueActivity;
-import com.st028.texasim.adapters.JSONArrayAdapter;
+import com.st028.texasim.adapters.EventAdapter;
 import com.st028.texasim.asynctasks.ServerCheckAsyncTask;
+import com.st028.texasim.models.Event;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -109,15 +113,11 @@ public class EventListFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
-        JSONObject ev = (JSONObject) l.getItemAtPosition(position);
-        try {
-            Intent i = new Intent(getActivity(), FollowNewLeagueActivity.class);
-            i.putExtra("EVENT_NAME", ev.getString(ServerCheckAsyncTask.JSON_ENAME));
-                i.putExtra("EVENT_ID", "" + ev.getInt(ServerCheckAsyncTask.JSON_EID));
-            startActivity(i);
-        } catch (JSONException ignored) {
-
-        }
+        Event ev = (Event) l.getItemAtPosition(position);
+        Intent i = new Intent(getActivity(), FollowNewLeagueActivity.class);
+        i.putExtra("EVENT_NAME", ev.name);
+        i.putExtra("EVENT_ID", "" + ev.id);
+        startActivity(i);
     }
 
     /**
@@ -135,7 +135,7 @@ public class EventListFragment extends ListFragment {
         public void onFragmentInteraction(Uri uri);
     }
 
-    private class EventsAsyncTask extends ServerCheckAsyncTask<Void, Void, JSONArray> {
+    private class EventsAsyncTask extends ServerCheckAsyncTask<Void, Void, List<Event>> {
 
         @Override
         protected void setUpWork() {
@@ -145,7 +145,7 @@ public class EventListFragment extends ListFragment {
         }
 
         @Override
-        protected JSONArray doWork(Void ... params) throws IOException, JSONException {
+        protected List<Event> doWork(Void ... params) throws IOException, JSONException {
             OkHttpClient client = new OkHttpClient();
 
             Request request = new Request.Builder()
@@ -156,14 +156,28 @@ public class EventListFragment extends ListFragment {
             String response = client.newCall(request).execute().body().string();
 
             //or here
-            return new JSONArray(response);
+            ArrayList<Event> res = new ArrayList<Event>();
+            JSONArray j = new JSONArray(response);
+            for (int i = 0; i < j.length(); i++) {
+                try {
+                    Event e = new Event();
+                    JSONObject jevent = j.getJSONObject(i);
+                    e.id = jevent.getInt(JSON_EID);
+                    e.name = jevent.getString(JSON_ENAME);
+                    res.add(e);
+                } catch (JSONException ignored) {
+                }
+
+            }
+
+            Collections.sort(res, new Event.EventComparator());
+
+            return res;
         }
 
         @Override
-        protected void finishWork(JSONArray res) {
-            JSONArrayAdapter adapter =
-                    new JSONArrayAdapter(EventListFragment.this.getActivity(),
-                            res, JSON_ENAME);
+        protected void finishWork(List<Event> res) {
+            EventAdapter adapter = new EventAdapter(EventListFragment.this.getActivity(), res);
             setListAdapter(adapter);
             mProgressBar.setVisibility(View.GONE);
             mListView.setVisibility(View.VISIBLE);
