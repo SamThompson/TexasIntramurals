@@ -49,7 +49,7 @@ public abstract class ServerCheckAsyncTask<Q, M, R>
     public static final String JSON_LR_UPDATE = "update_time";
     public static final String JSON_LR_SPORT = "sport";
 
-    static enum SERVER_RESPONSES {NO_CONNECTION, IOEXCEPTION, MALFORMED_RESPONSE, SERVER_DOWN, SERVER_UP};
+    static enum SERVER_RESPONSES {NO_CONNECTION, IOEXCEPTION, MALFORMED_RESPONSE, SERVER_DOWN, SERVER_UP}
 
     @Override
     protected void onPreExecute() {

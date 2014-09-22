@@ -20,14 +20,12 @@ import java.util.List;
  */
 public class LeagueListAdapter extends AmazingAdapter {
 
-    private List<Pair<String, List<League>>> mAll;
-    private Context mContext;
-    private LayoutInflater mLayoutInflater;
+    private final List<Pair<String, List<League>>> mAll;
+    private final Context mContext;
 
     public LeagueListAdapter(Context c, List<Pair<String, List<League>>> all) {
         mContext = c;
         mAll = all;
-        mLayoutInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
     @Override
@@ -56,8 +54,9 @@ public class LeagueListAdapter extends AmazingAdapter {
         League l = getItem(position);
         LeagueView view = (LeagueView) convertView;
 
-        if (view == null)
-            view = (LeagueView) mLayoutInflater.inflate(R.layout.item_league, null);
+        if (view == null) {
+            view = (LeagueView) LayoutInflater.from(mContext).inflate(R.layout.item_league, viewGroup, false);
+        }
 
         view.setModel(l);
         return view;
@@ -107,8 +106,8 @@ public class LeagueListAdapter extends AmazingAdapter {
     @Override
     public int getCount() {
         int res = 0;
-        for (int i = 0; i < mAll.size(); i++) {
-            res += mAll.get(i).second.size();
+        for (Pair<String, List<League>> aMAll : mAll) {
+            res += aMAll.second.size();
         }
         return res;
     }
@@ -116,11 +115,11 @@ public class LeagueListAdapter extends AmazingAdapter {
     @Override
     public League getItem(int position) {
         int c = 0;
-        for (int i = 0; i < mAll.size(); i++) {
-            if (position >= c && position < c + mAll.get(i).second.size()) {
-                return mAll.get(i).second.get(position - c);
+        for (Pair<String, List<League>> aMAll : mAll) {
+            if (position >= c && position < c + aMAll.second.size()) {
+                return aMAll.second.get(position - c);
             }
-            c += mAll.get(i).second.size();
+            c += aMAll.second.size();
         }
         return null;
     }

@@ -22,7 +22,7 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class ScheduleCard extends Card {
 
-    private List<GameDay> mGameDays;
+    private final List<GameDay> mGameDays;
 
     public ScheduleCard(Context c, List<GameDay> gds) {
         super(c, R.layout.schedule_card);
@@ -40,20 +40,18 @@ public class ScheduleCard extends Card {
         LinearLayout root = (LinearLayout) parent.findViewById(R.id.card_content);
 
         if (mGameDays.size() > 0) {
-            for (int i = 0; i < mGameDays.size(); i++) {
-                GameDay gd = mGameDays.get(i);
-                LinearLayout gameDay = (LinearLayout) inflater.inflate(R.layout.game_day_view, null, false);
+            for (GameDay gd : mGameDays) {
+                LinearLayout gameDay = (LinearLayout) inflater.inflate(R.layout.game_day_view, parent, false);
                 ((TextView) gameDay.findViewById(R.id.game_date)).setText(gd.mDay);
 
                 for (Game g : gd.games) {
-                    LinearLayout game = (LinearLayout) inflater.inflate(R.layout.schedule_table, null, false);
+                    LinearLayout game = (LinearLayout) inflater.inflate(R.layout.schedule_table, parent, false);
 
                     ((TextView) game.findViewById(R.id.game_time)).setText(g.mTimeLoc);
 
                     TableRow team1 = (TableRow) game.findViewById(R.id.team_1);
                     populateTable(team1, g.mTeam1);
                     team1.setBackgroundColor(parent.getResources().getColor(R.color.schedule_white));
-
                     TableRow team2 = (TableRow) game.findViewById(R.id.team_2);
                     populateTable(team2, g.mTeam2);
                     team2.setBackgroundColor(parent.getResources().getColor(R.color.schedule_gray));

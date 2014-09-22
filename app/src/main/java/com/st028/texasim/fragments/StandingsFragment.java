@@ -56,6 +56,7 @@ public class StandingsFragment extends Fragment {
         args.putInt(LEAGUE_KEY, leagueId);
         fragment.setArguments(args);
         fragment.setArguments(args);
+        fragment.setRetainInstance(true);
         return fragment;
     }
     public StandingsFragment() {

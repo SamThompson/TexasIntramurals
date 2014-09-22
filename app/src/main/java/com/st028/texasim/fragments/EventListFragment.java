@@ -115,7 +115,7 @@ public class EventListFragment extends ListFragment {
             i.putExtra("EVENT_NAME", ev.getString(ServerCheckAsyncTask.JSON_ENAME));
                 i.putExtra("EVENT_ID", "" + ev.getInt(ServerCheckAsyncTask.JSON_EID));
             startActivity(i);
-        } catch (JSONException e) {
+        } catch (JSONException ignored) {
 
         }
     }

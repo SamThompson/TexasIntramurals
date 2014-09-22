@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-
 import com.st028.texasim.R;
 
 import java.util.List;
@@ -35,11 +34,11 @@ public class CardArrayAdapterWithSpace extends CardArrayAdapter {
         LayoutInflater mInflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         //Retrieve card from items
-        mCard = (Card) getItem(position);
+        mCard = getItem(position);
         if (mCard != null) {
 
             int layout = mRowLayoutId;
-            boolean recycle = false;
+            boolean recycle;
 
             //Inflate layout
             if (view == null) {

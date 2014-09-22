@@ -23,7 +23,6 @@ import com.st028.texasim.cards.LeagueCard;
 import com.st028.texasim.miscclasses.LeagueCardComparator;
 import com.st028.texasim.models.League;
 
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -54,8 +53,7 @@ public class MyLeaguesFragment extends Fragment {
     private SwipeDismissAnimation mDismissAnimation;
 
     public static MyLeaguesFragment newInstance() {
-        MyLeaguesFragment fragment = new MyLeaguesFragment();
-        return fragment;
+        return new MyLeaguesFragment();
     }
     public MyLeaguesFragment() {
         // Required empty public constructor

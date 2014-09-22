@@ -5,7 +5,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-
 import com.st028.texasim.R;
 import com.st028.texasim.models.League;
 
@@ -16,7 +15,7 @@ import it.gmariotti.cardslib.library.internal.Card;
  */
 public class LeagueCard extends Card {
 
-    private League mLeague;
+    private final League mLeague;
 
     public LeagueCard(Context c, League l) {
         super(c, R.layout.league_card);

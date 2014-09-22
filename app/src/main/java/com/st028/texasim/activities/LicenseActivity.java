@@ -16,7 +16,7 @@ public class LicenseActivity extends BaseActivity {
         setContentView(R.layout.activity_license);
         WebView v = (WebView) findViewById(R.id.license);
         v.loadData(getString(R.string.license), "text/html", null);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 
