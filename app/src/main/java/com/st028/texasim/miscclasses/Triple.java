@@ -5,9 +5,9 @@ package com.st028.texasim.miscclasses;
  */
 public class Triple<F, S, T> {
 
-    public F first;
-    public S second;
-    public T third;
+    public final F first;
+    public final S second;
+    public final T third;
 
     public Triple(F f, S s, T t) {
         first = f;

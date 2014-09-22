@@ -27,13 +27,11 @@ public class IMSqliteAdapter {
 
     private static final String[] LEAGUES_FIELDS = new String[] {"lid"};
 
-    private final Context mContext;
-    private DBHelper mDBHelper;
+    private final DBHelper mDBHelper;
     private SQLiteDatabase mSqliteDB;
 
     public IMSqliteAdapter(Context c) {
-        mContext = c;
-        mDBHelper = new DBHelper(mContext);
+        mDBHelper = new DBHelper(c);
     }
 
     public IMSqliteAdapter open() throws SQLiteException {
@@ -106,7 +104,7 @@ public class IMSqliteAdapter {
 
         if (c.moveToFirst()) {
             do {
-                res.add(new Integer(c.getInt(0)));
+                res.add(c.getInt(0));
             } while (c.moveToNext());
         }
         c.close();

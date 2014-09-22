@@ -61,6 +61,7 @@ public class ScheduleFragment extends Fragment {
         Bundle args = new Bundle();
         args.putInt(LEAGUE_KEY, leagueId);
         fragment.setArguments(args);
+        fragment.setRetainInstance(true);
         return fragment;
     }
     public ScheduleFragment() {

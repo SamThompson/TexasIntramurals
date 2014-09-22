@@ -20,63 +20,63 @@
 <resources>
 
     <style name="Theme.Default_theme" parent="@style/default_theme">
-        <item name="actionBarItemBackground">@drawable/selectable_background_default_theme</item>
-        <item name="popupMenuStyle">@style/PopupMenu.Default_theme</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Default_theme</item>
-        <item name="actionBarTabStyle">@style/ActionBarTabStyle.Default_theme</item>
-        <item name="actionDropDownStyle">@style/DropDownNav.Default_theme</item>
-        <item name="actionBarStyle">@style/ActionBar.Solid.Default_theme</item>
-        <item name="actionModeBackground">@drawable/cab_background_top_default_theme</item>
-        <item name="actionModeSplitBackground">@drawable/cab_background_bottom_default_theme</item>
-        <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Default_theme</item>
+        <item name="android:actionBarItemBackground">@drawable/selectable_background_default_theme</item>
+        <item name="android:popupMenuStyle">@style/PopupMenu.Default_theme</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Default_theme</item>
+        <item name="android:actionBarTabStyle">@style/ActionBarTabStyle.Default_theme</item>
+        <item name="android:actionDropDownStyle">@style/DropDownNav.Default_theme</item>
+        <item name="android:actionBarStyle">@style/ActionBar.Solid.Default_theme</item>
+        <item name="android:actionModeBackground">@drawable/cab_background_top_default_theme</item>
+        <item name="android:actionModeSplitBackground">@drawable/cab_background_bottom_default_theme</item>
+        <item name="android:actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Default_theme</item>
 
                 <!-- Light.DarkActionBar specific -->
-        <item name="actionBarWidgetTheme">@style/Theme.Default_theme.Widget</item>
+        <item name="android:actionBarWidgetTheme">@style/Theme.Default_theme.Widget</item>
 
     </style>
 
-    <style name="ActionBar.Solid.Default_theme" parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
-        <item name="background">@drawable/ab_solid_default_theme</item>
-        <item name="backgroundStacked">@drawable/ab_stacked_solid_default_theme</item>
-        <item name="backgroundSplit">@drawable/ab_bottom_solid_default_theme</item>
-        <item name="progressBarStyle">@style/ProgressBar.Default_theme</item>
+    <style name="ActionBar.Solid.Default_theme" parent="@android:style/Widget.Holo.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@drawable/ab_solid_default_theme</item>
+        <item name="android:backgroundStacked">@drawable/ab_stacked_solid_default_theme</item>
+        <item name="android:backgroundSplit">@drawable/ab_bottom_solid_default_theme</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Default_theme</item>
     </style>
 
-    <style name="ActionBar.Transparent.Default_theme" parent="@style/Widget.AppCompat.ActionBar">
-        <item name="background">@drawable/ab_transparent_default_theme</item>
-        <item name="progressBarStyle">@style/ProgressBar.Default_theme</item>
+    <style name="ActionBar.Transparent.Default_theme" parent="@android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@drawable/ab_transparent_default_theme</item>
+        <item name="android:progressBarStyle">@style/ProgressBar.Default_theme</item>
     </style>
 	
-    <style name="PopupMenu.Default_theme" parent="@style/Widget.AppCompat.PopupMenu">	
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_default_theme</item>	
+    <style name="PopupMenu.Default_theme" parent="@android:style/Widget.Holo.PopupMenu">
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_default_theme</item>
     </style>
 	
-    <style name="DropDownListView.Default_theme" parent="@style/Widget.AppCompat.ListView.DropDown">
+    <style name="DropDownListView.Default_theme" parent="@android:style/Widget.Holo.ListView.DropDown">
         <item name="android:listSelector">@drawable/selectable_background_default_theme</item>
     </style>
 
-    <style name="ActionBarTabStyle.Default_theme" parent="@style/Widget.AppCompat.ActionBar.TabView">
+    <style name="ActionBarTabStyle.Default_theme" parent="@android:style/Widget.Holo.ActionBar.TabView">
         <item name="android:background">@drawable/tab_indicator_ab_default_theme</item>
     </style>
 	
-    <style name="DropDownNav.Default_theme" parent="@style/Widget.AppCompat.Spinner.DropDown.ActionBar">
+    <style name="DropDownNav.Default_theme" parent="android:style/Widget.Holo.Spinner">
         <item name="android:background">@drawable/spinner_background_ab_default_theme</item>
         <item name="android:popupBackground">@drawable/menu_dropdown_panel_default_theme</item>
         <item name="android:dropDownSelector">@drawable/selectable_background_default_theme</item>
     </style>
     
-    <style name="ProgressBar.Default_theme" parent="@style/Widget.AppCompat.ProgressBar.Horizontal">
+    <style name="ProgressBar.Default_theme" parent="@android:style/Widget.Holo.ProgressBar.Horizontal">
         <item name="android:progressDrawable">@drawable/progress_horizontal_default_theme</item>
     </style>
     
-    <style name="ActionButton.CloseMode.Default_theme" parent="@style/Widget.AppCompat.ActionButton.CloseMode">
+    <style name="ActionButton.CloseMode.Default_theme" parent="@android:style/Widget.Holo.ActionButton.CloseMode">
         <item name="android:background">@drawable/btn_cab_done_default_theme</item>
     </style>
     
     <!-- this style is only referenced in a Light.DarkActionBar based theme -->
-    <style name="Theme.Default_theme.Widget" parent="@style/Theme.AppCompat">
-        <item name="popupMenuStyle">@style/PopupMenu.Default_theme</item>
-        <item name="dropDownListViewStyle">@style/DropDownListView.Default_theme</item>
+    <style name="Theme.Default_theme.Widget" parent="@android:style/Theme.Holo">
+        <item name="android:popupMenuStyle">@style/PopupMenu.Default_theme</item>
+        <item name="android:dropDownListViewStyle">@style/DropDownListView.Default_theme</item>
     </style>
 
 
